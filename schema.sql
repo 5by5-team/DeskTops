@@ -16,6 +16,7 @@ CREATE TABLE dataowner (
 CREATE TABLE officedata (
    office_id int NOT NULL AUTO_INCREMENT ,
    PRIMARY KEY (office_id),
+   photo  VARCHAR(50),
    discribe VARCHAR(100),
    city     VARCHAR(10),
     price int NOT NULL,
