@@ -8,21 +8,19 @@ import SinCustomer from './components/signupCustomer/signupCustomer';
 // import CustumerPage from '../src/components/custumerPage/custumerPage'
 // import OwnerPage from '../src/components/ownerPage/ownerPage'
 // import RentPage from '../src/components/rentPage/rentPage'
-// import LandingPage from '../src/components/landingPage/landingPage'
+import LandingPage from '../src/components/landingPage/landingPage';
 // import Calender from '../src/components/calender/calender'
 
 function App() {
   return (
     <Router>
-      <Route exact path='/' component={Login} />
+      <Route exact path='/' component={LandingPage} />
       <section>
         <Route exact path='/signupCustomer' component={SinCustomer} />
         <Route exact path='/signupOwner' component={SignupOwner} />
-        {/* <Route exact path='/custumerPage' component={CustumerPage}/>
-          <Route exact path='/ownerPage' component={OwnerPage}/>
-          <Route exact path='/rentPage' component={RentPage}/>
-          <Route exact path='/landingPage' component={LandingPage}/>
-          <Route exact path='/calender' component={Calender}/> */}
+        <Route exact path='/landingPage' component={LandingPage} />
+        <Route exact path='/Login' component={Login}/>
+        
       </section>
     </Router>
   );
