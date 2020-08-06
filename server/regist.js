@@ -5,13 +5,18 @@ var db = require("./../database-mysql/index");
  //////////////////////////
  var payload = {}
 exports.register = async function(req,res){
+  console.log(req.body)
+  // if(req.body.name==="" || req.body.email ===""||req.body.password===""||req.body.phone===""){
+  //   res.send("error")
+  // }
   const password = req.body.password;
   const encryptedPassword = await bcrypt.hash(password, 10)
   let sql = "INSERT INTO datauser SET ?";
   let post = {
     name: req.body.name,
     email: req.body.email,
-    password: encryptedPassword
+    password: encryptedPassword,
+    phone :req.body.phone
 }
 db.connection.query(sql,post, function (error, results, fields) {
     if (error) {
@@ -67,14 +72,17 @@ db.connection.query(sql,post, function (error, results, fields) {
   }
   ////////////////////////////////////////
   exports.registerowner = async function(req,res){
+
     const password = req.body.password;
     const encryptedPassword = await bcrypt.hash(password, 10)
     let sql = "INSERT INTO dataowner SET ?";
     let post = {
       name: req.body.name,
+      phone :req.body.phone,
       companyname :req.body.companyname,
       email: req.body.email,
-      password: encryptedPassword
+      password: encryptedPassword,
+      location: req.body.location
   }
   db.connection.query(sql,post, function (error, results, fields) {
       if (error) {
