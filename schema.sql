@@ -3,14 +3,17 @@ CREATE TABLE datauser (
     name VARCHAR(20),
     email    VARCHAR(20),
     password VARCHAR(100) NOT NULL,
+    phone BIGINT,
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 CREATE TABLE dataowner (
     idowner int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(20),
+    phone BIGINT,
     companyname VARCHAR(20),
     email    VARCHAR(20),
     password VARCHAR(100) NOT NULL,
+    location  VARCHAR(20),
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 CREATE TABLE officedata (
