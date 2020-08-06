@@ -5,7 +5,7 @@ import { Grid, TextField, Link } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
-export default function login() {
+export default function loginforOwner() {
   return (
     <div>
       <Grid container style={{ minHeight: '100vh' }}>
@@ -41,35 +41,39 @@ export default function login() {
             }}
           >
             <Grid container>
-              <h1>LOGIN</h1>
+              <h1>LOGIN AS OWNER</h1>
             </Grid>
             <TextField
               label='Username'
               margin='normal'
               InputProps={{
-                startAdornment:
+                startAdornment: (
                   <InputAdornment position='start'>
                     <AccountCircle />
                   </InputAdornment>
-                
+                ),
               }}
             />
-
-            <TextField label='password' margin='normal' InputProps={{startAdornment: 
+​
+            <TextField
+              label='password'
+              margin='normal'
+              InputProps={{
+                startAdornment: (
                   <InputAdornment position='start'>
                     <Lock />
                   </InputAdornment>
-                
+                ),
               }}
             />
             <div style={{ height: 20 }} />
-            <Link href='/custumerPage' onClick={console.log('kk')}>
+            <Link href='/ownerPage' onClick={console.log('kk')}>
               <Button variant='contained' color='primary'>
-               LOGIN
+                LOGIN
               </Button>
             </Link>
-            <div style={{ height: 20 }} />
-
+            <div style={{ height: 60 }} />
+​
             <Link href='/signupCustomer' onClick={console.log('kk')}>
               <Button variant='contained' color='primary'>
                 register as custumer
@@ -82,7 +86,7 @@ export default function login() {
                 register as owner
               </Button>
             </Link>
-
+​
             <Button>register with google</Button>
           </div>
           <div />
