@@ -15,7 +15,10 @@ function Bar() {
             Home
           </ReactBootstrap.Nav.Link>
           <ReactBootstrap.Nav.Link href='/login'>
-            log-in
+            log-in As Custumer
+          </ReactBootstrap.Nav.Link>
+          <ReactBootstrap.Nav.Link href='/loginForOwner'>
+            log-in As Owner
           </ReactBootstrap.Nav.Link>
           <ReactBootstrap.NavDropdown title='more' id='basic-nav-dropdown'>
             <ReactBootstrap.NavDropdown.Item href='#action/3.1'>

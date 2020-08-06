@@ -2,7 +2,7 @@ import React from 'react';
 // import photo from './photo_2017-11-23_07-26-42.jpg';
 // import logo from './201695562016-12-204225943Cooking Table-01.jpg';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { Grid, TextField } from '@material-ui/core';
+import { Grid, TextField, Link } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { AccountCircle, Lock, Email, Phone } from '@material-ui/icons';
 
@@ -84,10 +84,12 @@ export default function SinCustomer() {
               }}
             />
             <div style={{ hight: 20 }} />
-            <Button color='primary' variant='contained'>
-              {' '}
-              Done{' '}
-            </Button>
+            <Link href='/login' onClick={console.log('kk')}>
+              <Button variant='contained' color='primary'>
+                DONE
+              </Button>
+            </Link>
+
             <div style={{ height: 20 }} />
           </div>
           <div />

@@ -5,7 +5,7 @@ import { Grid, TextField, Link } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
-export default function login() {
+export default function loginforOwner() {
   return (
     <div>
       <Grid container style={{ minHeight: '100vh' }}>
@@ -41,7 +41,7 @@ export default function login() {
             }}
           >
             <Grid container>
-              <h1>LOGIN AS CUSTOMER</h1>
+              <h1>LOGIN AS OWNER</h1>
             </Grid>
             <TextField
               label='Username'

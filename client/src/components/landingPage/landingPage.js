@@ -76,7 +76,7 @@ function home() {
                       Some quick example text to build on the card title and
                       make up the bulk of the card's content.
                     </ReactBootstrap.Card.Text>
-                    <ReactBootstrap.Button variant='primary'>
+                    <ReactBootstrap.Button Link href='/login' variant='primary'>
                       Go somewhere
                     </ReactBootstrap.Button>
                   </ReactBootstrap.Card.Body>
@@ -96,7 +96,7 @@ function home() {
                       Some quick example text to build on the card title and
                       make up the bulk of the card's content.
                     </ReactBootstrap.Card.Text>
-                    <ReactBootstrap.Button variant='primary'>
+                    <ReactBootstrap.Button Link href='/login' variant='primary'>
                       Go somewhere
                     </ReactBootstrap.Button>
                   </ReactBootstrap.Card.Body>
