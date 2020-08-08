@@ -44,7 +44,7 @@ import Select from '@material-ui/core/Select';
             console.log(response);
             if (response.data.success === 'user registered sucessfully') {
               console.log('NOW LOGIN TO CONFIRM YOUR  ACCOUNT');
-              this.props.history.push('/login')
+              this.props.history.push('/loginForOwner')
               alert('NOW LOGIN TO CONFIRM YOUR  ACCOUNT');
             }
             else{

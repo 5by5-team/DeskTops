@@ -1,11 +1,52 @@
 import React from 'react';
+import axios from 'axios';
 import logo from '../login/img2.jpg';
 import { AccountCircle, Lock } from '@material-ui/icons';
 import { Grid, TextField, Link } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
-
-export default function login() {
+var uesr ={} ;
+class login extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        email: '',
+        password: '',
+      };
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+    }
+    handleChange(event) {
+      this.setState({
+        [event.target.name]: event.target.value,
+      });
+    }
+    // save the information in db
+    handleSubmit(event) {
+      const {email, password } = this.state;
+  
+      axios
+        .post(`http://localhost:5000/loginuser`, {
+          email, password
+        })
+        .then((response) => {
+          console.log(response.data.user);
+          if (response.data.success === 'login sucessfull') {
+            console.log('DONE');
+            this.props.history.push('/custumerPage')
+          }
+          else{
+            alert('ERROR');
+          }
+         
+        })
+        .catch((error) => {
+          console.log('login error', error);
+          alert('login error');
+        });
+      event.preventDefault();
+    }
+  render() {
   return (
     <div>
       <Grid container style={{ minHeight: '100vh' }}>
@@ -44,6 +85,9 @@ export default function login() {
               <h1>LOGIN</h1>
             </Grid>
             <TextField
+            name='email'
+            value={this.state.email}
+            onChange={this.handleChange}
               label='Username'
               margin='normal'
               InputProps={{
@@ -55,7 +99,11 @@ export default function login() {
               }}
             />
 
-            <TextField label='password' margin='normal' InputProps={{startAdornment: 
+            <TextField
+             name='password'
+             value={this.state.password}
+             onChange={this.handleChange}
+             label='password' margin='normal' InputProps={{startAdornment: 
                   <InputAdornment position='start'>
                     <Lock />
                   </InputAdornment>
@@ -63,11 +111,11 @@ export default function login() {
               }}
             />
             <div style={{ height: 20 }} />
-            <Link href='/custumerPage' onClick={console.log('kk')}>
-              <Button variant='contained' color='primary'>
+            {/* <Link href='/custumerPage' onClick={console.log('kk')}> */}
+              <Button variant='contained' color='primary' onClick = {this.handleSubmit}>
                LOGIN
               </Button>
-            </Link>
+            {/* </Link> */}
             <div style={{ height: 20 }} />
 
             <Link href='/signupCustomer' onClick={console.log('kk')}>
@@ -91,3 +139,5 @@ export default function login() {
     </div>
   );
 }
+}
+export default  login;

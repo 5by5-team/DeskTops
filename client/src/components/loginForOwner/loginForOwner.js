@@ -4,8 +4,49 @@ import { AccountCircle, Lock } from '@material-ui/icons';
 import { Grid, TextField, Link } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
-
-export default function loginforOwner() {
+import axios from 'axios';
+  
+  class loginforOwner extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        email: '',
+        password: '',
+      };
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+    }
+    handleChange(event) {
+      this.setState({
+        [event.target.name]: event.target.value,
+      });
+    }
+    // save the information in db
+    handleSubmit(event) {
+      const {email, password } = this.state;
+  
+      axios
+        .post(`http://localhost:5000/loginowner`, {
+          email, password
+        })
+        .then((response) => {
+          console.log(response.data);
+          if (response.data.success === 'login sucessfull') {
+            console.log('DONE');
+            this.props.history.push('/ownerPage')
+          }
+          else{
+            console.log(response.data);
+          }
+         
+        })
+        .catch((error) => {
+          console.log('login error', error);
+          alert('login error');
+        });
+      event.preventDefault();
+    }
+  render() {
   return (
     <div>
       <Grid container style={{ minHeight: '100vh' }}>
@@ -41,39 +82,42 @@ export default function loginforOwner() {
             }}
           >
             <Grid container>
-              <h1>LOGIN AS OWNER</h1>
+              <h1>LOGIN</h1>
             </Grid>
             <TextField
+            name='email'
+            value={this.state.email}
+            onChange={this.handleChange}
               label='Username'
               margin='normal'
               InputProps={{
-                startAdornment: (
+                startAdornment:
                   <InputAdornment position='start'>
                     <AccountCircle />
                   </InputAdornment>
-                ),
+                
               }}
             />
-​
+
             <TextField
-              label='password'
-              margin='normal'
-              InputProps={{
-                startAdornment: (
+             name='password'
+             value={this.state.password}
+             onChange={this.handleChange}
+             label='password' margin='normal' InputProps={{startAdornment: 
                   <InputAdornment position='start'>
                     <Lock />
                   </InputAdornment>
-                ),
+                
               }}
             />
             <div style={{ height: 20 }} />
-            <Link href='/ownerPage' onClick={console.log('kk')}>
-              <Button variant='contained' color='primary'>
-                LOGIN
+            {/* <Link href='/custumerPage' onClick={console.log('kk')}> */}
+              <Button variant='contained' color='primary' onClick = {this.handleSubmit}>
+               LOGIN
               </Button>
-            </Link>
-            <div style={{ height: 60 }} />
-​
+            {/* </Link> */}
+            <div style={{ height: 20 }} />
+
             <Link href='/signupCustomer' onClick={console.log('kk')}>
               <Button variant='contained' color='primary'>
                 register as custumer
@@ -81,12 +125,12 @@ export default function loginforOwner() {
             </Link>
             <br />
             <br />
-            <Link href='/signupOwner' onClick={console.log('kk')}>
+            <Link href='/signupOwner' >
               <Button variant='contained' color='primary'>
                 register as owner
               </Button>
             </Link>
-​
+
             <Button>register with google</Button>
           </div>
           <div />
@@ -95,3 +139,5 @@ export default function loginforOwner() {
     </div>
   );
 }
+}
+export default  loginforOwner;

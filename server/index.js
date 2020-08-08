@@ -7,6 +7,7 @@ app.use(bodyParser.json())
  var mysql = require('mysql');
  var db = require("./../database-mysql/index")
  var login = require("./regist")
+ var add = require("./addaffice")
  var router = express.Router();
  const bcrypt = require('bcrypt');
 //  const db = 'test'
@@ -21,6 +22,8 @@ app.post('/registeruser',login.register);
 app.post('/loginuser',login.login);
 app.post('/registerowner',login.registerowner);
 app.post('/loginowner',login.loginowner);
+app.post('/addoffice',add.addoff);
+
 const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV === 'production') {
