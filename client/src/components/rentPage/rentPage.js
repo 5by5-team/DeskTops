@@ -7,6 +7,13 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import 'date-fns';
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import { 
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider
+} from '@material-ui/pickers';
 
 const useStyles = makeStyles({
   root: {
@@ -14,35 +21,52 @@ const useStyles = makeStyles({
   },
   media: {
     height: 140,
-  },
+  }, 
 });
 
 export default function MediaCard() {
   const classes = useStyles();
+  const [selectedDate, setSelectedDate] = React.useState(
+    new Date('2014-08-18T21:11:5')
+  );
+
+  const handleDateChange = date => {
+    setSelectedDate(date);
+  };
 
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
+          image='/static/images/cards/contemplative-reptile.jpg'
+          title='Contemplative Reptile'
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+          <Typography variant='body2' color='textSecondary' component='p'>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Grid container justify='space-around'>
+              {/* <KeyboardDatePicker
+          margin="normal"
+          id="date-picker-dialog"
+          label="Date picker dialog"
+          format="MM/dd/yyyy"
+          value={selectedDate}
+          onChange={handleDateChange}
+          KeyboardButtonProps={{
+            'aria-label': 'change date',
+          }}
+        /> */}
+              </Grid>
+            </MuiPickersUtilsProvider>
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button size='small' color='primary'>
           Share
         </Button>
-        <Button size="small" color="primary">
+        <Button size='small' color='primary'>
           Learn More
         </Button>
       </CardActions>

@@ -47,37 +47,36 @@ export default function loginforOwner() {
               label='Username'
               margin='normal'
               InputProps={{
-                startAdornment:
+                startAdornment: (
                   <InputAdornment position='start'>
                     <AccountCircle />
                   </InputAdornment>
-                
+                ),
               }}
             />
 
-            <TextField label='password' margin='normal' InputProps={{startAdornment: 
+            <TextField
+              label='password'
+              margin='normal'
+              InputProps={{
+                startAdornment: (
                   <InputAdornment position='start'>
                     <Lock />
                   </InputAdornment>
-                
+                ),
               }}
             />
             <div style={{ height: 20 }} />
-            <Button color='primary' variant='contained'>
-              LOG IN
-            </Button>
+            <Link href='/ownerPage' onClick={console.log('kk')}>
+              <Button variant='contained' color='primary'>
+                LOGIN
+              </Button>
+            </Link>
             <div style={{ height: 60 }} />
 
             <Link href='/signupCustomer' onClick={console.log('kk')}>
               <Button variant='contained' color='primary'>
-                register as custumer
-              </Button>
-            </Link>
-            <br />
-            <br />
-            <Link href='/signupOwner' onClick={console.log('kk')}>
-              <Button variant='contained' color='primary'>
-                register as owner
+                REGISTER
               </Button>
             </Link>
 
