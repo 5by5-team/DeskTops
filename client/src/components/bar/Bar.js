@@ -21,10 +21,10 @@ function Bar() {
             log-in As Owner
           </ReactBootstrap.Nav.Link>
           <ReactBootstrap.NavDropdown title='more' id='basic-nav-dropdown'>
-            <ReactBootstrap.NavDropdown.Item href='#action/3.1'>
+            <ReactBootstrap.NavDropdown.Item href='/about'>
               about
             </ReactBootstrap.NavDropdown.Item>
-            <ReactBootstrap.NavDropdown.Item href='#action/3.2'>
+            <ReactBootstrap.NavDropdown.Item href='/ContactUs'>
               contact us
             </ReactBootstrap.NavDropdown.Item>
             {/* <ReactBootstrap.NavDropdown.Item href='#action/3.3'>

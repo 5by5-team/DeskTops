@@ -55,7 +55,7 @@ export default function login() {
               }}
             />
 
-            <TextField label='password' margin='normal' InputProps={{startAdornment: 
+            <TextField type="password" label='password' margin='normal' InputProps={{startAdornment: 
                   <InputAdornment position='start'>
                     <Lock />
                   </InputAdornment>

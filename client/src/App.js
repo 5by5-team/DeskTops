@@ -7,8 +7,10 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import SinCustomer from './components/signupCustomer/signupCustomer';
 //import CustumerPage from '../src/components/custumerPage/custumerPage'
 import OwnerPage from '../src/components/ownerPage/ownerPage'
-import RentPage from '../src/components/rentPage/rentPage'
+// import RentPage from '../src/components/rentPage/rentPage'
 import LandingPage from '../src/components/landingPage/landingPage';
+import about from "./components/about/about"
+import ContactUs from "./components/ContactUs/ContactUs";
 // import Calender from '../src/components/calender/calender'
 function App() {
   return (
@@ -20,7 +22,9 @@ function App() {
         <Route exact path='/landingPage' component={LandingPage} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/loginForOwner' component={LoginOwner} />
-        {/* <Route exact path='/ownerPage' component={OwnerPage} /> */}
+        <Route exact path='/about' component={about}/>
+        <Route exact path='/contactUs' component={ContactUs}/>
+        <Route exact path='/ownerPage' component={OwnerPage} />
         {/* <Route exact path='/rentPage' component={RentPage} /> */}
       </section>
     </Router>

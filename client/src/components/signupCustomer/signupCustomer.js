@@ -105,6 +105,7 @@ import { AccountCircle, Lock, Email, Phone } from '@material-ui/icons';
              value={this.state.email}
              onChange={this.handleChange}
               label='Email'
+              type='Email'
               margin='normal'
               InputProps={{
                 startAdornment: (
@@ -120,6 +121,7 @@ import { AccountCircle, Lock, Email, Phone } from '@material-ui/icons';
              value={this.state.password}
              onChange={this.handleChange}
               label='password'
+              type='password'
               margin='normal'
               InputProps={{
                 startAdornment: (
@@ -135,6 +137,7 @@ import { AccountCircle, Lock, Email, Phone } from '@material-ui/icons';
             value={this.state.phone}
             onChange={this.handleChange}
               label='Phone'
+              type='Number'
               margin='normal'
               InputProps={{
                 startAdornment: (

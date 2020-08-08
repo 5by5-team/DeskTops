@@ -2,6 +2,8 @@ import React from 'react';
 import * as ReactBootstrap from 'react-bootstrap';
 import Bar from '../bar/Bar';
 function home() {
+  
+
   return (
     <row>
       <Bar />
@@ -22,6 +24,7 @@ function home() {
                   </p>
                 </ReactBootstrap.Carousel.Caption>
               </ReactBootstrap.Carousel.Item>
+              
               <ReactBootstrap.Carousel.Item>
                 <img
                   className='d-block w-100'
@@ -58,6 +61,7 @@ function home() {
 
       <br />
       <br />
+     
       <ReactBootstrap.Container fluid='md'>
         <ReactBootstrap.Row>
           <ReactBootstrap.Col>
@@ -82,7 +86,8 @@ function home() {
                   </ReactBootstrap.Card.Body>
                 </ReactBootstrap.Card>
               </ReactBootstrap.Col>
-              <ReactBootstrap.Col xs={6} md={4}>
+    
+              {/* <ReactBootstrap.Col xs={6} md={4}> 
                 <ReactBootstrap.Card style={{ width: '18rem' }}>
                   <ReactBootstrap.Card.Img
                     variant='top'
@@ -122,7 +127,7 @@ function home() {
                   </ReactBootstrap.Card.Body>
                 </ReactBootstrap.Card>
                 <br />
-              </ReactBootstrap.Col>
+              </ReactBootstrap.Col> */}
             </ReactBootstrap.Row>
           </ReactBootstrap.Col>
         </ReactBootstrap.Row>
