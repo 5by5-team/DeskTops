@@ -50,7 +50,8 @@ db.connection.query(sql,post, function (error, results, fields) {
           var token = jwt.sign(user, config.secret);
           res.send({
                 "code":200,
-                "success":"login sucessfull",
+                "success":"login sucessfull" ,
+                "user" :user ,
                 "token": token
               })
           }
