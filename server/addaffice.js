@@ -3,11 +3,17 @@ exports.addoff = function(req,res){
     console.log(req.body);
     let sql = "INSERT INTO officedata SET ?";
     let post = {
-      photo: req.body.photo,
-       discribe: req.body.discribe,
-       city: req.body.city,
-       price :req.body.price,
-       idowner:req.body.idowner,
+      Discription: req.body.Discription,
+      location: req.body.location,
+      price: req.body.price,
+      Vip_wifi :req.body. Vip_wifi,
+    ele: req.body.ele,
+    water :req.body.water,
+    conditioning :req.body.conditioning,
+    coffeeandtea :req.body.coffeeandtea,
+    email :req.body.email,
+    imgUrl :req.body.imgUrl
+
     }
     db.connection.query(sql,post, function (error, results, fields) {
         if (error) {
