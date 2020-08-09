@@ -1,10 +1,10 @@
 import React from 'react';
 import * as ReactBootstrap from 'react-bootstrap';
-import Bar from '../bar/Bar';
+import Navbar from "../../navbar/navbar";
 function home() {
   return (
     <row>
-      <Bar />
+      <Navbar />
       <ReactBootstrap.Container fluid='md'>
         <ReactBootstrap.Row>
           <ReactBootstrap.Col>

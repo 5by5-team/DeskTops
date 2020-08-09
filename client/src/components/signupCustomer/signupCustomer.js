@@ -117,6 +117,7 @@ import { AccountCircle, Lock, Email, Phone } from '@material-ui/icons';
             <TextField
               required
              name='password'
+             type="password"
              value={this.state.password}
              onChange={this.handleChange}
               label='password'
