@@ -8,9 +8,12 @@ app.use(bodyParser.json())
  var db = require("./../database-mysql/index")
  var login = require("./regist")
  var add = require("./addaffice")
+ var getall = require("./getall")
+ var bookall = require("./bookingall")
  var router = express.Router();
  const bcrypt = require('bcrypt');
-//  const db = 'test'
+  var search =require("./searchbylocation")
+  var addbooking = require("./rent")
 db.connection.connect(function(err) {
   if (err) console.log(err)
   console.log("Connected!");
@@ -23,6 +26,10 @@ app.post('/loginuser',login.login);
 app.post('/registerowner',login.registerowner);
 app.post('/loginowner',login.loginowner);
 app.post('/addoffice',add.addoff);
+app.get('/getall',getall.getoff);
+app.post('/search',search.search);
+app.post('/addbooking',addbooking.addbooking)
+app.get('/getbooking',bookall.getbooking);
 
 const PORT = process.env.PORT || 5000;
 

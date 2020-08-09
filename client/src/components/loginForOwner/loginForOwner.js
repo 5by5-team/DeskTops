@@ -32,6 +32,7 @@ import axios from 'axios';
         .then((response) => {
           console.log(response.data);
           if (response.data.success === 'login sucessfull') {
+            localStorage.setItem('usertoken', response.data.token);
             console.log('DONE');
             this.props.history.push('/ownerPage')
           }
