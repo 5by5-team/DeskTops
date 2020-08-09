@@ -1,6 +1,6 @@
 import React, { useState ,useEffect} from 'react';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { Grid, TextField } from "@material-ui/core"
+import { Grid, TextField, Link  } from "@material-ui/core"
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -14,6 +14,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import axios from 'axios';
+import Navbar from "../../navbar/navbar";
+
 import jwt_decode from 'jwt-decode';
 //const nodemailer = require('nodemailer');
 var imgUrl="";
@@ -113,6 +115,7 @@ const uploadImage = (e)=> {
     }
     return (
         <div>
+			<Navbar/>
          <Grid container style={{ minHeight: '100vh' }}>
 				<Grid
 					container
@@ -278,7 +281,7 @@ const uploadImage = (e)=> {
 									<PhotoCamera />
 								</IconButton>
 							</label> */}
-							{/* <Link href='/ownerPage' onClick={console.log('kk')}> */}
+							<Link href='/ownerPage' onClick={console.log('kk')}>
 							<Button
 								color='primary'
 								variant='contained'
@@ -286,7 +289,7 @@ const uploadImage = (e)=> {
 							>
 								Add One
 							</Button>
-							{/* </Link> */}
+							</Link>
 						</div>
 					
       <input

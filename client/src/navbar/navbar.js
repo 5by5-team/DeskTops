@@ -5,11 +5,9 @@ class Bar extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      location:'',
-      map : []
+      location:''
     }
     this.handleClick = this.handleClick.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleClick(event){
     this.setState({location: event.target.value})
@@ -20,12 +18,10 @@ class Bar extends React.Component {
      const {location } = this.state;
  
      axios
-       .post(`http://localhost:5000/search`, {location})
+       .post(`http://localhost:5000/registerowner`, {location})
        .then((response) => {
-         console.log(response.data.success);
-
-          this.setState({map: response.data.success})
-
+         console.log(response);
+        
        })
        .catch((error) => {
          console.log('error', error);
@@ -37,7 +33,6 @@ class Bar extends React.Component {
   render() {
     console.log(this.state)
   return (
-    <div>
     <ReactBootstrap.Navbar bg='light' expand='lg'>
       <ReactBootstrap.Navbar.Brand href='/landingPage'>
         BookingFinder
@@ -76,7 +71,7 @@ class Bar extends React.Component {
             placeholder='Search'
             className='mr-sm-2'
           /> */}
-          <ReactBootstrap.Form.Control as="select" defaultValue="Gaza" onChange={this.handleClick}>
+          {/* <ReactBootstrap.Form.Control as="select" defaultValue="Gaza" onChange={this.handleClick}>
             <option value ="Gaza">Gaza</option>
             <option value ="KhanYounes">KhanYounes</option>
             <option value ="Rafah">Rafah</option>
@@ -85,64 +80,12 @@ class Bar extends React.Component {
             <option value ="Jabalia">Jabalia</option>
             
           </ReactBootstrap.Form.Control>
-          <ReactBootstrap.Button variant='outline-success' onClick ={this.handleSubmit}>
+          <ReactBootstrap.Button variant='outline-success'>
             Search
-          </ReactBootstrap.Button>
+          </ReactBootstrap.Button> */}
         </ReactBootstrap.Form>
       </ReactBootstrap.Navbar.Collapse>
     </ReactBootstrap.Navbar>
-    <div>
-    {this.state.map.map((element, index) => {
-				return (
-                    <ReactBootstrap.Container>
-                    <ReactBootstrap.Row>
-                    
-                    <ReactBootstrap.Col>
-					<ReactBootstrap.Card  key = {index} style={{ width: '18rem' }}>
-						<ReactBootstrap.Card.Img variant='top' src={element.imgUrl} />
-						<ReactBootstrap.Card.Body>
-							<ReactBootstrap.Card.Title>{element.Discription} </ReactBootstrap.Card.Title>
-							<ReactBootstrap.Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content
-							</ReactBootstrap.Card.Text>
-							<ReactBootstrap.Button variant='primary'>Rent</ReactBootstrap.Button>
-						</ReactBootstrap.Card.Body>
-					</ReactBootstrap.Card>
-                    <br/>
-                    </ReactBootstrap.Col>
-                    <ReactBootstrap.Col>	<ReactBootstrap.Card  key = {index} style={{ width: '18rem' }}>
-						<ReactBootstrap.Card.Img variant='top' src={element.imgUrl} />
-						<ReactBootstrap.Card.Body>
-							<ReactBootstrap.Card.Title>{element.Discription} </ReactBootstrap.Card.Title>
-							<ReactBootstrap.Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content
-							</ReactBootstrap.Card.Text>
-							<ReactBootstrap.Button variant='primary'>Rent</ReactBootstrap.Button>
-						</ReactBootstrap.Card.Body>
-					</ReactBootstrap.Card>
-                    <br/>
-                    </ReactBootstrap.Col>
-                    <ReactBootstrap.Col>
-                    <ReactBootstrap.Card  key = {index} style={{ width: '18rem' }}>
-						<ReactBootstrap.Card.Img variant='top' src={element.imgUrl} />
-						<ReactBootstrap.Card.Body>
-							<ReactBootstrap.Card.Title>{element.Discription} </ReactBootstrap.Card.Title>
-							<ReactBootstrap.Card.Text>
-							{element.location}
-							</ReactBootstrap.Card.Text>
-							<ReactBootstrap.Button variant='primary'>Rent</ReactBootstrap.Button>
-						</ReactBootstrap.Card.Body>
-					</ReactBootstrap.Card>
-                    <br/>
-                    </ReactBootstrap.Col>
-            </ReactBootstrap.Row>
-            </ReactBootstrap.Container>
-				);
-			})}
-    </div>
-    </div>
   );
 }
 

@@ -9,6 +9,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 //import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Navbar from "../../navbar/navbar";
 
 
     class SignupOwner extends React.Component {
@@ -61,6 +62,7 @@ import Select from '@material-ui/core/Select';
       render() {
     return (
         <div>
+          <Navbar/>
             <Grid container style={{ minHeight: '100vh' }}>
                 <Grid container item xs={12} sm={6} alignItems="center" direction="coulumn" justify="space-between" style={{ padding: 10 }}>
                     <div />
@@ -69,7 +71,7 @@ import Select from '@material-ui/core/Select';
                     <TextField  name='phone' value={this.state.phone}  onChange={this.handleChange} label="Phone" margin="normal" InputProps={{ startAdornment: <InputAdornment position="start"> <Phone />         </InputAdornment> }} />
                     <TextField name='companyname' value={this.state.companyname}  onChange={this.handleChange} label="CompanyName" margin="normal" InputProps={{ startAdornment: <InputAdornment position="start"> < Business/> </InputAdornment> }} />
                     <TextField  name='email' value={this.state.email}  onChange={this.handleChange} label="Email" margin="normal" InputProps={{ startAdornment: <InputAdornment position="start"> <Email />   </InputAdornment> }} />
-                    <TextField  name='password' value={this.state.password}  onChange={this.handleChange} label="Password" margin="normal" InputProps={{ startAdornment: <InputAdornment position="start"> <Lock />         </InputAdornment> }} />
+                    <TextField type = "password" name='password' value={this.state.password}  onChange={this.handleChange} label="Password" margin="normal" InputProps={{ startAdornment: <InputAdornment position="start"> <Lock />         </InputAdornment> }} />
                         
                         {/* <FormControl className={classes.formControl}> */}
                             <InputLabel id="demo-simple-select-label">Location</InputLabel>
