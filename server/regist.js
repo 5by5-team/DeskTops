@@ -57,6 +57,7 @@ exports.login = async function (req, res) {
             res.send({
               code: 200,
               success: 'login sucessfull',
+              user: user,
               token: token,
             });
           } else {

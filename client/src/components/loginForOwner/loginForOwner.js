@@ -1,12 +1,12 @@
 import React from 'react';
-import axios from 'axios';
 import logo from '../login/img2.jpg';
 import { AccountCircle, Lock } from '@material-ui/icons';
 import { Grid, TextField, Link } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
-var uesr ={} ;
-class login extends React.Component {
+import axios from 'axios';
+  
+  class loginforOwner extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -26,17 +26,17 @@ class login extends React.Component {
       const {email, password } = this.state;
   
       axios
-        .post(`http://localhost:5000/loginuser`, {
+        .post(`http://localhost:5000/loginowner`, {
           email, password
         })
         .then((response) => {
-          console.log(response.data.user);
+          console.log(response.data);
           if (response.data.success === 'login sucessfull') {
             console.log('DONE');
-            this.props.history.push('/custumerPage')
+            this.props.history.push('/ownerPage')
           }
           else{
-            alert('ERROR');
+            console.log(response.data);
           }
          
         })
@@ -125,7 +125,7 @@ class login extends React.Component {
             </Link>
             <br />
             <br />
-            <Link href='/signupOwner' onClick={console.log('kk')}>
+            <Link href='/signupOwner' >
               <Button variant='contained' color='primary'>
                 register as owner
               </Button>
@@ -140,4 +140,4 @@ class login extends React.Component {
   );
 }
 }
-export default  login;
+export default  loginforOwner;

@@ -9,12 +9,13 @@ app.use(bodyParser.json())
  var mysql = require('mysql');
  var db = require("./../database-mysql/index")
  var login = require("./regist")
+ var add = require("./addaffice")
  var router = express.Router();
  const bcrypt = require('bcrypt');
 //  const db = 'test'
 db.connection.connect(function(err) {
   if (err) console.log(err)
-  console.log("Connected!");
+  console.log("Connected to dataBase!");
 });
 app.get('/', function(req, res) {
   res.send("hhh");
@@ -25,6 +26,8 @@ app.post('/registeruser',login.register);
 app.post('/loginuser',login.login);
 app.post('/registerowner',login.registerowner);
 app.post('/loginowner',login.loginowner);
+app.post('/addoffice',add.addoff);
+
 const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV === 'production') {
