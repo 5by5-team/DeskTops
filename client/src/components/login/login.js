@@ -5,6 +5,7 @@ import { AccountCircle, Lock } from '@material-ui/icons';
 import { Grid, TextField, Link } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Navbar from "../../navbar/navbar";
 var uesr ={} ;
 class login extends React.Component {
     constructor(props) {
@@ -49,6 +50,7 @@ class login extends React.Component {
   render() {
   return (
     <div>
+      <Navbar/>
       <Grid container style={{ minHeight: '100vh' }}>
         <Grid item xs={12} sm={6}>
           <img
@@ -101,6 +103,7 @@ class login extends React.Component {
 
             <TextField
              name='password'
+             type="password"
              value={this.state.password}
              onChange={this.handleChange}
              label='password' margin='normal' InputProps={{startAdornment: 
@@ -120,16 +123,16 @@ class login extends React.Component {
 
             <Link href='/signupCustomer' onClick={console.log('kk')}>
               <Button variant='contained' color='primary'>
-                register as custumer
+                register 
               </Button>
             </Link>
             <br />
             <br />
-            <Link href='/signupOwner' onClick={console.log('kk')}>
+            {/* <Link href='/signupOwner' onClick={console.log('kk')}>
               <Button variant='contained' color='primary'>
                 register as owner
               </Button>
-            </Link>
+            </Link> */}
 
             <Button>register with google</Button>
           </div>

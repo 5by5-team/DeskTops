@@ -5,6 +5,7 @@ import { Grid, TextField, Link } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import axios from 'axios';
+import Navbar from "../../navbar/navbar";
   
   class loginforOwner extends React.Component {
     constructor(props) {
@@ -32,6 +33,7 @@ import axios from 'axios';
         .then((response) => {
           console.log(response.data);
           if (response.data.success === 'login sucessfull') {
+            localStorage.setItem('usertoken', response.data.token);
             console.log('DONE');
             this.props.history.push('/ownerPage')
           }
@@ -49,6 +51,7 @@ import axios from 'axios';
   render() {
   return (
     <div>
+      <Navbar/>
       <Grid container style={{ minHeight: '100vh' }}>
         <Grid item xs={12} sm={6}>
           <img
@@ -103,6 +106,7 @@ import axios from 'axios';
              name='password'
              value={this.state.password}
              onChange={this.handleChange}
+             type= "password"
              label='password' margin='normal' InputProps={{startAdornment: 
                   <InputAdornment position='start'>
                     <Lock />
@@ -120,16 +124,17 @@ import axios from 'axios';
 
             <Link href='/signupCustomer' onClick={console.log('kk')}>
               <Button variant='contained' color='primary'>
-                register as custumer
+                register 
               </Button>
             </Link>
+            
             <br />
             <br />
-            <Link href='/signupOwner' >
+            {/* <Link href='/signupOwner' >
               <Button variant='contained' color='primary'>
                 register as owner
               </Button>
-            </Link>
+            </Link> */}
 
             <Button>register with google</Button>
           </div>
