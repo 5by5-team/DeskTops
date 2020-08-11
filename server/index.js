@@ -10,10 +10,13 @@ app.use(bodyParser.json())
  var add = require("./addaffice")
  var getall = require("./getall")
  var bookall = require("./bookingall")
+ var gitoffice = require("./gitaffice") 
  var router = express.Router();
  const bcrypt = require('bcrypt');
   var search =require("./searchbylocation")
   var addbooking = require("./rent")
+  var cors = require('cors')
+  app.use(cors());
 db.connection.connect(function(err) {
   if (err) console.log(err)
   console.log("Connected!");
@@ -30,7 +33,7 @@ app.get('/getall',getall.getoff);
 app.post('/search',search.search);
 app.post('/addbooking',addbooking.addbooking)
 app.get('/getbooking',bookall.getbooking);
-
+app.post('/getoffice',gitoffice.getoff)
 const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV === 'production') {
