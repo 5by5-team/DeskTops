@@ -21,7 +21,8 @@ import Typography from '@material-ui/core/Typography';
 import 'date-fns';   
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
-import { Link } from '@material-ui/core'; 
+import { Link ,Box} from '@material-ui/core'; 
+import Rating from 'material-ui-rating'
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
@@ -108,7 +109,9 @@ export default function Ownerpage() {
                     <boot.Col>
                     <boot.Card  key = {index} style={{ width: '18rem' }}>
 						<boot.Card.Img variant='top' src={element.imgUrl} />
-
+                        <Box component="fieldset" mb={3} borderColor="transparent">
+        <Rating name="read-only" value={element.rating} readOnly />
+      </Box>   
 						<boot.Card.Body>
 							<boot.Card.Title>{element.Discription} </boot.Card.Title>
 							<boot.Card.Text>
