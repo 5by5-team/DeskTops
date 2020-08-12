@@ -122,7 +122,7 @@ import Navbar from "../../navbar/navbar";
             {/* </Link> */}
             <div style={{ height: 20 }} />
 
-            <Link href='/signupCustomer' onClick={console.log('kk')}>
+            <Link href='/signupOwner' onClick={console.log('kk')}>
               <Button variant='contained' color='primary'>
                 register 
               </Button>

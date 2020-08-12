@@ -4,8 +4,6 @@ import * as boot from 'react-bootstrap';
 // import { Grid, TextField, Link } from '@material-ui/core';
 import MediaCard from '../rentPage/rentPage'
 import * as moment  from 'moment';
-
-
 import { Backdrop } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 // import nodemailer from 'nodemailer';
@@ -22,18 +20,34 @@ import Typography from '@material-ui/core/Typography';
 import 'date-fns';   
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
-import { Link } from '@material-ui/core'; 
+import { Link ,Box} from '@material-ui/core'; 
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';  
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+import Rating from 'material-ui-rating'
 var item ={};
 var email = '';
+var ratingnumber = 0;
+const useStyles = makeStyles((theme) => ({
+	root: {
+	  display: 'flex',
+	  flexDirection: 'column',
+	  '& > * + *': {
+		marginTop: theme.spacing(1),
+	  },
+	},
+  }));
+var valueofstart = 0;
 
 function CustemarPage() {
-
+  const classes = useStyles();
+  const [star, setStar] = useState(0)
+  const handlestar= ()=>{
+    setStar(star);
+  };
     const [selectedDate, setSelectedDate] = useState(
 		new Date('2020-08-18')
     );
@@ -113,7 +127,7 @@ function CustemarPage() {
 						<boot.Card.Body>
 							<boot.Card.Title>{element.Discription} </boot.Card.Title>
 							
-        
+                          
     
 							<boot.Button variant='primary'>Rent</boot.Button>
 						</boot.Card.Body>
@@ -122,8 +136,11 @@ function CustemarPage() {
                     </boot.Col>
                     <boot.Col>
                     <boot.Card  key = {index} style={{ width: '18rem' }}>
+                   
 						<boot.Card.Img variant='top' src={element.imgUrl} />
-
+            <Box component="fieldset" mb={3} borderColor="transparent">
+        <Rating name="read-only" value={element.rating} readOnly />
+      </Box>
 						<boot.Card.Body>
 							<boot.Card.Title>{element.Discription} </boot.Card.Title>
 							<boot.Card.Text>
@@ -143,6 +160,7 @@ function CustemarPage() {
         Rent
       </boot.Button>
       <boot.Button variant="primary" onClick={() => {
+        ratingnumber = element.office_id;
 					handleShow2()
 				  }}   >
         Rating
@@ -247,11 +265,30 @@ function CustemarPage() {
             title='Contemplative Reptile'
           />
           <CardContent>
-           
+ <div className={classes.root}>
+      <Rating name="size-medium"  defaultValue={0} value={star} onChange={(value) =>{ console.log(`Rated with value ${value}`) 
+      valueofstart = value
+    }}/>
+		  </div>
           </CardContent>
         </CardActionArea>
         <CardActions>
 		   < Button  variant="secondary" onClick={() => {
+         console.log(valueofstart)
+          const rating = {
+            id :ratingnumber ,
+            rating :valueofstart
+         }
+         axios
+         .post('http://localhost:5000/rating', rating)
+         .then((res) => {
+           console.log(res.data); 
+ 
+         })
+         .catch((err) => {
+           console.log(err);
+         })
+         window.location.reload(true);
 						handleClose2()
                       }}   >
             OK
@@ -269,7 +306,7 @@ function CustemarPage() {
                     
             </boot.Row>
             </boot.Container>
-           
+
 				);
 			})}
            

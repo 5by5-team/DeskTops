@@ -26,11 +26,12 @@ CREATE TABLE officedata (
     conditioning BOOLEAN,
     ele BOOLEAN,
     water BOOLEAN,
-   
     imgUrl VARCHAR(150),
     price int,
      email VARCHAR(50),
+     rating int,
      reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
   );
   CREATE TABLE bookingdata (
    booking_id int NOT NULL AUTO_INCREMENT ,
