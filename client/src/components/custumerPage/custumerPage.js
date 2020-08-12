@@ -31,8 +31,9 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 var item ={};
 var email = '';
-const nodemailer = require ('nodemailer')
+
 function CustemarPage() {
+
     const [selectedDate, setSelectedDate] = useState(
 		new Date('2020-08-18')
     );
@@ -72,42 +73,22 @@ function CustemarPage() {
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-  async function main() {
-    // console.log("hjjklhkk")
-    let testAccount = await nodemailer.createTestAccount();
   
-    let transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: "ra77a99@gmail.com", // generated ethereal user
-        pass: "ra7a123456", // generated ethereal password
-      },
-    });
-  
-    // send mail with defined transport object
-    let info = await transporter.sendMail({
-      from: '"Fred Foo 👻" <ra77a99@gmail.com>', // sender address
-      to: "yossefyasssen@gmail.com", // list of receivers
-      subject: "Hello ✔", // Subject line
-   // plain text body
-      html: <b> Wellcome </b> // html body
-    });
-  
-    console.log("Message sent: %s", info.messageId);
-    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-  
-    // Preview only available when sending through an Ethereal account
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou
-  }
+	const [show2, setShow2] = useState(false);
+
+	const handleClose2 = () => setShow2(false);
+	const handleShow2 = () => setShow2(true);
   
 	return (
        
 		<div>
             <Bar />
-           
+
+            <Link href='/bookinguser' onClick={console.log('kk')}>
+        <Button variant='contained' color='primary'>
+            My Booking Office
+        </Button>
+        </Link>
 			{data.map((element, index) => {
 				return (
                     <boot.Container>
@@ -161,6 +142,11 @@ function CustemarPage() {
 				  }}   >
         Rent
       </boot.Button>
+      <boot.Button variant="primary" onClick={() => {
+					handleShow2()
+				  }}   >
+        Rating
+      </boot.Button>
 
        <boot.Modal
         show={show}
@@ -168,24 +154,6 @@ function CustemarPage() {
         backdrop="static"
         keyboard={false}
       >
-        {/* <boot.Modal.Header closeButton>
-          
-        </boot.Modal.Header>
-        <boot.Modal.Body>
-		
-     
-        <h4>STARTING DATE</h4>
-        <DateTime pickerOptions={{format:"LL"}} value="2017-04-20"/>
-	
-        <h4>ENDING DATE</h4>
-        <DateTime pickerOptions={{format:"LL"}} value="2017-04-20"/>
-       
-        </boot.Modal.Body>
-        <boot.Modal.Footer>
-
-         
-          
-        </boot.Modal.Footer> */}
 		 <Card >
         <CardActionArea>
           <CardMedia
@@ -232,6 +200,7 @@ function CustemarPage() {
           </Link> */}
 		   < Button  variant="secondary" onClick={() => {
          console.log(moment(selectedDate).format('YYYY-MM-DD') + "date1")
+
             const booking = {
 							startdate : moment(selectedDate).format('YYYY-MM-DD') ,
 							enddate : moment(selectedDate2).format('YYYY-MM-DD') ,
@@ -242,29 +211,65 @@ function CustemarPage() {
 						.post('http://localhost:5000/addbooking', booking)
 						.then((res) => {
               console.log(res.data);
-              main();
+    
 						})
 						.catch((err) => {
 						  console.log(err);
             })
             
-				
+        
+           
 						handleClose()
+                      }}   >
+            OK
+          </Button>
+          < Button  variant="secondary" onClick={() => {
+						handleClose()
+                      }}   >
+            Cancel
+          </Button>
+        </CardActions>
+      </Card>
+      </boot.Modal> 
+	  </div>
+    <div>
+    <boot.Modal
+        show={show2}
+        onHide={handleClose2}
+        backdrop="static"
+        keyboard={false}
+      >
+		 <Card >
+        <CardActionArea>
+          <CardMedia
+           
+            image='/static/images/cards/contemplative-reptile.jpg'
+            title='Contemplative Reptile'
+          />
+          <CardContent>
+           
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+		   < Button  variant="secondary" onClick={() => {
+						handleClose2()
                       }}   >
             OK
           </Button>
         </CardActions>
       </Card>
       </boot.Modal> 
-	  </div>
-    
+    </div>
 							 
 						</boot.Card.Body>
 					</boot.Card>
+          
                     <br/>
                     </boot.Col>
+                    
             </boot.Row>
             </boot.Container>
+           
 				);
 			})}
            
