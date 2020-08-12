@@ -9,9 +9,9 @@ import CustumerPage from '../src/components/custumerPage/custumerPage'
 import OwnerPage from '../src/components/ownerPage/ownerPage'
 import RentPage from '../src/components/rentPage/rentPage'
 import LandingPage from '../src/components/landingPage/landingPage';
-
+import Booking from '../src/components/bookingoffice/bookingoffice.js'
 import Add from '../src/components/addOffice/addOffice'
-
+import Bookinguser from '../src/components/bookinguser/bookinguser.js'
 // import Calender from '../src/components/calender/calender'
 function App() {
   return (
@@ -26,7 +26,8 @@ function App() {
         <Route exact path='/ownerPage' component={OwnerPage} />
         <Route exact path='/custumerPage' component={CustumerPage} />
         <Route exact path='/addOffice' component={Add} />
-        <Route exact path='/rentPage' component={RentPage} />
+        <Route exact path='/bookingoffice' component={Booking} />
+        <Route exact path='/Bookinguser' component={Bookinguser} />
       </section>
     </Router>
   );
