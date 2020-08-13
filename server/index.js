@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const app = express();
 var bodyParser = require('body-parser');
+var cors = require('cors')
+
 app.use(bodyParser.json())
  var items = require('../database-mysql');
  var mysql = require('mysql');
@@ -24,11 +26,13 @@ app.use(bodyParser.json())
   app.use(cors());
 db.connection.connect(function(err) {
   if (err) console.log(err)
-  console.log("Connected!");
+  console.log("Connected to dataBase!");
 });
 app.get('/', function(req, res) {
   res.send("hhh");
 });
+app.use(cors())
+
 app.post('/registeruser',login.register);
 app.post('/loginuser',login.login);
 app.post('/registerowner',login.registerowner);
