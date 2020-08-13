@@ -62,7 +62,17 @@ export default function AddOffice() {
 		console.log(addch);
 		axios.post(`http://localhost:5000/addoffice`, office)
 		  .then(function (response) {
-		      console.log(response)
+			  console.log(response)
+			if(response.data === "error") {
+				alert('Somthing Empty')
+			  }
+			 
+			  else if(response.data.success === "added"){
+				alert('The Office Added')
+
+			  } else {
+				alert('ERROR');
+			  }
 		  })
 		  .catch(function (error) {
 		      console.log(error)
