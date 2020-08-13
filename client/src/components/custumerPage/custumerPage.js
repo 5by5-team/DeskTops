@@ -1,13 +1,8 @@
 
 import Bar from '../bar/Bar';
 import * as boot from 'react-bootstrap';
-// import { Grid, TextField, Link } from '@material-ui/core';
-import MediaCard from '../rentPage/rentPage'
 import * as moment  from 'moment';
-import { Backdrop } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
-// import nodemailer from 'nodemailer';
-import Modal from '@material-ui/core/Modal';
 import { DateTime } from 'react-datetime-bootstrap';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -283,12 +278,12 @@ function CustemarPage() {
          .post('http://localhost:5000/rating', rating)
          .then((res) => {
            console.log(res.data); 
- 
+           window.location.reload(true);
          })
          .catch((err) => {
            console.log(err);
          })
-         window.location.reload(true);
+         //window.location.reload(true);
 						handleClose2()
                       }}   >
             OK

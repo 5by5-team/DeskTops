@@ -1,37 +1,16 @@
-import Bar from '../bar/Bar';
 import * as boot from 'react-bootstrap';
-// import { Grid, TextField, Link } from '@material-ui/core';
-import MediaCard from '../rentPage/rentPage'
 import * as moment  from 'moment';
-
-
-import { Backdrop } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
-// import nodemailer from 'nodemailer';
-import Modal from '@material-ui/core/Modal';
 import { DateTime } from 'react-datetime-bootstrap';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import 'date-fns';   
-import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns';
 import { Link ,Box} from '@material-ui/core'; 
 import Rating from 'material-ui-rating'
-import {
-  KeyboardDatePicker,
-  MuiPickersUtilsProvider,
-} from '@material-ui/pickers';  
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import Navbar from "../../navbar/navbar";
 var email ='';
-
+var office_id = 0;
 export default function Ownerpage() {
     const [data, setData] = useState([]);
 
@@ -83,17 +62,6 @@ export default function Ownerpage() {
                     <boot.Row>
                     
                     <boot.Col>
-					{/* <boot.Card  key = {index} style={{ width: '18rem' }}>
-						<boot.Card.Img variant='top' src={element.imgUrl} />
-						<boot.Card.Body>
-							<boot.Card.Title>{element.Discription} </boot.Card.Title>
-							<boot.Card.Text>
-								Some quick example text to build on the card title and make up
-								the bulk of the card's content
-							</boot.Card.Text>
-							<boot.Button variant='primary'>Rent</boot.Button>
-						</boot.Card.Body>
-					</boot.Card> */}
                     <br/>
                     </boot.Col>
                     <boot.Col>
@@ -117,12 +85,22 @@ export default function Ownerpage() {
 							<boot.Card.Text>
 								{element.email}
 							</boot.Card.Text>
-							     <div>
-   
-       
-	  </div>
+                            < Button  variant="secondary" onClick={() => {
+                                office_id  = element.office_id;
+                                console.log(office_id)
+						axios
+						.post('http://localhost:5000/deletoff', {office_id})
+						.then((res) => {
+              console.log(res.data);
+              window.location.reload(true);
     
-							 
+						})
+						.catch((err) => {
+						  console.log(err);
+            })
+                      }}   >
+            DELETE
+          </Button>
 						</boot.Card.Body>
 					</boot.Card>
                     <br/>
