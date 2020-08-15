@@ -41,7 +41,7 @@ export default function Ownerpage() {
         <div>
             <Navbar/>
             <br/>
-    <Link href='/calender' onClick={console.log('kk')}>
+    <Link href='/cal' onClick={console.log('kk')}>
         <Button variant='contained' color='primary'>
            CLENDER
         </Button>
