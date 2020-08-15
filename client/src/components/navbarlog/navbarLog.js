@@ -1,7 +1,7 @@
 import React from 'react';
 import * as ReactBootstrap from 'react-bootstrap';
 import axios from 'axios';
-class Bar extends React.Component {
+class NavBar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -42,9 +42,11 @@ class Bar extends React.Component {
 						<ReactBootstrap.Nav.Link href='/landingPage'>
 							Home
 						</ReactBootstrap.Nav.Link>
-
-						<ReactBootstrap.Nav.Link href='/landingPage' onClick>
-							log out
+						<ReactBootstrap.Nav.Link href='/login'>
+							log-in As Custumer
+						</ReactBootstrap.Nav.Link>
+						<ReactBootstrap.Nav.Link href='/loginForOwner'>
+							log in as owner
 						</ReactBootstrap.Nav.Link>
 						<ReactBootstrap.NavDropdown title='more' id='basic-nav-dropdown'>
 							<ReactBootstrap.NavDropdown.Item href='#action/3.1'>
@@ -61,4 +63,4 @@ class Bar extends React.Component {
 		);
 	}
 }
-export default Bar;
+export default NavBar;
