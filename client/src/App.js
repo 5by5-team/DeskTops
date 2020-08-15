@@ -13,6 +13,7 @@ import Booking from '../src/components/bookingoffice/bookingoffice.js'
 import Add from '../src/components/addOffice/addOffice'
 import Bookinguser from '../src/components/bookinguser/bookinguser.js'
 // import Calender from '../src/components/calender/calender'
+import cal from "../src/components/calender/calender"
 function App() {
   return (
     <Router>
@@ -28,6 +29,7 @@ function App() {
         <Route exact path='/addOffice' component={Add} />
         <Route exact path='/bookingoffice' component={Booking} />
         <Route exact path='/Bookinguser' component={Bookinguser} />
+        <Route exact path='/cal' component={cal} /> 
       </section>
     </Router>
   );

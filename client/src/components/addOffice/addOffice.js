@@ -61,9 +61,19 @@ export default function AddOffice() {
   
 		console.log(addch);
 		axios.post(`http://localhost:5000/addoffice`, office)
-		  .then(function (response) {
-		      console.log(response)
-		  })
+		.then(function (response) {
+			console.log(response)
+		  if(response.data === "error") {
+			  alert('Somthing Empty')
+			}
+		   
+			else if(response.data.success === "added"){
+			  alert('The Office Added')
+
+			} else {
+			  alert('ERROR');
+			}
+		})
 		  .catch(function (error) {
 		      console.log(error)
 		  })
@@ -86,7 +96,7 @@ export default function AddOffice() {
             marginTop: theme.spacing(2),
         },
     }));
-    const classes = usemYStyles();
+    const classes = usemYStyles(); 
 
     // const handleChange = (event) => {
     //     setlocation(event.target.value);
