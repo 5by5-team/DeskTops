@@ -4,9 +4,16 @@ import './index.css';
 import App from './App';
 // import CustemarPage from '../src/components/custumerPage/custumerPage'
 // import SignupOwner from '../src/components/signupOwner/signupOwner';
-import store from './app/store';
+// import store from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+import { createStore, combinReducers } from 'redux';
+import counterReducer from './reducers/counter';
+import allReducer from './reducers';
+const store = createStore(
+  allReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
 
