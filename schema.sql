@@ -36,6 +36,7 @@ CREATE TABLE officedata (
   CREATE TABLE bookingdata (
    booking_id int NOT NULL AUTO_INCREMENT ,
    PRIMARY KEY (booking_id),
+   office_id int,
    startdate date ,
    enddate date, 
    emailuser VARCHAR(50),
