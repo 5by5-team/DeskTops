@@ -1,14 +1,14 @@
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-  host: 'booking.cowpbsnjvcmr.us-west-2.rds.amazonaws.com',
+  host: 'localhost',
   // host: '127.0.0.1',
-  user: 'admin',
+  user: 'root',
   // user:'root',
-  password: '060817405',
+  password: '1111',
   // password: '1418',
   port: '3306',
-  database: 'booking',
+  database: 'finderdata',
 });
 
 // connection.connect(function (err) {

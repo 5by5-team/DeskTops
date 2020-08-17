@@ -29,7 +29,7 @@ CREATE TABLE officedata (
     imgUrl VARCHAR(150),
     price int,
      email VARCHAR(50),
-     rating int,
+     rating FLOAT(3),
      reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 
   );
