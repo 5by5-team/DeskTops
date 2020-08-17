@@ -9,7 +9,7 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+import {CardMedia} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import 'date-fns';   
@@ -154,12 +154,12 @@ function CustemarPage() {
 				  }}   >
         Rent
       </boot.Button>
-      <boot.Button variant="primary" onClick={() => {
+      {/* <boot.Button variant="primary" onClick={() => {
         ratingnumber = element.office_id;
 					handleShow2()
 				  }}   >
         Rating
-      </boot.Button>
+      </boot.Button> */}
 
        <boot.Modal
         show={show}
@@ -215,6 +215,7 @@ function CustemarPage() {
          console.log(moment(selectedDate).format('YYYY-MM-DD') + "date1")
 
             const booking = {
+              office_id : element.office_id ,
 							startdate : moment(selectedDate).format('YYYY-MM-DD') ,
 							enddate : moment(selectedDate2).format('YYYY-MM-DD') ,
 							emailuser: email,
@@ -246,7 +247,7 @@ function CustemarPage() {
       </boot.Modal> 
 	  </div>
     <div>
-    <boot.Modal
+    {/* <boot.Modal
         show={show2}
         onHide={handleClose2}
         backdrop="static"
@@ -290,7 +291,7 @@ function CustemarPage() {
           </Button>
         </CardActions>
       </Card>
-      </boot.Modal> 
+      </boot.Modal>  */}
     </div>
 							 
 						</boot.Card.Body>

@@ -5,12 +5,37 @@ import * as moment  from 'moment';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import Navbar from "../../navbar/navbar";
+import CardActions from '@material-ui/core/CardActions';
+import Rating from 'material-ui-rating';
+import CardContent from '@material-ui/core/CardContent';
+import {CardMedia} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
 var email ='';
 var booking_id =0 ;
 var emailowner = '';
+var ratingnumber = 0;
+var valueofstart = 0;
+const useStyles = makeStyles((theme) => ({
+	root: {
+	  display: 'flex',
+	  flexDirection: 'column',
+	  '& > * + *': {
+		marginTop: theme.spacing(1),
+	  },
+	},
+  }));
 export default function Bookinguser() {
+  const classes = useStyles();
     const [data, setData] = useState([]);
-
+    const [star, setStar] = useState(0)
+    const [show2, setShow2] = useState(false);
+    const handleClose2 = () => setShow2(false);
+    const handleShow2 = () => setShow2(true);
+    const handlestar= ()=>{
+      setStar(star);
+    };
     useEffect(() => {
 		const tokin = localStorage.usertoken;
 		var decoded = jwt_decode(tokin); 
@@ -72,7 +97,57 @@ export default function Bookinguser() {
                       }}   >
             DELETE
           </Button>
-							
+          <boot.Button variant="primary" onClick={() => {
+        ratingnumber = element.office_id;
+					handleShow2()
+				  }}   >
+        Rating
+      </boot.Button>
+      <boot.Modal
+        show={show2}
+        onHide={handleClose2}
+        backdrop="static"
+        keyboard={false}
+      >
+		 <Card >
+        <CardActionArea>
+          <CardMedia
+           
+            image='/static/images/cards/contemplative-reptile.jpg'
+            title='Contemplative Reptile'
+          />
+          <CardContent>
+ <div className={classes.root}>
+      <Rating name="size-medium"  defaultValue={0.5} precision={0.5} value={star} onChange={(value) =>{ console.log(`Rated with value ${value}`) 
+      valueofstart = value
+    }}/>
+		  </div>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+		   < Button  variant="secondary" onClick={() => {
+         console.log(valueofstart)
+          const rating = {
+            id :ratingnumber ,
+            rating :valueofstart
+         }
+         axios
+         .post('http://localhost:5000/rating', rating)
+         .then((res) => {
+           console.log(res.data); 
+          // window.location.reload(true);
+         })
+         .catch((err) => {
+           console.log(err);
+         })
+         //window.location.reload(true);
+						handleClose2()
+                      }}   >
+            OK
+          </Button>
+        </CardActions>
+      </Card>
+      </boot.Modal> 
 						</boot.Card.Body>
 					</boot.Card>
                     </boot.Col>
