@@ -17,6 +17,7 @@ var booking_id =0 ;
 var emailowner = '';
 var ratingnumber = 0;
 var valueofstart = 0;
+var office_id =0;
 const useStyles = makeStyles((theme) => ({
 	root: {
 	  display: 'flex',
@@ -98,7 +99,9 @@ export default function Bookinguser() {
             DELETE
           </Button>
           <boot.Button variant="primary" onClick={() => {
-        ratingnumber = element.office_id;
+           
+        office_id = element.office_id;
+        console.log(office_id)
 					handleShow2()
 				  }}   >
         Rating
@@ -128,7 +131,7 @@ export default function Bookinguser() {
 		   < Button  variant="secondary" onClick={() => {
          console.log(valueofstart)
           const rating = {
-            id :ratingnumber ,
+            id :office_id ,
             rating :valueofstart
          }
          axios
