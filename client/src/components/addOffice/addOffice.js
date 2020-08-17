@@ -56,7 +56,8 @@ export default function AddOffice() {
 			...addch,
 		};
      office["email"]=email;
-     office["imgUrl"]=imgUrl;
+	 office["imgUrl"]=imgUrl;
+	 office["rating"] = 0.00;
 		console.log(office);
   
 		console.log(addch);

@@ -25,7 +25,7 @@ import jwt_decode from 'jwt-decode';
 import Rating from 'material-ui-rating'
 var item ={};
 var email = '';
-var ratingnumber = 0;
+var office_id = 0;
 const useStyles = makeStyles((theme) => ({
 	root: {
 	  display: 'flex',
@@ -146,9 +146,8 @@ function CustemarPage() {
 							 </Link> */}
 							     <div>
 	  <boot.Button variant="primary" onClick={() => {
-					item= element
-					// email = element.email
-					console.log(item+ "iouhg");
+				        office_id =element.office_id
+					console.log(element.office_id);
 					
 					handleShow()
 				  }}   >
@@ -215,7 +214,7 @@ function CustemarPage() {
          console.log(moment(selectedDate).format('YYYY-MM-DD') + "date1")
 
             const booking = {
-              office_id : element.office_id ,
+              office_id : office_id ,
 							startdate : moment(selectedDate).format('YYYY-MM-DD') ,
 							enddate : moment(selectedDate2).format('YYYY-MM-DD') ,
 							emailuser: email,
