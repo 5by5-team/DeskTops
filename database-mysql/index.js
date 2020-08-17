@@ -1,14 +1,14 @@
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-  host: 'booking.cowpbsnjvcmr.us-west-2.rds.amazonaws.com',
-  // host: '127.0.0.1',
-  user: 'admin',
-  // user:'root',
-  password: '060817405',
-  // password: '1418',
-  port: '3306',
-  database: 'booking',
+	host: 'localhost',
+	// host: '127.0.0.1',
+	user: 'root',
+	// user:'root',
+	password: '0000',
+	// password: '1418',
+	port: '3306',
+	database: 'finderdata',
 });
 
 // connection.connect(function (err) {
@@ -27,16 +27,13 @@ var connection = mysql.createConnection({
 // });
 
 var selectAll = function (callback) {
-  connection.query('SELECT * FROM items', function (err, results, fields) {
-    if (err) {
-      callback(err, null);
-    } else {
-      callback(null, results);
-    }
-  });
+	connection.query('SELECT * FROM items', function (err, results, fields) {
+		if (err) {
+			callback(err, null);
+		} else {
+			callback(null, results);
+		}
+	});
 };
 module.exports.connection = connection;
 module.exports.selectAll = selectAll;
-
-
-

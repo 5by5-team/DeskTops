@@ -22,18 +22,23 @@ function Home() {
 	}, []);
 	useEffect(() => {
 		const tokin = localStorage.usertoken;
-		var decoded = jwt_decode(tokin);
-		console.log(decoded);
-		email = decoded.email;
-		// email = '';
-		console.log(email);
+		if (tokin) {
+			var decoded = jwt_decode(tokin);
+			console.log(decoded);
+			email = decoded.email;
+			// email = '';
+			console.log(email);
+		} else {
+			console.log('no token found');
+		}
 	});
-	const on = () => {
-		email === '' ? console.log(email) : setNavbar(<Navbar />);
-		console.log(<Navbar />, 'naaaaaaaaaaaaaaaaaav');
-		return <Navbar />;
-	};
+	// const on = () => {
+	// 	email === '' ? console.log(email) : setNavbar(<Navbar />);
+	// 	console.log(<Navbar />, 'naaaaaaaaaaaaaaaaaav');
+	// 	return <Navbar />;
+	// };
 	return email === '' ? (
+		// return (
 		<row>
 			<Navbar />
 			<ReactBootstrap.Container fluid='md'>
@@ -76,13 +81,6 @@ function Home() {
 													variant='top'
 													src={element.imgUrl}
 												/>
-												<ReactBootstrap.Card.Title>
-													Card Title
-												</ReactBootstrap.Card.Title>
-												<ReactBootstrap.Card.Text>
-													Some quick example text to build on the card title and
-													make up the bulk of the card's content.
-												</ReactBootstrap.Card.Text>
 
 												<ReactBootstrap.Button
 													Link
@@ -103,8 +101,9 @@ function Home() {
 		</row>
 	) : (
 		<row>
-			<Nav />
-			<ReactBootstrap.Container fluid='md'>
+			<ReactBootstrap.Container fluid>
+				<Nav />
+
 				<ReactBootstrap.Row>
 					<ReactBootstrap.Col>
 						<ReactBootstrap.Carousel cl>
@@ -114,7 +113,8 @@ function Home() {
 									<ReactBootstrap.Carousel.Item>
 										<img
 											className='d-block w-100'
-											src={element.imgUrl}
+											src='https://i.pinimg.com/564x/c1/fb/ee/c1fbee70107b3b81c0603b47c097012b.jpg'
+											// {element.imgUrl}
 											alt='First slide'
 										/>
 										<ReactBootstrap.Carousel.Caption>

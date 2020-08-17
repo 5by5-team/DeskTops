@@ -38,22 +38,22 @@ class NavBar extends React.Component {
 				</ReactBootstrap.Navbar.Brand>
 				<ReactBootstrap.Navbar.Toggle aria-controls='basic-navbar-nav' />
 				<ReactBootstrap.Navbar.Collapse id='basic-navbar-nav'>
-					<ReactBootstrap.Nav className='mr-auto'>
+					<ReactBootstrap.Nav className='ml-auto'>
 						<ReactBootstrap.Nav.Link href='/landingPage'>
 							Home
 						</ReactBootstrap.Nav.Link>
-						<ReactBootstrap.Nav.Link href='/login'>
+						{/* <ReactBootstrap.Nav.Link href='/login'>
 							log-in As Custumer
 						</ReactBootstrap.Nav.Link>
 						<ReactBootstrap.Nav.Link href='/loginForOwner'>
 							log in as owner
-						</ReactBootstrap.Nav.Link>
-						<ReactBootstrap.NavDropdown title='more' id='basic-nav-dropdown'>
-							<ReactBootstrap.NavDropdown.Item href='#action/3.1'>
-								about
+						</ReactBootstrap.Nav.Link> */}
+						<ReactBootstrap.NavDropdown title='log-in' id='basic-nav-dropdown'>
+							<ReactBootstrap.NavDropdown.Item href='/login'>
+								As Custumer
 							</ReactBootstrap.NavDropdown.Item>
-							<ReactBootstrap.NavDropdown.Item href='#action/3.2'>
-								contact us
+							<ReactBootstrap.NavDropdown.Item href='/loginForOwner'>
+								As Owner
 							</ReactBootstrap.NavDropdown.Item>
 						</ReactBootstrap.NavDropdown>
 					</ReactBootstrap.Nav>
