@@ -25,6 +25,7 @@ import jwt_decode from 'jwt-decode';
 import Rating from 'material-ui-rating'
 var item ={};
 var email = '';
+var phoneuser = 0;
 var office_id = 0;
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -74,7 +75,8 @@ function CustemarPage() {
 		const tokin = localStorage.usertoken;
 		var decoded = jwt_decode(tokin); 
     console.log(decoded);
-    email =decoded.email;
+    email =decoded.email
+    phoneuser = decoded.phone
     console.log(email);
 	});
 
@@ -121,9 +123,7 @@ function CustemarPage() {
 						<boot.Card.Img variant='top' src={element.imgUrl} />
 						<boot.Card.Body>
 							<boot.Card.Title>{element.Discription} </boot.Card.Title>
-							
-                          
-    
+              
 							<boot.Button variant='primary'>Rent</boot.Button>
 						</boot.Card.Body>
 					</boot.Card>
@@ -144,6 +144,35 @@ function CustemarPage() {
 						 {/* <Link href='/rentPage'> 
 							<boot.Button variant='primary' onClick={function passEmail(){}}>Rent</boot.Button>
 							 </Link> */}
+               {/* Features */}
+              <br/>
+              <label>Features:</label><br/>
+        {element.Vip_wifi === 1 ? ( <input id="checkbox3" type="checkbox" checked="true"/>):(<input
+        id ="checkbox_id"
+        type="checkbox"
+        checked= {false} />)}{'   '}<label>Vip_wifi</label> <br/>
+
+        {element.coffeeandtea === 1 ? ( <input id="checkbox3" type="checkbox" checked="true"/>):(<input
+        id ="checkbox_id"
+        type="checkbox"
+        checked= {false}/>)}{'   '}<label>coffeeandtea</label> <br/>
+        
+        {element.conditioning === 1 ? ( <input id="checkbox3" type="checkbox" checked="true"/>):(<input
+        id ="checkbox_id"
+        type="checkbox"
+        checked= {false}/>)}{'   '}<label>conditioning</label> <br/>
+        
+        {element.ele === 1 ? ( <input id="checkbox3" type="checkbox" checked="true"/>):(<input
+        id ="checkbox_id"
+        type="checkbox"
+        checked= {false}/>)}{'   '}<label>24 hours electricity</label> <br/>
+        {element.water === 1 ? ( <input id="checkbox3" type="checkbox" checked="true"/>):(<input
+        id ="checkbox_id"
+        type="checkbox"
+        checked= {false}/>)}{'   '}<label>Water</label> <br/>
+
+        <label>phone Owner :</label> {'   '}  <label>{element.phoneowner}</label><br/>            
+     {/* Features */}
 							     <div>
 	  <boot.Button variant="primary" onClick={() => {
 				        office_id =element.office_id
@@ -217,8 +246,9 @@ function CustemarPage() {
               office_id : office_id ,
 							startdate : moment(selectedDate).format('YYYY-MM-DD') ,
 							enddate : moment(selectedDate2).format('YYYY-MM-DD') ,
-							emailuser: email,
-							 emailowner: item.email
+              emailuser: email,
+              phoneuser: phoneuser,
+							emailowner: item.email
             }
 						axios
 						.post('http://localhost:5000/addbooking', booking)
