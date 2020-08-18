@@ -37,9 +37,8 @@ function Home() {
 	return email === '' ? (
 		// return (
 		<div>
-			<div className='c5'>
-				<Navbar />
-			</div>
+			<Navbar />
+			<div className='c5'></div>
 			<div className='c4'>
 				{/*  */}
 				<ReactBootstrap.Container className='c0' fluid='md'>

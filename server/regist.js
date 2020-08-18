@@ -52,6 +52,8 @@ exports.login = async function (req, res) {
 						var user = {
 							id: results[0].iduser,
 							email: results[0].email,
+							phone: results[0].phone,
+							name: results[0].name,
 						};
 						var token = jwt.sign(user, config.secret);
 						res.send({
@@ -112,6 +114,26 @@ exports.loginowner = async function (req, res) {
 		async function (error, results, fields) {
 			if (error) {
 				res.send({
+					code: 200,
+					success: 'user registered sucessfully',
+				});
+			}
+		},
+	);
+};
+
+///////////////////////////////////
+
+//////////////////
+exports.loginowner = async function (req, res) {
+	var email = req.body.email;
+	var password = req.body.password;
+	db.connection.query(
+		'SELECT * FROM dataowner WHERE email = ?',
+		[email],
+		async function (error, results, fields) {
+			if (error) {
+				res.send({
 					code: 400,
 					failed: 'error ocurred',
 				});
@@ -123,8 +145,11 @@ exports.loginowner = async function (req, res) {
 					);
 					if (comparision) {
 						var user = {
-							id: results[0].iduser,
+							id: results[0].idowner,
 							email: results[0].email,
+							name: results[0].name,
+							phone: results[0].phone,
+							companyname: results[0].companyname,
 						};
 						var token = jwt.sign(user, config.secret);
 						res.send({

@@ -5,13 +5,39 @@ import * as moment from 'moment';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import Navbar from '../../navbar/navbar';
+import CardActions from '@material-ui/core/CardActions';
+import Rating from 'material-ui-rating';
+import CardContent from '@material-ui/core/CardContent';
+import { CardMedia } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import './booking.css';
 var email = '';
 var booking_id = 0;
 var emailowner = '';
+var ratingnumber = 0;
+var valueofstart = 0;
+var office_id = 0;
+const useStyles = makeStyles(theme => ({
+	root: {
+		display: 'flex',
+		flexDirection: 'column',
+		'& > * + *': {
+			marginTop: theme.spacing(1),
+		},
+	},
+}));
 export default function Bookinguser() {
+	const classes = useStyles();
 	const [data, setData] = useState([]);
-
+	const [star, setStar] = useState(0);
+	const [show2, setShow2] = useState(false);
+	const handleClose2 = () => setShow2(false);
+	const handleShow2 = () => setShow2(true);
+	const handlestar = () => {
+		setStar(star);
+	};
 	useEffect(() => {
 		const tokin = localStorage.usertoken;
 		var decoded = jwt_decode(tokin);

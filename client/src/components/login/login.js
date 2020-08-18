@@ -6,7 +6,7 @@ import { Grid, TextField, Link } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Navbar from '../navbarlog/navbarlog';
-var uesr = {};
+// var uesr = {};
 class login extends React.Component {
 	constructor(props) {
 		super(props);

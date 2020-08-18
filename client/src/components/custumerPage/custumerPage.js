@@ -1,4 +1,4 @@
-import Bar from '../../navbar/navbar';
+import Navbar from '../../navbar/navbar';
 import * as boot from 'react-bootstrap';
 import * as moment from 'moment';
 import React, { useState, useEffect } from 'react';
@@ -8,7 +8,7 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+import { CardMedia } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import 'date-fns';
@@ -24,7 +24,7 @@ import jwt_decode from 'jwt-decode';
 import Rating from 'material-ui-rating';
 var item = {};
 var email = '';
-var ratingnumber = 0;
+var office_id = 0;
 const useStyles = makeStyles(theme => ({
 	root: {
 		display: 'flex',
@@ -82,7 +82,8 @@ function CustemarPage() {
 
 	return (
 		<div>
-			<Bar />
+			<Navbar />
+
 			<Link href='/bookinguser' onClick={console.log('kk')}>
 				<Button variant='contained' color='primary'>
 					My Booking Office
@@ -92,7 +93,7 @@ function CustemarPage() {
 				return (
 					<boot.Container>
 						<boot.Row>
-							{/* <boot.Col>
+							<boot.Col>
 								<boot.Card key={index} style={{ width: '18rem' }}>
 									<boot.Card.Img variant='top' src={element.imgUrl} />
 									<boot.Card.Body>
@@ -105,8 +106,8 @@ function CustemarPage() {
 									</boot.Card.Body>
 								</boot.Card>
 								<br />
-							</boot.Col> */}
-							{/* <boot.Col>
+							</boot.Col>
+							<boot.Col>
 								{' '}
 								<boot.Card key={index} style={{ width: '18rem' }}>
 									<boot.Card.Img variant='top' src={element.imgUrl} />
@@ -117,7 +118,7 @@ function CustemarPage() {
 									</boot.Card.Body>
 								</boot.Card>
 								<br />
-							</boot.Col> */}
+							</boot.Col>
 							<boot.Col>
 								<boot.Card key={index} style={{ width: '18rem' }}>
 									<boot.Card.Img variant='top' src={element.imgUrl} />
@@ -127,29 +128,27 @@ function CustemarPage() {
 									<boot.Card.Body>
 										<boot.Card.Title>{element.Discription} </boot.Card.Title>
 										<boot.Card.Text>{element.email}</boot.Card.Text>
-
+										{/* <Link href='/rentPage'> 
+							<boot.Button variant='primary' onClick={function passEmail(){}}>Rent</boot.Button>
+							 </Link> */}
 										<div>
 											<boot.Button
 												variant='primary'
 												onClick={() => {
-													item = element;
-													// email = element.email
-													console.log(item + 'iouhg');
+													office_id = element.office_id;
+													console.log(element.office_id);
 
 													handleShow();
 												}}
 											>
 												Rent
 											</boot.Button>
-											<boot.Button
-												variant='primary'
-												onClick={() => {
-													ratingnumber = element.office_id;
-													handleShow2();
-												}}
-											>
-												Rating
-											</boot.Button>
+											{/* <boot.Button variant="primary" onClick={() => {
+        ratingnumber = element.office_id;
+					handleShow2()
+				  }}   >
+        Rating
+      </boot.Button> */}
 
 											<boot.Modal
 												show={show}
@@ -199,6 +198,11 @@ function CustemarPage() {
 														</CardContent>
 													</CardActionArea>
 													<CardActions>
+														{/* <Link href='/custumerPage' onClick={console.log('kk')}>
+            <Button variant='contained' color='primary'>
+              DONE
+            </Button>
+          </Link> */}
 														<Button
 															variant='secondary'
 															onClick={() => {
@@ -208,6 +212,7 @@ function CustemarPage() {
 																);
 
 																const booking = {
+																	office_id: office_id,
 																	startdate: moment(selectedDate).format(
 																		'YYYY-MM-DD',
 																	),
@@ -247,59 +252,51 @@ function CustemarPage() {
 											</boot.Modal>
 										</div>
 										<div>
-											<boot.Modal
-												show={show2}
-												onHide={handleClose2}
-												backdrop='static'
-												keyboard={false}
-											>
-												<Card>
-													<CardActionArea>
-														<CardMedia
-															image='/static/images/cards/contemplative-reptile.jpg'
-															title='Contemplative Reptile'
-														/>
-														<CardContent>
-															<div className={classes.root}>
-																<Rating
-																	name='size-medium'
-																	defaultValue={0}
-																	value={star}
-																	onChange={value => {
-																		console.log(`Rated with value ${value}`);
-																		valueofstart = value;
-																	}}
-																/>
-															</div>
-														</CardContent>
-													</CardActionArea>
-													<CardActions>
-														<Button
-															variant='secondary'
-															onClick={() => {
-																console.log(valueofstart);
-																const rating = {
-																	id: ratingnumber,
-																	rating: valueofstart,
-																};
-																axios
-																	.post('http://localhost:5000/rating', rating)
-																	.then(res => {
-																		console.log(res.data);
-																		window.location.reload(true);
-																	})
-																	.catch(err => {
-																		console.log(err);
-																	});
-																//window.location.reload(true);
-																handleClose2();
-															}}
-														>
-															OK
-														</Button>
-													</CardActions>
-												</Card>
-											</boot.Modal>
+											{/* <boot.Modal
+        show={show2}
+        onHide={handleClose2}
+        backdrop="static"
+        keyboard={false}
+      >
+		 <Card >
+        <CardActionArea>
+          <CardMedia
+           
+            image='/static/images/cards/contemplative-reptile.jpg'
+            title='Contemplative Reptile'
+          />
+          <CardContent>
+ <div className={classes.root}>
+      <Rating name="size-medium"  defaultValue={0.5} precision={0.5} value={star} onChange={(value) =>{ console.log(`Rated with value ${value}`) 
+      valueofstart = value
+    }}/>
+		  </div>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+		   < Button  variant="secondary" onClick={() => {
+         console.log(valueofstart)
+          const rating = {
+            id :ratingnumber ,
+            rating :(valueofstart+element.rating)/2
+         }
+         axios
+         .post('http://localhost:5000/rating', rating)
+         .then((res) => {
+           console.log(res.data); 
+           window.location.reload(true);
+         })
+         .catch((err) => {
+           console.log(err);
+         })
+         //window.location.reload(true);
+						handleClose2()
+                      }}   >
+            OK
+          </Button>
+        </CardActions>
+      </Card>
+      </boot.Modal>  */}
 										</div>
 									</boot.Card.Body>
 								</boot.Card>
@@ -309,7 +306,6 @@ function CustemarPage() {
 						</boot.Row>
 					</boot.Container>
 				);
-				console.log('index.length');
 			})}
 		</div>
 	);
