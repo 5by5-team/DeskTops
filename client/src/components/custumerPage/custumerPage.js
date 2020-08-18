@@ -22,6 +22,7 @@ import {
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import Rating from 'material-ui-rating';
+import './cus.css';
 var item = {};
 var email = '';
 var ratingnumber = 0;
@@ -83,234 +84,207 @@ function CustemarPage() {
 	return (
 		<div>
 			<Bar />
-			<Link href='/bookinguser' onClick={console.log('kk')}>
-				<Button variant='contained' color='primary'>
-					My Booking Office
-				</Button>
-			</Link>
-			{data.map((element, index) => {
-				return (
-					<boot.Container>
-						<boot.Row>
-							{/* <boot.Col>
-								<boot.Card key={index} style={{ width: '18rem' }}>
-									<boot.Card.Img variant='top' src={element.imgUrl} />
-									<boot.Card.Body>
-										<boot.Card.Title>{element.Discription} </boot.Card.Title>
-										<boot.Card.Text>
-											Some quick example text to build on the card title and
-											make up the bulk of the card's content
-										</boot.Card.Text>
-										<boot.Button variant='primary'>Rent</boot.Button>
-									</boot.Card.Body>
-								</boot.Card>
-								<br />
-							</boot.Col> */}
-							{/* <boot.Col>
-								{' '}
-								<boot.Card key={index} style={{ width: '18rem' }}>
-									<boot.Card.Img variant='top' src={element.imgUrl} />
-									<boot.Card.Body>
-										<boot.Card.Title>{element.Discription} </boot.Card.Title>
+			<div className='link1'>
+				<Link href='/bookinguser' onClick={console.log('kk')}>
+					<Button variant='contained' color='primary'>
+						My Booking Office
+					</Button>
+				</Link>
+			</div>
+			<div className='cardCu'>
+				<boot.Row>
+					{data.map((element, index) => {
+						return (
+							<boot.Card key={index} style={{ width: '18rem' }}>
+								<boot.Card.Img variant='top' src={element.imgUrl} />
+								<Box component='fieldset' mb={3} borderColor='transparent'>
+									<Rating name='read-only' value={element.rating} readOnly />
+								</Box>
+								<boot.Card.Body>
+									<boot.Card.Title>{element.Discription} </boot.Card.Title>
+									<boot.Card.Text>{element.email}</boot.Card.Text>
 
-										<boot.Button variant='primary'>Rent</boot.Button>
-									</boot.Card.Body>
-								</boot.Card>
-								<br />
-							</boot.Col> */}
-							<boot.Col>
-								<boot.Card key={index} style={{ width: '18rem' }}>
-									<boot.Card.Img variant='top' src={element.imgUrl} />
-									<Box component='fieldset' mb={3} borderColor='transparent'>
-										<Rating name='read-only' value={element.rating} readOnly />
-									</Box>
-									<boot.Card.Body>
-										<boot.Card.Title>{element.Discription} </boot.Card.Title>
-										<boot.Card.Text>{element.email}</boot.Card.Text>
+									<div>
+										<boot.Button
+											className='butCu1'
+											variant='primary'
+											onClick={() => {
+												item = element;
+												// email = element.email
+												console.log(item + 'iouhg');
 
-										<div>
-											<boot.Button
-												variant='primary'
-												onClick={() => {
-													item = element;
-													// email = element.email
-													console.log(item + 'iouhg');
+												handleShow();
+											}}
+										>
+											Rent
+										</boot.Button>
+										<boot.Button
+											className='butCu1'
+											variant='primary'
+											onClick={() => {
+												ratingnumber = element.office_id;
+												handleShow2();
+											}}
+										>
+											Rating
+										</boot.Button>
 
-													handleShow();
-												}}
-											>
-												Rent
-											</boot.Button>
-											<boot.Button
-												variant='primary'
-												onClick={() => {
-													ratingnumber = element.office_id;
-													handleShow2();
-												}}
-											>
-												Rating
-											</boot.Button>
-
-											<boot.Modal
-												show={show}
-												onHide={handleClose}
-												backdrop='static'
-												keyboard={false}
-											>
-												<Card>
-													<CardActionArea>
-														<CardMedia
-															image='/static/images/cards/contemplative-reptile.jpg'
-															title='Contemplative Reptile'
-														/>
-														<CardContent>
-															<Typography
-																variant='body2'
-																color='textSecondary'
-																component='p'
-															>
-																<MuiPickersUtilsProvider utils={DateFnsUtils}>
-																	<Grid container justify='space-around'>
-																		<KeyboardDatePicker
-																			margin='normal'
-																			id='date-picker-dialog'
-																			// label='Starting date'
-																			format='MM/dd/yyyy'
-																			value={selectedDate}
-																			onChange={handleDateChange}
-																			KeyboardButtonProps={{
-																				'aria-label': 'change date',
-																			}}
-																		/>
-																		<KeyboardDatePicker
-																			margin='normal'
-																			id='date-picker-dialog'
-																			// label='ending date'
-																			format='MM/dd/yyyy'
-																			value={selectedDate2}
-																			onChange={handleDateChange2}
-																			KeyboardButtonProps={{
-																				'aria-label': 'change date',
-																			}}
-																		/>
-																	</Grid>
-																</MuiPickersUtilsProvider>
-															</Typography>
-														</CardContent>
-													</CardActionArea>
-													<CardActions>
-														<Button
-															variant='secondary'
-															onClick={() => {
-																console.log(
-																	moment(selectedDate).format('YYYY-MM-DD') +
-																		'date1',
-																);
-
-																const booking = {
-																	startdate: moment(selectedDate).format(
-																		'YYYY-MM-DD',
-																	),
-																	enddate: moment(selectedDate2).format(
-																		'YYYY-MM-DD',
-																	),
-																	emailuser: email,
-																	emailowner: item.email,
-																};
-																axios
-																	.post(
-																		'http://localhost:5000/addbooking',
-																		booking,
-																	)
-																	.then(res => {
-																		console.log(res.data);
-																	})
-																	.catch(err => {
-																		console.log(err);
-																	});
-
-																handleClose();
-															}}
+										<boot.Modal
+											show={show}
+											onHide={handleClose}
+											backdrop='static'
+											keyboard={false}
+										>
+											<Card>
+												<CardActionArea>
+													<CardMedia
+														image='/static/images/cards/contemplative-reptile.jpg'
+														title='Contemplative Reptile'
+													/>
+													<CardContent>
+														<Typography
+															variant='body2'
+															color='textSecondary'
+															component='p'
 														>
-															OK
-														</Button>
-														<Button
-															variant='secondary'
-															onClick={() => {
-																handleClose();
-															}}
-														>
-															Cancel
-														</Button>
-													</CardActions>
-												</Card>
-											</boot.Modal>
-										</div>
-										<div>
-											<boot.Modal
-												show={show2}
-												onHide={handleClose2}
-												backdrop='static'
-												keyboard={false}
-											>
-												<Card>
-													<CardActionArea>
-														<CardMedia
-															image='/static/images/cards/contemplative-reptile.jpg'
-															title='Contemplative Reptile'
-														/>
-														<CardContent>
-															<div className={classes.root}>
-																<Rating
-																	name='size-medium'
-																	defaultValue={0}
-																	value={star}
-																	onChange={value => {
-																		console.log(`Rated with value ${value}`);
-																		valueofstart = value;
-																	}}
-																/>
-															</div>
-														</CardContent>
-													</CardActionArea>
-													<CardActions>
-														<Button
-															variant='secondary'
-															onClick={() => {
-																console.log(valueofstart);
-																const rating = {
-																	id: ratingnumber,
-																	rating: valueofstart,
-																};
-																axios
-																	.post('http://localhost:5000/rating', rating)
-																	.then(res => {
-																		console.log(res.data);
-																		window.location.reload(true);
-																	})
-																	.catch(err => {
-																		console.log(err);
-																	});
-																//window.location.reload(true);
-																handleClose2();
-															}}
-														>
-															OK
-														</Button>
-													</CardActions>
-												</Card>
-											</boot.Modal>
-										</div>
-									</boot.Card.Body>
-								</boot.Card>
+															<MuiPickersUtilsProvider utils={DateFnsUtils}>
+																<Grid container justify='space-around'>
+																	<KeyboardDatePicker
+																		margin='normal'
+																		id='date-picker-dialog'
+																		// label='Starting date'
+																		format='MM/dd/yyyy'
+																		value={selectedDate}
+																		onChange={handleDateChange}
+																		KeyboardButtonProps={{
+																			'aria-label': 'change date',
+																		}}
+																	/>
+																	<KeyboardDatePicker
+																		margin='normal'
+																		id='date-picker-dialog'
+																		// label='ending date'
+																		format='MM/dd/yyyy'
+																		value={selectedDate2}
+																		onChange={handleDateChange2}
+																		KeyboardButtonProps={{
+																			'aria-label': 'change date',
+																		}}
+																	/>
+																</Grid>
+															</MuiPickersUtilsProvider>
+														</Typography>
+													</CardContent>
+												</CardActionArea>
+												<CardActions>
+													<Button
+														variant='secondary'
+														onClick={() => {
+															console.log(
+																moment(selectedDate).format('YYYY-MM-DD') +
+																	'date1',
+															);
 
-								<br />
-							</boot.Col>
-						</boot.Row>
-					</boot.Container>
-				);
-				console.log('index.length');
-			})}
+															const booking = {
+																startdate: moment(selectedDate).format(
+																	'YYYY-MM-DD',
+																),
+																enddate: moment(selectedDate2).format(
+																	'YYYY-MM-DD',
+																),
+																emailuser: email,
+																emailowner: item.email,
+															};
+															axios
+																.post(
+																	'http://localhost:5000/addbooking',
+																	booking,
+																)
+																.then(res => {
+																	console.log(res.data);
+																})
+																.catch(err => {
+																	console.log(err);
+																});
+
+															handleClose();
+														}}
+													>
+														OK
+													</Button>
+													<Button
+														variant='secondary'
+														onClick={() => {
+															handleClose();
+														}}
+													>
+														Cancel
+													</Button>
+												</CardActions>
+											</Card>
+										</boot.Modal>
+									</div>
+									<div>
+										<boot.Modal
+											show={show2}
+											onHide={handleClose2}
+											backdrop='static'
+											keyboard={false}
+										>
+											<Card>
+												<CardActionArea>
+													<CardMedia
+														image='/static/images/cards/contemplative-reptile.jpg'
+														title='Contemplative Reptile'
+													/>
+													<CardContent>
+														<div className={classes.root}>
+															<Rating
+																name='size-medium'
+																defaultValue={0}
+																value={star}
+																onChange={value => {
+																	console.log(`Rated with value ${value}`);
+																	valueofstart = value;
+																}}
+															/>
+														</div>
+													</CardContent>
+												</CardActionArea>
+												<CardActions>
+													<Button
+														variant='secondary'
+														onClick={() => {
+															console.log(valueofstart);
+															const rating = {
+																id: ratingnumber,
+																rating: valueofstart,
+															};
+															axios
+																.post('http://localhost:5000/rating', rating)
+																.then(res => {
+																	console.log(res.data);
+																	window.location.reload(true);
+																})
+																.catch(err => {
+																	console.log(err);
+																});
+															//window.location.reload(true);
+															handleClose2();
+														}}
+													>
+														OK
+													</Button>
+												</CardActions>
+											</Card>
+										</boot.Modal>
+									</div>
+								</boot.Card.Body>
+							</boot.Card>
+						);
+					})}
+				</boot.Row>
+			</div>
 		</div>
 	);
 }
