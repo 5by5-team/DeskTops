@@ -40,7 +40,7 @@ class Bar extends React.Component {
 	render() {
 		console.log(this.state);
 		return (
-			<ReactBootstrap.Navbar bg='light' expand='lg'>
+			<ReactBootstrap.Navbar bg='light' expand='lg' fixed='top'>
 				<ReactBootstrap.Navbar.Brand href='/landingPage'>
 					BookingFinder
 				</ReactBootstrap.Navbar.Brand>

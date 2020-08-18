@@ -1,0 +1,32 @@
+/* body {
+	background-image: url('https://images.pexels.com/photos/853199/pexels-photo-853199.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+	background-color: #cccccc;
+}  */
+
+.c5 {
+	max-width: 100%;
+	margin: 0 auto;
+	position: relative;
+	padding: 139px 0vw;
+	background-image: url('https://images.pexels.com/photos/853199/pexels-photo-853199.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+	background-color: #cccccc;
+	max-height: 341px;
+	object-fit: cover;
+}
+.card1 {
+	margin: 400px;
+}
+.bg-light {
+	background-color: #f8f9fa6b !important;
+	position: absolute;
+	/* bottom: 0; */
+	width: 100%;
+}
+element.style {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+}
+.c0 {
+	margin-top: 20px;
+}
