@@ -4,6 +4,7 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import Navbar from "../../navbar/navbar";
 import * as moment  from 'moment';
+
 var email ='';
 
 export default function Booking() {

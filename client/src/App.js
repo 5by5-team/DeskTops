@@ -13,6 +13,7 @@ import Booking from '../src/components/bookingoffice/bookingoffice.js'
 import Add from '../src/components/addOffice/addOffice'
 import Bookinguser from '../src/components/bookinguser/bookinguser.js'
 // import Calender from '../src/components/calender/calender'
+import ContactPage from '../src/components/contactus/contactus'
 import cal from "../src/components/calender/calender"
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
       <Route exact path='/' component={LandingPage} />
       <section>
       <Route exact path='/signupCustomer' component={SinCustomer} />
-        <Route exact path='/signupOwner' component={SignupOwner} />
+        <Route exact path='/signupOwner' component={SignupOwner} /> 
         <Route exact path='/landingPage' component={LandingPage} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/loginForOwner' component={LoginOwner} />
@@ -30,6 +31,7 @@ function App() {
         <Route exact path='/bookingoffice' component={Booking} />
         <Route exact path='/Bookinguser' component={Bookinguser} />
         <Route exact path='/cal' component={cal} /> 
+        <Route exact path='/ContactPage' component={ContactPage} /> 
       </section>
     </Router>
   );

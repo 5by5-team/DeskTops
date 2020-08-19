@@ -10,7 +10,11 @@ exports.rating = function(req,res){
       if (error) {
         return res.send(error)
       } else {
-         data = (rating +result[0]["rating"])/2
+        if(result[0]["rating"]===0){
+          data = rating
+        }
+        else {
+         data = (rating +result[0]["rating"])/2}
        var a = [data,id]
           db.connection.query(sql2,a,function (error, results, fields) {
         if (error) {

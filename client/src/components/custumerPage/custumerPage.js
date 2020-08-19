@@ -15,15 +15,15 @@ import Typography from '@material-ui/core/Typography';
 import 'date-fns';   
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
-import { Link ,Box} from '@material-ui/core'; 
+import {Link ,Box} from '@material-ui/core'; 
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';  
-import axios from 'axios';
+import axios from 'axios'; 
 import jwt_decode from 'jwt-decode';
 import Rating from 'material-ui-rating'
-var item ={};
+var item ={}; 
 var email = '';
 var phoneuser = 0;
 var office_id = 0;
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 var valueofstart = 0;
 
 function CustemarPage() {
-  const classes = useStyles();
+  const classes = useStyles(); 
   const [star, setStar] = useState(0)
   const handlestar= ()=>{
     setStar(star);
@@ -115,7 +115,7 @@ function CustemarPage() {
 								the bulk of the card's content
 							</boot.Card.Text>
 							<boot.Button variant='primary'>Rent</boot.Button>
-						</boot.Card.Body>
+						</boot.Card.Body> 
 					</boot.Card>
                     <br/>
                     </boot.Col>
@@ -133,10 +133,9 @@ function CustemarPage() {
                     <boot.Card  key = {index} style={{ width: '18rem' }}>
                    
 						<boot.Card.Img variant='top' src={element.imgUrl} />
-            <Box component="fieldset" mb={3} borderColor="transparent">
+           
         <Rating name="read-only" value={element.rating} readOnly />
-      </Box>
-						<boot.Card.Body>
+      			<boot.Card.Body>
 							<boot.Card.Title>{element.Discription} </boot.Card.Title>
 							<boot.Card.Text>
 								{element.email}

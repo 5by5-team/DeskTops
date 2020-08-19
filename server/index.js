@@ -19,6 +19,7 @@ app.use(bodyParser.json())
   var addbooking = require("./rent")
   var getbookinguser = require('./bookinguser')
   var rating = require('./rating')
+  var contactus =require('./contactus')
   var cors = require('cors')
   const nodemailer = require ('nodemailer')
   var deletoff = require('./deletoffice')
@@ -47,6 +48,8 @@ app.post('/getbookinguser',getbookinguser.getbookinguser)
 app.post('/rating',rating.rating) 
 app.post('/deletoff',deletoff.deletoff)
 app.post('/deletebooking',deletebooking.deletebooking)
+app.post('/contactus',contactus.contactus)
+
 // const { google } = require('googleapis')
 
 // // Require oAuth2 from our google instance.
