@@ -6,10 +6,11 @@ exports.addbooking = function(req,res){
      var emailowner = req.body.emailuser;
     let sql = "INSERT INTO bookingdata SET ?";
     let post = {
+    office_id :req.body.office_id,
     startdate :req.body.startdate,
     enddate :req.body.enddate,
     emailuser :req.body.emailuser,
-    emailowner :req.body.emailuser
+    emailowner :req.body.emailuser,
 
     }
     db.connection.query(sql,post, function (error, results, fields) {

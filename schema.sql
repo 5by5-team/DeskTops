@@ -29,13 +29,14 @@ CREATE TABLE officedata (
     imgUrl VARCHAR(150),
     price int,
      email VARCHAR(50),
-     rating int,
+     rating FLOAT(3),
      reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 
   );
   CREATE TABLE bookingdata (
    booking_id int NOT NULL AUTO_INCREMENT ,
    PRIMARY KEY (booking_id),
+   office_id int,
    startdate date ,
    enddate date, 
    emailuser VARCHAR(50),

@@ -4,6 +4,7 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import Navbar from '../../navbar/navbar';
 import './book.css';
+import * as moment from 'moment';
 var email = '';
 
 export default function Booking() {
@@ -31,21 +32,41 @@ export default function Booking() {
 	return (
 		<div>
 			<Navbar />
+			{data.map((element, index) => {
+				return (
+					<boot.Container>
+						<boot.Row>
+							<boot.Col>
+								<br />
+							</boot.Col>
+							<boot.Col>
+								<boot.Card key={index} style={{ width: '18rem' }}>
+									<boot.Card.Title></boot.Card.Title>
+									<label>Email User :</label> {'   '}{' '}
+									<label>{element.emailuser}</label>
+									<boot.Card.Body>
+										<boot.Card.Title>
+											{moment(element.startdate).format('YYYY-MM-DD')}{' '}
+										</boot.Card.Title>
+										<boot.Card.Title>
+											{moment(element.enddate).format('YYYY-MM-DD')}
+										</boot.Card.Title>
+										<label>phone User :</label> {'   '}{' '}
+										<label>{element.phoneuser}</label>
+										<br />
+									</boot.Card.Body>
+								</boot.Card>
+								<br />
+							</boot.Col>
+							<boot.Col>
+								<div></div>
 
-			<boot.Row className='rowBook'>
-				{data.map((element, index) => {
-					return (
-						<boot.Card key={index} style={{ width: '18rem' }}>
-							<boot.Card.Title>{element.emailuser}</boot.Card.Title>
-
-							<boot.Card.Body>
-								<boot.Card.Title>{element.startdate} </boot.Card.Title>
-								<boot.Card.Title>{element.enddate} </boot.Card.Title>
-							</boot.Card.Body>
-						</boot.Card>
-					);
-				})}
-			</boot.Row>
+								<br />
+							</boot.Col>
+						</boot.Row>
+					</boot.Container>
+				);
+			})}
 		</div>
 	);
 }
