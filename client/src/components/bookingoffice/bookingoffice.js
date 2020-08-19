@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import Navbar from '../../navbar/navbar';
-import './book.css';
 import * as moment from 'moment';
+
 var email = '';
 
 export default function Booking() {

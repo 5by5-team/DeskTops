@@ -17,8 +17,9 @@ exports.addoff = function (req, res) {
       conditioning: req.body.conditioning,
       coffeeandtea: req.body.coffeeandtea,
       email: req.body.email,
-      imgUrl: req.body.imgUrl
-
+      imgUrl: req.body.imgUrl,
+      phoneowner : req.body.phoneowner,
+      rating :0
     }
     db.connection.query(sql, post, function (error, results, fields) {
       if (error) {

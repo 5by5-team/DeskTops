@@ -124,9 +124,8 @@ function CustemarPage() {
 							<boot.Col>
 								<boot.Card key={index} style={{ width: '18rem' }}>
 									<boot.Card.Img variant='top' src={element.imgUrl} />
-									<Box component='fieldset' mb={3} borderColor='transparent'>
-										<Rating name='read-only' value={element.rating} readOnly />
-									</Box>
+
+									<Rating name='read-only' value={element.rating} readOnly />
 									<boot.Card.Body>
 										<boot.Card.Title>{element.Discription} </boot.Card.Title>
 										<boot.Card.Text>{element.email}</boot.Card.Text>

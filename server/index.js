@@ -19,12 +19,11 @@ var search = require('./searchbylocation');
 var addbooking = require('./rent');
 var getbookinguser = require('./bookinguser');
 var rating = require('./rating');
+var contactus = require('./contactus');
 var cors = require('cors');
 const nodemailer = require('nodemailer');
 var deletoff = require('./deletoffice');
 var deletebooking = require('./deletebooking');
-const { request } = require('http');
-const logout = require('./logout');
 app.use(cors());
 db.connection.connect(function (err) {
 	if (err) console.log(err);
@@ -49,7 +48,8 @@ app.post('/getbookinguser', getbookinguser.getbookinguser);
 app.post('/rating', rating.rating);
 app.post('/deletoff', deletoff.deletoff);
 app.post('/deletebooking', deletebooking.deletebooking);
-app.get('/logout', logout.get);
+app.post('/contactus', contactus.contactus);
+
 // const { google } = require('googleapis')
 
 // // Require oAuth2 from our google instance.
