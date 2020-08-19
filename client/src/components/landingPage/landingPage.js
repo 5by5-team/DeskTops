@@ -71,7 +71,7 @@ function Home() {
 		// return (
 		<div>
 			<Navbar />
-			<div className='c5' backgroundImage=''>
+			<div className='c5'>
 				{/* <a href='/landingPage'>
 					<h1
 						style={{
