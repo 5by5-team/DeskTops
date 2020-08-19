@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import '../contactus/con.css'
+import '../contactus/contactus.css'
 class ContactPage extends React.Component{
   constructor(props) {
 	super(props);
