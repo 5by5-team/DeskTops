@@ -35,11 +35,11 @@ export default function Ownerpage() {
   
         };
      
-        fetchData();
+        fetchData(); 
     }, []);
-    return(
+    return( 
         <div>
-            <Navbar/>
+            <Navbar/> 
             <br/>
     <Link href='/cal' onClick={console.log('kk')}>
         <Button variant='contained' color='primary'>
@@ -77,9 +77,9 @@ export default function Ownerpage() {
                     <boot.Col>
                     <boot.Card  key = {index} style={{ width: '18rem' }}>
 						<boot.Card.Img variant='top' src={element.imgUrl} />
-                        <Box component="fieldset" mb={3} borderColor="transparent">
+                   
         <Rating name="read-only" value={element.rating} readOnly />
-      </Box>   
+      
 						<boot.Card.Body>
 							<boot.Card.Title>{element.Discription} </boot.Card.Title>
 							<boot.Card.Text>
