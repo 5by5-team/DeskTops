@@ -1,6 +1,6 @@
-import React, { useState ,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { Grid, TextField, Link  } from "@material-ui/core"
+import { Grid, TextField, Link } from "@material-ui/core"
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -23,7 +23,7 @@ var email ="";
 var phoneowner= 0;
 export default function AddOffice() {
 
-    useEffect(() => {
+	useEffect(() => {
 		const tokin = localStorage.usertoken;
 		var decoded = jwt_decode(tokin);
     console.log(decoded);
@@ -34,7 +34,7 @@ export default function AddOffice() {
 	const [add, setadd] = useState({
 		Discription: '',
 		location: '',
-		price : 0
+		price: 0
 	});
 	const [addch, setaddch] = useState({
 		Vip_wifi: false,
@@ -62,75 +62,72 @@ export default function AddOffice() {
 	 office["imgUrl"]=imgUrl;
 	 office["rating"] = 0.00;
 		console.log(office);
-  
+
 		console.log(addch);
 		axios.post(`http://localhost:5000/addoffice`, office)
-		.then(function (response) {
-			console.log(response)
-		  if(response.data === "error") {
-			  alert('Somthing Empty')
-			}
-		   
-			else if(response.data.success === "added"){
-			  alert('The Office Added')
+			.then(function (response) {
+				console.log(response)
+				if (response.data === "error") {
+					alert('Somthing Empty')
+				}
 
-			} else {
-			  alert('ERROR');
-			}
-		})
-		  .catch(function (error) {
-		      console.log(error)
-		  })
+				else if (response.data.success === "added") {
+					alert('The Office Added')
+
+				} else {
+					alert('ERROR');
+				}
+			})
+			.catch(function (error) {
+				console.log(error)
+			})
 	};
-    const [location, setlocation, imageUrl, imageAlt] = useState('');
-    const usemYStyles = makeStyles((theme) => ({
-        root: {
-            '& > *': {
-                margin: theme.spacing(1),
-            },
-        },
-        input: {
-            display: 'none',
-        },
-        formControl: {
-            margin: theme.spacing(1),
-            minWidth: 120,
-        },
-        selectEmpty: {
-            marginTop: theme.spacing(2),
-        },
-    }));
-    const classes = usemYStyles(); 
+	const [location, setlocation, imageUrl, imageAlt] = useState('');
+	const usemYStyles = makeStyles((theme) => ({
+		root: {
+			'& > *': {
+				margin: theme.spacing(1),
+			},
+		},
+		input: {
+			display: 'none',
+		},
+		formControl: {
+			margin: theme.spacing(1),
+			minWidth: 120,
+		},
+		selectEmpty: {
+			marginTop: theme.spacing(2),
+		},
+	}));
+	const classes = usemYStyles();
 
-    // const handleChange = (event) => {
-    //     setlocation(event.target.value);
-    // }
-    const [image, setImage] = useState("");
-    const [loading, setLoading] = useState(false);
-const uploadImage = (e)=> {
-      const files = e.target.files;
-      const data = new FormData();
-      data.append("file", files[0]);
-      data.append("upload_preset", "dbimage");
-      setLoading(true);
-      axios
-        .post("https://api.cloudinary.com/v1_1/dwwkrlpkl/image/upload", data)
-        .then((response) => {
-           imgUrl = response.data["secure_url"];
-          console.log(imgUrl)
-          setImage(imgUrl);
+	const [image, setImage] = useState("");
+	const [loading, setLoading] = useState(false);
+	const uploadImage = (e) => {
+		const files = e.target.files;
+		const data = new FormData();
+		data.append("file", files[0]);
+		data.append("upload_preset", "dbimage");
+		setLoading(true);
+		axios
+			.post("https://api.cloudinary.com/v1_1/dwwkrlpkl/image/upload", data)
+			.then((response) => {
+				imgUrl = response.data["secure_url"];
+				console.log(imgUrl)
+				setImage(imgUrl);
 
-          // handleUrlChangeT(imgUrl);
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-    return (
-        <div>
-			<Navbar/>
-         <Grid container style={{ minHeight: '100vh' }}>
+				// handleUrlChangeT(imgUrl);
+				setLoading(false);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}
+	return (
+		<div>
+			<Navbar />
+			<Grid container style={{ minHeight: '100vh' }}>
 				<Grid
 					container
 					item
@@ -148,6 +145,7 @@ const uploadImage = (e)=> {
 							flexDirection: 'column',
 							maxWidth: 400,
 							minWidth: 300,
+							marginBottom: '200px',
 						}}
 					>
 						<TextField
@@ -162,14 +160,6 @@ const uploadImage = (e)=> {
 								),
 							}}
 						/>
-						{/* <TextField
-                        value={add.location}
-                        onChange={handleChange}
-							id='standard-number'
-							label='Number'
-							type='number'
-							InputLabelProps={{ shrink: true }}
-						/> */}
 						<FormControl className={classes.formControl}>
 							<InputLabel id='demo-simple-select-label'>Location</InputLabel>
 							<Select
@@ -186,19 +176,19 @@ const uploadImage = (e)=> {
 								<MenuItem value={'Beit Lahia'}>Beit Lahia</MenuItem>
 								<MenuItem value={'Jabalia'}>Jabalia</MenuItem>
 							</Select>
-                            <TextField
-                            name='price'
-                            type = "number"
-							value={add.price}
-							onChange={handleChange}
-							label='price'
-							margin='normal'
-							InputProps={{
-								startAdornment: (
-									<InputAdornment position='start'></InputAdornment>
-								),
-							}}
-						/>
+							<TextField
+								name='price'
+								type="number"
+								value={add.price}
+								onChange={handleChange}
+								label='price'
+								margin='normal'
+								InputProps={{
+									startAdornment: (
+										<InputAdornment position='start'></InputAdornment>
+									),
+								}}
+							/>
 						</FormControl>{' '}
 						<div style={{ hight: 20 }} />
 						<FormControlLabel
@@ -263,94 +253,29 @@ const uploadImage = (e)=> {
 						/>
 						<div style={{ height: 20 }} />
 						<div className={classes.root}>
-							{/* <input
-                            value ={"hhjjjjjjj"}
-                            onChange={handleChange}
-								accept='image/*'
-								className={classes.input}
-								id='contained-button-file'
-								multiple
-								type='file'
-							/>
-							<label htmlFor='contained-button-file'>
-								<Button variant='contained' color='primary' component='span'>
-									Upload Office Photo
-								</Button>
-							</label> */}
-							{/* <input
-                              name =
-								value={'hhjjjjjjj'}
-								onChange={handleChange}
-								accept='image/*'
-								className={classes.input}
-								id='icon-button-file'
-								type='file'
-							/>
-							<label htmlFor='icon-button-file'>
-								<IconButton
-									color='primary'
-									aria-label='upload picture'
-									component='span'
-								>
-									<PhotoCamera />
-								</IconButton>
-							</label> */}
+
 							<Link href='/ownerPage' onClick={console.log('kk')}>
-							<Button
-								color='primary'
-								variant='contained'
-								onClick={handleSubmit}
-							>
-								Add One
+								<Button
+									color='primary'
+									variant='contained'
+									onClick={handleSubmit}
+								>
+									Add One
 							</Button>
 							</Link>
 						</div>
-					
-      <input
-          type="file"
-          name="file"
-          placeholder="Upload an image"
-          onChange={uploadImage}
-        />
-                 </div>
-                    <div />
-                </Grid>
-            </Grid>
-        </div>
-    )
-						}
-// const nodemailer = require('nodemailer');
-// function sendEmail(email, number) {
-//   console.log('Number:   ' + number);
 
-//   // the function that sends the email
-
-//   nodemailer.createTestAccount((err, account) => {
-//     let transporter = nodemailer.createTransport({
-//       service: 'gmail',
-//       auth: {
-//         user: 'bookingfinder5by5@gmail.com', // generated ethereal user
-//         pass: 'book@123456', // generated ethereal password
-//       },
-//     });
-
-//     // send mail with defined transport object
-//     transporter.sendMail(
-//       {
-//         from: 'bookingfinder5by5@gmail.com', // sender address
-//         to: email, // list of receivers
-//         text: 'Dear customer', // plain text body
-//         html: `<h2>Dear customer</h2><p>your office is added  : </p> `, // html body
-//       },
-//       (err, info) => {
-//         if (err) {
-//           return console.log(err);
-//         }
-//         console.log('Message sent: %s', info.messageId);
-//         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-//       }
-//     );
-//   });
-// }
-
-// module.exports = sendEmail;
+						<input
+							type="file"
+							name="file"
+							placeholder="Upload an image"
+							onChange={uploadImage}
+							
+						/>
+					</div>
+					<div />
+				</Grid>
+			</Grid>
+		</div>
+	)
+}
