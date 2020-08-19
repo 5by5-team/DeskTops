@@ -1,0 +1,56 @@
+/* body {
+	background-image: url('https://images.pexels.com/photos/853199/pexels-photo-853199.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+	background-color: #cccccc;
+}  */
+
+.c5 {
+	width: 100%;
+	margin-top: 0px;
+	position: relative;
+	padding: 288px 0vw;
+	background-image: url('https://images.pexels.com/photos/267507/pexels-photo-267507.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+	background-size: cover;
+	background-color: #00848c;
+	max-height: 341px;
+	object-fit: cover;
+}
+
+.card1 {
+	margin: 400px;
+}
+
+element.style {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+}
+.c0 {
+	margin-top: 20px;
+}
+.h1L {
+	font-family: Sofia;
+	margin-left: 564px;
+	margin-top: -42px;
+}
+.clickbutton {
+	margin-left: 80px;
+}
+
+.butlan2 {
+	margin-left: 100px;
+	margin-right: 1199px;
+	margin-top: -49px;
+	margin-bottom: 14px;
+	background-color: #00848c;
+}
+.footer {
+	width: 100%;
+	margin-top: 0px;
+	position: relative;
+	padding: 288px 0vw;
+	background-image: url('https://images.pexels.com/photos/267507/pexels-photo-267507.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+	background-size: cover;
+	background-color: #00848c;
+	max-height: 341px;
+	object-fit: cover;
+}
