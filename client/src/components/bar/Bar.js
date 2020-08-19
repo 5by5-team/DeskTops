@@ -38,27 +38,27 @@ class Bar extends React.Component {
     console.log(this.state)
   return (
     <div>
-    <ReactBootstrap.Navbar bg='light' expand='lg'>
-      <ReactBootstrap.Navbar.Brand href='/landingPage'>
+    <ReactBootstrap.Navbar bg='light' expand='lg' >
+      <ReactBootstrap.Navbar.Brand style={{color:"#00848C", fontWeight: "bold", marginLeft: "30px"}} href='/landingPage'>
         BookingFinder
       </ReactBootstrap.Navbar.Brand>
       <ReactBootstrap.Navbar.Toggle aria-controls='basic-navbar-nav' />
       <ReactBootstrap.Navbar.Collapse id='basic-navbar-nav'>
         <ReactBootstrap.Nav className='mr-auto'>
-          <ReactBootstrap.Nav.Link href='/landingPage'>
+          <ReactBootstrap.Nav.Link style={{color:"#00848C"}} href='/landingPage'>
             Home
           </ReactBootstrap.Nav.Link>
-          <ReactBootstrap.Nav.Link href='/login'>
+          <ReactBootstrap.Nav.Link style={{color:"#00848C"}} href='/login'>
             log-in As Custumer
           </ReactBootstrap.Nav.Link>
-          <ReactBootstrap.Nav.Link href='/loginForOwner'>
+          <ReactBootstrap.Nav.Link  style={{color:"#00848C"}}href='/loginForOwner'>
             log-in As Owner
           </ReactBootstrap.Nav.Link>
           <ReactBootstrap.NavDropdown title='more' id='basic-nav-dropdown'>
-            <ReactBootstrap.NavDropdown.Item href='#action/3.1'>
+            <ReactBootstrap.NavDropdown.Item style={{color:"#00848C"}} href='#action/3.1'>
               about
             </ReactBootstrap.NavDropdown.Item>
-            <ReactBootstrap.NavDropdown.Item href='#action/3.2'>
+            <ReactBootstrap.NavDropdown.Item style={{color:"#00848C"}} href='#action/3.2'>
               contact us
             </ReactBootstrap.NavDropdown.Item>
             {/* <ReactBootstrap.NavDropdown.Item href='#action/3.3'>
@@ -76,7 +76,7 @@ class Bar extends React.Component {
             placeholder='Search'
             className='mr-sm-2'
           /> */}
-          <ReactBootstrap.Form.Control as="select" defaultValue="Gaza" onChange={this.handleClick}>
+          <ReactBootstrap.Form.Control style={{color:"#00848C"}} as="select" defaultValue="Gaza" onChange={this.handleClick}>
             <option value ="Gaza">Gaza</option>
             <option value ="KhanYounes">KhanYounes</option>
             <option value ="Rafah">Rafah</option>
@@ -85,7 +85,7 @@ class Bar extends React.Component {
             <option value ="Jabalia">Jabalia</option>
             
           </ReactBootstrap.Form.Control>
-          <ReactBootstrap.Button variant='outline-success' onClick ={this.handleSubmit}>
+          <ReactBootstrap.Button style={{color:"#00848C"}} variant='outline-success' onClick ={this.handleSubmit}>
             Search
           </ReactBootstrap.Button>
         </ReactBootstrap.Form>

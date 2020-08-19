@@ -15,29 +15,6 @@ class cal extends React.Component {
             StartTime: new Date(2018, 1, 15, 9, 30),
             EndTime: new Date(2018, 1, 15, 11, 0)
         }]
-        // }, {
-        //     Id: 2,
-        //     Subject: 'RENTED',
-        //     StartTime: new Date(2018, 1, 12, 12, 0),
-        //     EndTime: new Date(2018, 1, 12, 14, 0)
-        // }, {
-        //     Id: 3,
-        //     Subject: 'RENTED',
-        //     StartTime: new Date(2018, 1, 13, 9, 30),
-        //     EndTime: new Date(2018, 1, 13, 11, 0)
-        // }, {
-        //     Id: 4,
-        //     Subject: 'RENTED',
-        //     StartTime: new Date(2018, 1, 14, 13, 0),
-        //     EndTime: new Date(2018, 1, 14, 14, 30)
-        // },
-        // {
-        //     Id:5,
-        //     Subject: 'RENTED',
-        //     StartTime: new Date(2018, 1, 14, 13, 0),
-        //     EndTime: new Date(2018, 1, 14, 14, 30)
-        // }];
-            
     }
     componentDidMount(){
        console.log(this.state)
@@ -52,8 +29,7 @@ class cal extends React.Component {
             }).then((res)=>
               {
                   const databooking = res.data.success
-                  console.log(res.data)
-                  
+                  console.log(res.data)    
                this.setState({length : res.data.success.length})
                console.log(this.state)
                for(var i = 1 ; i<=this.state.length;i++){
@@ -69,12 +45,10 @@ class cal extends React.Component {
                 this.data[index+1].StartTime=(new Date(element.startdate))
                 this.data[index+1].EndTime= (new Date(element.enddate))
             })
-
                 console.log(this.data)
               }  
           );
     }
-
     render() {
         return <ScheduleComponent height='550px' selectedDate={new Date(2020, 8, 15)} eventSettings={{ dataSource: this.data  
         }}>
