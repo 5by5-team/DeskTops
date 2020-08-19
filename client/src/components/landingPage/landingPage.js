@@ -5,12 +5,45 @@ import Navbar from '../navbarlog/navbarlog';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import '../landingPage/index.css';
+
+// import { makeStyles } from '@material-ui/core/styles';
+
+import {
+	ClickAwayListener,
+	Button,
+	open,
+	Portal,
+	classes,
+	makeStyles,
+} from '@material-ui/core';
 var email = '';
+const useStyles = makeStyles(theme => ({
+	dropdown: {
+		position: 'fixed',
+		width: 200,
+		top: '50%',
+		left: '50%',
+		transform: 'translate(-50%, -50%)',
+		border: '1px solid',
+		padding: theme.spacing(1),
+		backgroundColor: theme.palette.background.paper,
+	},
+}));
 // import { setDate } from 'date-fns';
 // import { request } from 'express';
 function Home() {
 	const [data, setData] = useState([]);
 	const [navbar, setNavbar] = useState([]);
+	const classes = useStyles();
+	const [open, setOpen] = React.useState(false);
+
+	const handleClick = () => {
+		setOpen(prev => !prev);
+	};
+
+	const handleClickAway = () => {
+		setOpen(false);
+	};
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -38,7 +71,35 @@ function Home() {
 		// return (
 		<div>
 			<Navbar />
-			<div className='c5'></div>
+			<div className='c5' backgroundImage=''>
+				{/* <a href='/landingPage'>
+					<h1
+						style={{
+							fontFamily: ' Sofia',
+							marginLeft: ' 517px',
+							marginTop: '-42px',
+							color: 'rgb(31 100 185);',
+						}}
+					>
+						bookingFinder
+					</h1>
+				</a>
+				<ClickAwayListener onClickAway={handleClickAway}>
+					<div className='butlan2'>
+						<Button variant='contained' color='secondary' onClick={handleClick}>
+							Secondary
+						</Button>
+						{open ? (
+							<Portal>
+								<div className={classes.dropdown}>
+									<Button href='/login'>as Custumer</Button>
+									<Button href='/loginForOwner'>as Owner</Button>
+								</div>
+							</Portal>
+						) : null}
+					</div>
+				</ClickAwayListener> */}
+			</div>
 			<div className='c4'>
 				{/*  */}
 				<ReactBootstrap.Container className='c0' fluid='md'>
@@ -62,13 +123,14 @@ function Home() {
 					</ReactBootstrap.Row>
 				</ReactBootstrap.Container>
 			</div>
+			<footer style={{ backgroundColor: 'black' }}>
+				<h1>khg</h1>
+			</footer>
 		</div>
 	) : (
 		<div>
+			<Nav />
 			<div className='c5'></div>
-			<ReactBootstrap.Container fluid>
-				<Nav />
-			</ReactBootstrap.Container>
 
 			{/* <ReactBootstrap.Container fluid='md'> */}
 			<ReactBootstrap.Row>
@@ -93,6 +155,7 @@ function Home() {
 					})}
 				</ReactBootstrap.Card>
 			</ReactBootstrap.Row>
+			<footer style={{ backgroundColor: 'black' }}></footer>
 			{/* </ReactBootstrap.Container> */}
 		</div>
 	);

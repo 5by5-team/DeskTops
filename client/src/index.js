@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+// import Home from './components/Hom/hom';
 // import CustemarPage from '../src/components/custumerPage/custumerPage';
 // import SignupOwner from '../src/components/signupOwner/signupOwner';
 // import store from './app/store';

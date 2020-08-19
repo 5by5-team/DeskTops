@@ -34,13 +34,18 @@ class Bar extends React.Component {
 	}
 	handleClick2() {
 		localStorage.removeItem('usertoken');
-		history.push('landingPage');
+		history.push('');
 		window.location.reload();
 	}
 	render() {
 		console.log(this.state);
 		return (
-			<ReactBootstrap.Navbar bg='light' expand='lg' fixed='top'>
+			<ReactBootstrap.Navbar
+				bg='light'
+				expand='lg'
+				className='navIN'
+				fixed='top'
+			>
 				<ReactBootstrap.Navbar.Brand href='/landingPage'>
 					BookingFinder
 				</ReactBootstrap.Navbar.Brand>

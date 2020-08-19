@@ -1,6 +1,7 @@
 import React from 'react';
 import * as ReactBootstrap from 'react-bootstrap';
 import axios from 'axios';
+import './nav.css';
 class NavBar extends React.Component {
 	constructor(props) {
 		super(props);
@@ -32,7 +33,12 @@ class NavBar extends React.Component {
 	render() {
 		console.log(this.state);
 		return (
-			<ReactBootstrap.Navbar bg='light' expand='lg' fixed='top'>
+			<ReactBootstrap.Navbar
+				bg='light'
+				expand='lg'
+				className='navLO'
+				fixed='top'
+			>
 				<ReactBootstrap.Navbar.Brand href='/landingPage'>
 					BookingFinder
 				</ReactBootstrap.Navbar.Brand>
