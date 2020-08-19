@@ -15,7 +15,6 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import axios from 'axios';
 import Navbar from "../../navbar/navbar";
-import './addOff.css';
 
 import jwt_decode from 'jwt-decode';
 //const nodemailer = require('nodemailer');
@@ -143,6 +142,7 @@ export default function AddOffice() {
 							flexDirection: 'column',
 							maxWidth: 400,
 							minWidth: 300,
+							marginBottom: '200px',
 						}}
 					>
 						<TextField
