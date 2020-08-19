@@ -18,16 +18,18 @@ import Navbar from "../../navbar/navbar";
 
 import jwt_decode from 'jwt-decode';
 //const nodemailer = require('nodemailer');
-var imgUrl = "";
-var email = "";
+var imgUrl="";
+var email ="";
+var phoneowner= 0;
 export default function AddOffice() {
 
 	useEffect(() => {
 		const tokin = localStorage.usertoken;
 		var decoded = jwt_decode(tokin);
-		console.log(decoded);
-		email = decoded.email;
-		console.log(email);
+    console.log(decoded);
+	email =decoded.email;
+	phoneowner = decoded.phone;
+    console.log(email);
 	});
 	const [add, setadd] = useState({
 		Discription: '',
@@ -55,9 +57,10 @@ export default function AddOffice() {
 			...add,
 			...addch,
 		};
-		office["email"] = email;
-		office["imgUrl"] = imgUrl;
-		office["rating"] = 0.00;
+	 office["email"]=email;
+	 office["phoneowner"]=phoneowner;
+	 office["imgUrl"]=imgUrl;
+	 office["rating"] = 0.00;
 		console.log(office);
 
 		console.log(addch);

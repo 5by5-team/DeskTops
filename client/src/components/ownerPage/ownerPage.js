@@ -1,15 +1,17 @@
 import * as boot from 'react-bootstrap';
+import * as moment from 'moment';
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import { Link, Box } from '@material-ui/core';
-import Rating from 'material-ui-rating'
+import Rating from 'material-ui-rating';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import Navbar from "../../navbar/navbar";
+import Navbar from '../../navbar/navbar';
+import './owner.css';
 var email = '';
 var office_id = 0;
 export default function Ownerpage() {
-    const [data, setData] = useState([]);
+	const [data, setData] = useState([]);
 
     useEffect(() => {
         const tokin = localStorage.usertoken;

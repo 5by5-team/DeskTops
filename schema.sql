@@ -30,6 +30,7 @@ CREATE TABLE officedata (
     price int,
      email VARCHAR(50),
      rating FLOAT(3),
+     phoneowner BIGINT ,
      reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 
   );
@@ -37,9 +38,17 @@ CREATE TABLE officedata (
    booking_id int NOT NULL AUTO_INCREMENT ,
    PRIMARY KEY (booking_id),
    office_id int,
+   phoneuser int,
    startdate date ,
    enddate date, 
    emailuser VARCHAR(50),
     emailowner VARCHAR(50)
+  );
+  CREATE TABLE contactus (
+   contactus_id int NOT NULL AUTO_INCREMENT ,
+   PRIMARY KEY (contactus_id),
+   name VARCHAR(50),
+  email VARCHAR(50),
+  message VARCHAR(150)
   );
   

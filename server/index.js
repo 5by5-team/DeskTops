@@ -2,51 +2,54 @@ const express = require('express');
 const path = require('path');
 const app = express();
 var bodyParser = require('body-parser');
-var cors = require('cors')
+var cors = require('cors');
 
-app.use(bodyParser.json())
- var items = require('../database-mysql');
- var mysql = require('mysql');
- var db = require("./../database-mysql/index")
- var login = require("./regist")
- var add = require("./addaffice")
- var getall = require("./getall")
- var bookall = require("./bookingall")
- var gitoffice = require("./gitaffice") 
- var router = express.Router();
- const bcrypt = require('bcrypt');
-  var search =require("./searchbylocation")
-  var addbooking = require("./rent")
-  var getbookinguser = require('./bookinguser')
-  var rating = require('./rating')
-  var cors = require('cors')
-  const nodemailer = require ('nodemailer')
-  var deletoff = require('./deletoffice')
-  var deletebooking = require('./deletebooking')
-  app.use(cors());
-db.connection.connect(function(err) {
-  if (err) console.log(err)
-  console.log("Connected to dataBase!");
+app.use(bodyParser.json());
+var items = require('../database-mysql');
+var mysql = require('mysql');
+var db = require('./../database-mysql/index');
+var login = require('./regist');
+var add = require('./addaffice');
+var getall = require('./getall');
+var bookall = require('./bookingall');
+var gitoffice = require('./gitaffice');
+var router = express.Router();
+const bcrypt = require('bcrypt');
+var search = require('./searchbylocation');
+var addbooking = require('./rent');
+var getbookinguser = require('./bookinguser');
+var rating = require('./rating');
+var contactus = require('./contactus');
+var cors = require('cors');
+const nodemailer = require('nodemailer');
+var deletoff = require('./deletoffice');
+var deletebooking = require('./deletebooking');
+app.use(cors());
+db.connection.connect(function (err) {
+	if (err) console.log(err);
+	console.log('Connected to dataBase!');
 });
-app.get('/', function(req, res) {
-  res.send("hhh");
+app.get('/', function (req, res) {
+	res.send('hhh');
 });
-app.use(cors())
+app.use(cors());
 
-app.post('/registeruser',login.register);
-app.post('/loginuser',login.login);
-app.post('/registerowner',login.registerowner);
-app.post('/loginowner',login.loginowner);
-app.post('/addoffice',add.addoff);
-app.get('/getall',getall.getoff);
-app.post('/search',search.search);
-app.post('/addbooking',addbooking.addbooking)
-app.post('/getbooking',bookall.getbooking);
-app.post('/getoffice',gitoffice.getoff)
-app.post('/getbookinguser',getbookinguser.getbookinguser)
-app.post('/rating',rating.rating) 
-app.post('/deletoff',deletoff.deletoff)
-app.post('/deletebooking',deletebooking.deletebooking)
+app.post('/registeruser', login.register);
+app.post('/loginuser', login.login);
+app.post('/registerowner', login.registerowner);
+app.post('/loginowner', login.loginowner);
+app.post('/addoffice', add.addoff);
+app.get('/getall', getall.getoff);
+app.post('/search', search.search);
+app.post('/addbooking', addbooking.addbooking);
+app.post('/getbooking', bookall.getbooking);
+app.post('/getoffice', gitoffice.getoff);
+app.post('/getbookinguser', getbookinguser.getbookinguser);
+app.post('/rating', rating.rating);
+app.post('/deletoff', deletoff.deletoff);
+app.post('/deletebooking', deletebooking.deletebooking);
+app.post('/contactus', contactus.contactus);
+
 // const { google } = require('googleapis')
 
 // // Require oAuth2 from our google instance.
@@ -126,17 +129,15 @@ app.post('/deletebooking',deletebooking.deletebooking)
 //   }
 // )
 
-
 const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV === 'production') {
-  // Set static folder
+	// Set static folder
 
+	app.use(express.static('client/build'));
 
-  app.use(express.static('client/build'));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
-  });
+	app.get('*', (req, res) => {
+		res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+	});
 }
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

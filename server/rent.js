@@ -11,7 +11,7 @@ exports.addbooking = function(req,res){
     enddate :req.body.enddate,
     emailuser :req.body.emailuser,
     emailowner :req.body.emailuser,
-
+    phoneuser : req.body.phoneuser
     }
     db.connection.query(sql,post, function (error, results, fields) {
         if (error) {

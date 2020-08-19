@@ -1,14 +1,14 @@
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-  host: 'localhost',
-  // host: '127.0.0.1',
-  user: 'root',
-  // user:'root',
-  password: 'ahmedttm1999@@@',
-  // password: '1418',
-  port: '3306',
-  database: 'finderdata',
+	host: 'localhost',
+	// host: '127.0.0.1',
+	user: 'root',
+	// user:'root',
+	password: 'ahmedttm1999@@@',
+	// password: '1418',
+	port: '3306',
+	database: 'finderdata',
 });
 
 // connection.connect(function (err) {
@@ -27,16 +27,13 @@ var connection = mysql.createConnection({
 // });
 
 var selectAll = function (callback) {
-  connection.query('SELECT * FROM items', function (err, results, fields) {
-    if (err) {
-      callback(err, null);
-    } else {
-      callback(null, results);
-    }
-  });
+	connection.query('SELECT * FROM items', function (err, results, fields) {
+		if (err) {
+			callback(err, null);
+		} else {
+			callback(null, results);
+		}
+	});
 };
 module.exports.connection = connection;
 module.exports.selectAll = selectAll;
-
-
-
