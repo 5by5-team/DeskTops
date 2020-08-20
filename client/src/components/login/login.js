@@ -8,7 +8,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import './login.css';
 
 var uesr = {};
-class login extends React.Component {
+class Login extends React.Component { 
   constructor(props) {
     super(props);
     this.state = {
@@ -137,4 +137,4 @@ class login extends React.Component {
     );
   }
 }
-export default login;
+export default Login;
