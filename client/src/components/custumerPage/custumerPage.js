@@ -87,7 +87,7 @@ function CustemarPage() {
           <div >
             {' '}
             <Link href='/bookinguser' onClick={console.log('kk')}>
-              <Button style={{ marginLeft: 580, backgroundColor: '#00848C' }} variant='contained' color='primary'>
+              <Button style={{ marginLeft: 580, backgroundColor: '#00848C' , marginTop:'70px' }} variant='contained' color='primary'>
                 My Booking Office
               </Button>
             </Link>
@@ -157,7 +157,7 @@ function CustemarPage() {
 
 
                         <boot.Button
-                          style={{ marginRight: "10px", marginLeft: "55px" , backgroundColor: '#00848C' }}
+                          style={{ marginRight: "10px", marginLeft: "95px" , backgroundColor: '#00848C' }}
                           variant='primary'
                           onClick={() => {
                             item = element;

@@ -127,7 +127,7 @@ export default function AddOffice() {
 	return (
 		<div>
 			<Navbar />
-			<Grid container style={{ minHeight: '100vh' }}>
+			<Grid container className="add" style={{ marginBottom:"0px" }}>
 				<Grid
 					container
 					item
@@ -136,7 +136,7 @@ export default function AddOffice() {
 					alignItems='center'
 					direction='coulumn'
 					justify='space-between'
-					style={{ padding: 10 }}
+					style={{ padding: "85px",marginLeft:"350px" }}
 				>
 					<div />
 					<div

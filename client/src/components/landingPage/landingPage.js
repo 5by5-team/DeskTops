@@ -16,6 +16,7 @@ import {
 	classes,
 	makeStyles,
 } from '@material-ui/core';
+import { TimerSharp } from '@material-ui/icons';
 var email = '';
 const useStyles = makeStyles(theme => ({
 	dropdown: {
@@ -36,11 +37,14 @@ function Home() {
 	const [navbar, setNavbar] = useState([]);
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(false);
-
+	const [location, setLocation] = useState([]);
 	const handleClick = () => {
 		setOpen(prev => !prev);
 	};
 
+	const handleClick3 = e => {
+		setLocation(e.target.value);
+	};
 	const handleClickAway = () => {
 		setOpen(false);
 	};
@@ -48,7 +52,7 @@ function Home() {
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await axios('http://localhost:5000/getall');
-			console.log(result.data.success);
+			console.log(result.data.success, 'hhhhhhhhhhhhhhhhhhh');
 			setData(result.data.success);
 		};
 
@@ -130,33 +134,51 @@ function Home() {
 	) : (
 		<div>
 			<Nav />
-			<div className='c5'></div>
+			<div className='c5'>
+				<ReactBootstrap.Form.Control
+					style={{}}
+					as='select'
+					defaultValue='Gaza'
+					onChange={handleClick3}
+				>
+					<option value='Gaza'>Gaza</option>
+					<option value='KhanYounes'>KhanYounes</option>
+					<option value='Rafah'>Rafah</option>
+					<option value='Dair AlBalah'>Dair AlBalah</option>
+					<option value='Beit Lahia'>Beit Lahia</option>
+					<option value='Jabalia'>Jabalia</option>
+				</ReactBootstrap.Form.Control>
+				<ReactBootstrap.Button
+					variant='outline-success'
+					// onClick={this.handleSubmit}
+				>
+					Search
+				</ReactBootstrap.Button>
+			</div>
 
-			{/* <ReactBootstrap.Container fluid='md'> */}
-			<ReactBootstrap.Row>
-				<ReactBootstrap.Card style={{ width: '18rem' }}>
-					{data.map((element, index) => {
-						return (
-							<ReactBootstrap.Card.Body>
-								<ReactBootstrap.Card.Img variant='top' src={element.imgUrl} />
-								<ReactBootstrap.Card.Title>
-									Card Title
-								</ReactBootstrap.Card.Title>
-								<ReactBootstrap.Card.Text>
-									Some quick example text to build on the card title and make up
-									the bulk of the card's content.
-								</ReactBootstrap.Card.Text>
+			<div className='c4'>
+				{/*  */}
+				<ReactBootstrap.Container className='c0' fluid='md'>
+					<ReactBootstrap.Row>
+						{data.map((element, index) => {
+							return (
+								<ReactBootstrap.Card style={{ width: '18rem' }}>
+									<ReactBootstrap.Card.Body>
+										<ReactBootstrap.Card.Img
+											variant='top'
+											src={element.imgUrl}
+										/>
 
-								<ReactBootstrap.Button Link href='/login' variant='primary'>
-									rent
-								</ReactBootstrap.Button>
-							</ReactBootstrap.Card.Body>
-						);
-					})}
-				</ReactBootstrap.Card>
-			</ReactBootstrap.Row>
-			<footer style={{ backgroundColor: 'black' }}></footer>
-			{/* </ReactBootstrap.Container> */}
+										<ReactBootstrap.Button Link href='/login' variant='primary'>
+											rent
+										</ReactBootstrap.Button>
+									</ReactBootstrap.Card.Body>
+								</ReactBootstrap.Card>
+							);
+						})}
+					</ReactBootstrap.Row>
+				</ReactBootstrap.Container>
+			</div>
 		</div>
 	);
 }

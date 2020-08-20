@@ -62,10 +62,10 @@ class Bar extends React.Component {
 							// href={this.handleClick2}
 							onClick={this.handleClick2}
 						>
-							logout
+							LogOut
 						</ReactBootstrap.Nav.Link>
 						<ReactBootstrap.Nav.Link href='/' style={{ marginLeft: '%' }}>
-							profaile
+							profile
 						</ReactBootstrap.Nav.Link>
 						{/* <ReactBootstrap.NavDropdown title='more' id='basic-nav-dropdown'>
 							<ReactBootstrap.NavDropdown.Item href='#action/3.1'>

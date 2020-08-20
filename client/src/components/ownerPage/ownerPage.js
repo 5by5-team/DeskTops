@@ -7,7 +7,7 @@ import Rating from 'material-ui-rating';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import Navbar from '../../navbar/navbar';
-import './owner.css';
+// import './owner.css';
 var email = '';
 var office_id = 0;
 export default function Ownerpage() {
@@ -37,9 +37,10 @@ export default function Ownerpage() {
         fetchData();
     }, []);
     return (
-        <div>
+        <div style={{marginTop:"45px"}}>
             <Navbar />
             <br />
+            <div>
             <Link href='/cal' onClick={console.log('kk')}>
                 <Button style={{ backgroundColor: '#00848C', marginLeft: "453px" }} variant='contained' color='primary'>
                     CLENDER
@@ -57,7 +58,7 @@ export default function Ownerpage() {
                 <br />
                 <br />
             </Link>
-
+            </div>
             <boot.Row style={{ marginLeft: 95 }}>
                 {data.map((element, index) => {
                     return (
