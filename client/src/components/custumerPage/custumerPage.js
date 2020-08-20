@@ -72,13 +72,17 @@ function CustemarPage() {
 		console.log(email);
 	});
 
-  const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
+  
 
 	const [show, setShow] = useState(false);
+
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
+
 	const [show2, setShow2] = useState(false);
+
 	const handleClose2 = () => setShow2(false);
-    const handleShow2 = () => setShow2(true);
+	const handleShow2 = () => setShow2(true);
     
     return (
         <div>
@@ -178,100 +182,109 @@ function CustemarPage() {
                           Rating
                         </boot.Button> */}
     
-                        <boot.Modal
-                          show={show}
-                          onHide={handleClose}
-                          backdrop='static'
-                          keyboard={false}
-                        >
-                          <Card>
-                            <CardActionArea>
-                              <CardMedia
-                                image='/static/images/cards/contemplative-reptile.jpg'
-                                title='Contemplative Reptile'
-                              />
-                              <CardContent>
-                                <Typography
-                                  variant='body2'
-                                  color='textSecondary'
-                                  component='p'
-                                >
-                                  <MuiPickersUtilsProvider utils-={DateFnsUtils}>
-                                    <Grid container justify='space-around'>
-                                      <KeyboardDatePicker
-                                        margin='normal'
-                                        id='date-picker-dialog'
-                                        // label='Starting date'
-                                        format='MM/dd/yyyy'
-                                        value={selectedDate}
-                                        onChange={handleDateChange}
-                                        KeyboardButtonProps={{
-                                          'aria-label': 'change date',
-                                        }}
-                                      />
-                                      <KeyboardDatePicker
-                                        margin='normal'
-                                        id='date-picker-dialog'
-                                        // label='ending date'
-                                        format='MM/dd/yyyy'
-                                        value={selectedDate2}
-                                        onChange={handleDateChange2}
-                                        KeyboardButtonProps={{
-                                          'aria-label': 'change date',
-                                        }}
-                                      />
-                                    </Grid>
-                                  </MuiPickersUtilsProvider>
-                                </Typography>
-                              </CardContent>
-                            </CardActionArea>
-                            <CardActions>
-                              <Button
-                                variant='secondary'
-                                onClick={() => {
-                                  console.log(
-                                    moment(selectedDate).format('YYYY-MM-DD') +
-                                    'date1'
-                                  );
-    
-                                  const booking = {
-                                    startdate: moment(selectedDate).format(
-                                      'YYYY-MM-DD'
-                                    ),
-                                    enddate: moment(selectedDate2).format(
-                                      'YYYY-MM-DD'
-                                    ),
-                                    emailuser: email,
-                                    emailowner: item.email,
-                                  };
-                                  axios
-                                    .post(
-                                      'http://localhost:5000/addbooking',
-                                      booking
-                                    )
-                                    .then(res => {
-                                      console.log(res.data);
-                                    })
-                                    .catch(err => {
-                                      console.log(err);
-                                    });
-    
-                                  handleClose();
-                                }}
-                              >
-                                OK
-                              </Button>
-                              <Button
-                                variant='secondary'
-                                onClick={() => {
-                                  handleClose();
-                                }}
-                              >
-                                Cancel
-                              </Button>
-                            </CardActions>
-                          </Card>
-                        </boot.Modal>
+    <boot.Modal
+												show={show}
+												onHide={handleClose}
+												backdrop='static'
+												keyboard={false}
+											>
+												<Card>
+													<CardActionArea>
+														<CardMedia
+															image='/static/images/cards/contemplative-reptile.jpg'
+															title='Contemplative Reptile'
+														/>
+														<CardContent>
+															<Typography
+																variant='body2'
+																color='textSecondary'
+																component='p'
+															>
+																<MuiPickersUtilsProvider utils={DateFnsUtils}>
+																	<Grid container justify='space-around'>
+																		<KeyboardDatePicker
+																			margin='normal'
+																			id='date-picker-dialog'
+																			// label='Starting date'
+																			format='MM/dd/yyyy'
+																			value={selectedDate}
+																			onChange={handleDateChange}
+																			KeyboardButtonProps={{
+																				'aria-label': 'change date',
+																			}}
+																		/>
+																		<KeyboardDatePicker
+																			margin='normal'
+																			id='date-picker-dialog'
+																			// label='ending date'
+																			format='MM/dd/yyyy'
+																			value={selectedDate2}
+																			onChange={handleDateChange2}
+																			KeyboardButtonProps={{
+																				'aria-label': 'change date',
+																			}}
+																		/>
+																	</Grid>
+																</MuiPickersUtilsProvider>
+															</Typography>
+														</CardContent>
+													</CardActionArea>
+													<CardActions>
+														{/* <Link href='/custumerPage' onClick={console.log('kk')}>
+            <Button variant='contained' color='primary'>
+              DONE
+            </Button>
+          </Link> */}
+														<Button
+															variant='secondary'
+															onClick={() => {
+																console.log(
+																	moment(selectedDate).format('YYYY-MM-DD') +
+																		'date1',
+                                ); 
+                                 console.log(element)
+                                office_id = element.office_id
+																const booking = {
+																	office_id: office_id,
+																	startdate: moment(selectedDate).format(
+																		'YYYY-MM-DD',
+																	),
+																	enddate: moment(selectedDate2).format(
+																		'YYYY-MM-DD',
+																	),
+																	emailuser: email,
+																	phoneuser: phoneuser,
+                                  emailowner: item.email,
+                                  
+																};
+																axios
+																	.post(
+																		'http://localhost:5000/addbooking',
+																		booking,
+																	)
+																	.then(res => {
+																		console.log(res.data);
+																	})
+																	.catch(err => {
+																		console.log(err);
+																	});
+
+																handleClose();
+															}}
+														>
+															OK
+														</Button>
+														<Button
+															variant='secondary'
+															onClick={() => {
+																handleClose();
+															}}
+														>
+															Cancel
+														</Button>
+													</CardActions>
+												</Card>
+											</boot.Modal>
     
                         {/* <boot.Modal
                           show={show2}

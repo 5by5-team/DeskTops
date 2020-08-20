@@ -20,7 +20,7 @@ exports.register = async function (req, res) {
 	};
 	db.connection.query(sql, post, function (error, results, fields) {
 		if (error) {
-			return res.send(error);
+			//return res.send(error);
 			console.log(error);
 		} else {
 			res.send({
