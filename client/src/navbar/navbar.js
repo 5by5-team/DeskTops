@@ -64,8 +64,8 @@ class Bar extends React.Component {
 						>
 							logout
 						</ReactBootstrap.Nav.Link>
-						<ReactBootstrap.Nav.Link href='/' style={{ marginLeft: '%' }}>
-							profaile
+						<ReactBootstrap.Nav.Link href='/map' style={{ marginLeft: '%' }}>
+							map
 						</ReactBootstrap.Nav.Link>
 						{/* <ReactBootstrap.NavDropdown title='more' id='basic-nav-dropdown'>
 							<ReactBootstrap.NavDropdown.Item href='#action/3.1'>

@@ -5,7 +5,7 @@ var connection = mysql.createConnection({
 	// host: '127.0.0.1',
 	user: 'root',
 	// user:'root',
-	password: '1111',
+	password: '0000',
 	// password: '1418',
 	port: '3306',
 	database: 'finderdata',
