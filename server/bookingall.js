@@ -1,6 +1,8 @@
 var db = require("./../database-mysql/index");
 exports.getbooking = function(req,res){
     const email = req.body.email;
+    console.log(email)
+    
     let sql = "SELECT * FROM bookingdata WHERE emailowner = ?" ;
     db.connection.query(sql,[email],function (error, results, fields) {
         if (error) {
@@ -13,6 +15,7 @@ exports.getbooking = function(req,res){
               });
               
           }
+          console.log(results)
       });
       
 }

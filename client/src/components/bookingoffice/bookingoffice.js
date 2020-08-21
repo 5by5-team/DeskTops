@@ -2,8 +2,8 @@ import * as boot from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import Navbar from '../../navbar/navbar';
 import * as moment from 'moment';
+import './book.css'
 
 var email = '';
 
@@ -31,42 +31,45 @@ export default function Booking() {
 	}, []);
 	return (
 		<div>
-			<Navbar />
-			{data.map((element, index) => {
-				return (
-					<boot.Container>
-						<boot.Row>
-							<boot.Col>
-								<br />
-							</boot.Col>
-							<boot.Col>
-								<boot.Card key={index} style={{ width: '18rem' }}>
-									<boot.Card.Title></boot.Card.Title>
-									<label>Email User :</label> {'   '}{' '}
-									<label>{element.emailuser}</label>
-									<boot.Card.Body>
-										<boot.Card.Title>
-											{moment(element.startdate).format('YYYY-MM-DD')}{' '}
-										</boot.Card.Title>
-										<boot.Card.Title>
-											{moment(element.enddate).format('YYYY-MM-DD')}
-										</boot.Card.Title>
-										<label>phone User :</label> {'   '}{' '}
-										<label>{element.phoneuser}</label>
-										<br />
-									</boot.Card.Body>
-								</boot.Card>
-								<br />
-							</boot.Col>
-							<boot.Col>
-								<div></div>
+			<div >
+				<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" style={{ backgroundColor: '#00848C' }} id="mainNav">
+					<div class="container">
+						<a class="navbar-brand js-scroll-trigger" href="/landingPage">Desk Tops</a>
+						<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+						<div class="collapse navbar-collapse" id="navbarResponsive">
+							<ul class="navbar-nav ml-auto my-2 my-lg-0">
+								<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/ownerPage">My Offices</a></li>
+								<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/contactPage">Let's Talk</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</div>
+			<boot.Row className='rowBook'>
+				{data.map((element, index) => {
+					return (
+						<boot.Card className='card' key={index} style={{ width: '18rem' }}>
+							<boot.Card.Title className='email' style={{color:"#00848C"}}> Rent Information </boot.Card.Title>
 
-								<br />
-							</boot.Col>
-						</boot.Row>
-					</boot.Container>
-				);
-			})}
+							<boot.Card.Body>
+							<boot.Card.Title>
+							<label>Email :{' '} {element.emailuser}</label>
+							</boot.Card.Title>
+							<boot.Card.Title>
+ 							<label>phone :{' '}{element.phoneuser}</label>
+							 </boot.Card.Title>
+ 							<boot.Card.Title>
+ 								<label>start date :{' '}{moment(element.startdate).format('YYYY-MM-DD')}</label>{' '}
+ 							</boot.Card.Title>
+ 							<boot.Card.Title>
+ 								<label>End date :{'  '}{moment(element.enddate).format('YYYY-MM-DD')}</label>
+ 							</boot.Card.Title>
+							</boot.Card.Body>
+						</boot.Card>
+					);
+				})}
+			</boot.Row>
+			
 		</div>
 	);
 }

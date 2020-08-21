@@ -13,6 +13,7 @@
     "bootstrap": "^4.5.2",
     "date-fns": "^2.15.0",
     "dependencies": "0.0.1",
+    "jquery": "^3.5.1",
     "material-ui-rating": "^4.2.0",
     "mdbreact": "^4.27.0",
     "peer": "^0.5.3",
@@ -22,6 +23,8 @@
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
     "react-scripts": "3.4.1",
+    "react-slick": "^0.27.10",
+    "slick-carousel": "^1.8.1",
     "yourself": "^1.0.0"
   },
   "scripts": {
