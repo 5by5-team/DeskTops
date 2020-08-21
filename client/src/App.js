@@ -11,6 +11,7 @@ import SinCustomer from './components/signupCustomer/signupCustomer';
 import CustumerPage from '../src/components/custumerPage/custumerPage';
 import OwnerPage from '../src/components/ownerPage/ownerPage';
 // import RentPage from '../src/components/rentPage/rentPage';
+
 import LandingPage from '../src/components/landingPage/landingPage';
 import Booking from '../src/components/bookingoffice/bookingoffice.js';
 import Add from '../src/components/addOffice/addOffice';
@@ -18,6 +19,8 @@ import Bookinguser from '../src/components/bookinguser/bookinguser.js';
 // import Calender from '../src/components/calender/calender'
 import ContactPage from '../src/components/contactus/contactus';
 import cal from '../src/components/calender/calender';
+import Map from '../src/components/map/Map';
+
 function App() {
 	return (
 		<Router>
@@ -35,6 +38,7 @@ function App() {
 				<Route exact path='/Bookinguser' component={Bookinguser} />
 				<Route exact path='/cal' component={cal} />
 				<Route exact path='/ContactPage' component={ContactPage} />
+				<Route exact path='/Map' component={Map} />
 			</section>
 		</Router>
 	);
