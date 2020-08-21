@@ -1,9 +1,9 @@
 import React from 'react';
 import * as ReactBootstrap from 'react-bootstrap';
 import axios from 'axios';
-import { createBrowserHistory } from 'history'; /////////////
+import { createBrowserHistory } from 'history'; 
 
-const history = createBrowserHistory(); //////////// give my pranch
+const history = createBrowserHistory();
 
 class Bar extends React.Component {
 	constructor(props) {
@@ -46,7 +46,7 @@ class Bar extends React.Component {
 				className='navIN'
 				fixed='top'
 			>
-				<ReactBootstrap.Navbar.Brand href='/landingPage'>
+				<ReactBootstrap.Navbar.Brand href='/landingPage' >
 					BookingFinder
 				</ReactBootstrap.Navbar.Brand>
 				<ReactBootstrap.Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -67,14 +67,6 @@ class Bar extends React.Component {
 						<ReactBootstrap.Nav.Link href='/' style={{ marginLeft: '%' }}>
 							profile
 						</ReactBootstrap.Nav.Link>
-						{/* <ReactBootstrap.NavDropdown title='more' id='basic-nav-dropdown'>
-							<ReactBootstrap.NavDropdown.Item href='#action/3.1'>
-								about
-							</ReactBootstrap.NavDropdown.Item>
-							<ReactBootstrap.NavDropdown.Item href='#action/3.2'>
-								contact us
-							</ReactBootstrap.NavDropdown.Item>
-						</ReactBootstrap.NavDropdown> */}
 						<ReactBootstrap.Form.Control
 							style={{}}
 							as='select'

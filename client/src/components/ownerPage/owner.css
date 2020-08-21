@@ -1,24 +1,4 @@
-/* .ow1 {
-	margin-top: 11vh;
-	margin-left: 1%;
+.img{
+	height: 150px;
+	width: 100%;
 }
-.rowOw {
-	margin-right: 50px;
-	margin-left: 50px;
-	margin-top: 10px;
-}
-.card {
-	margin-top: 5%;
-	margin-left: 1%;
-	position: relative;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-direction: column;
-	flex-direction: column;
-	min-width: 0;
-	word-wrap: break-word;
-	background-color: #fff;
-	background-clip: border-box;
-	border: 1px solid rgba(0, 0, 0, 0.125);
-	border-radius: 0.25rem;
-} */

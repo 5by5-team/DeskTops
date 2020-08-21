@@ -1,18 +1,13 @@
-/* .inputFile{
-    border: 0;
-    clip: rect(0, 0, 0, 0);
-    height: 1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute !important;
-    white-space: nowrap;
-    width: 1px;
-} */
-
-.add{
-    display: flex;
-    flex-direction: column;
-    max-width: 388px;
-    min-width: 300px;
-    margin-bottom: 0px;
+.form {
+  margin-top: 50px;
+}
+.img {
+    height: 100%;
+    widows: 100%;
+}
+.imgDiv {
+  margin-left:640px;
+  margin-top: -799px;
+  height: 500px;
+  widows: 300px;
 }

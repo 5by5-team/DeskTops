@@ -6,6 +6,8 @@ import { Grid, TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { AccountCircle, Lock, Email, Phone } from '@material-ui/icons';
 import './singupcus.css';
+import logo33 from '../login/img3.jpeg';
+
 
 
   class SinCustomer extends React.Component {
@@ -55,10 +57,25 @@ import './singupcus.css';
     render() {
   return (
     <div>
+      <div >
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" style={{backgroundColor:'#00848C'}} id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="/landingPage">Desk Tops</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/loginForOwner">LogIn As Owner</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/login">LogIn As Customer</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/contactPage">Let's Talk</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav></div>
+        <br/><br/><br/>
       <Grid container className="test" >
       <Grid item xs={12} sm={6}>
             <img
-              src={logo}
+              src={logo33}
               style={{
                 width: '95%',
                 height: '75%',

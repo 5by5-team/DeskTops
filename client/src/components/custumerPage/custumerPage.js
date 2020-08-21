@@ -15,6 +15,9 @@ import 'date-fns';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import { Link, Box } from '@material-ui/core';
+import '../custumerPage/cus.css'
+import $ from 'jquery';
+import { createBrowserHistory } from 'history';
 import {
 	KeyboardDatePicker,
 	MuiPickersUtilsProvider,
@@ -26,6 +29,7 @@ var item = {};
 var email = '';
 var phoneuser = 0;
 var office_id = 0;
+const history = createBrowserHistory();
 const useStyles = makeStyles(theme => ({
 	root: {
 		display: 'flex',
@@ -70,9 +74,9 @@ function CustemarPage() {
 		email = decoded.email;
 		phoneuser = decoded.phone;
 		console.log(email);
-	});
 
-  
+
+	});
 
 	const [show, setShow] = useState(false);
 
@@ -83,274 +87,233 @@ function CustemarPage() {
 
 	const handleClose2 = () => setShow2(false);
 	const handleShow2 = () => setShow2(true);
-    
-    return (
-        <div>
-         <Navbar />
-          <br />
-          <div >
-            {' '}
-            <Link href='/bookinguser' onClick={console.log('kk')}>
-              <Button style={{ marginLeft: 580, backgroundColor: '#00848C' , marginTop:'70px' }} variant='contained' color='primary'>
-                My Booking Office
+
+	return (
+		<div style={{ marginTop: "45px" }}>
+			<div className="aaa">
+                <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" style={{ backgroundColor: '#00848C' }} id="mainNav">
+                    <div class="container">
+                        <a class="navbar-brand js-scroll-trigger" href="/landingPage">Desk Tops</a>
+                        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse" id="navbarResponsive">
+                            <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" onClick={() => {
+                                    localStorage.removeItem('usertoken');
+                                    history.push('');
+                                    window.location.reload('/landingPage');
+                                }}>LogOut</a></li>
+                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/contactPage">Let's Talk</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav></div>
+            <br /><br /> <br />
+			<div >
+				{' '}
+				
+				<Link href='/bookinguser' onClick={console.log('kk')}>
+					<Button style={{ marginLeft: 580, marginBottom: '10px', backgroundColor: '#00848C' }} variant='contained' color='primary'>
+						My Booking Office
               </Button>
-            </Link>
-          </div>
-          <boot.Row style={{ marginLeft: 95 }}>
-            <br />
-            {data.map((element, index) => {
-              return (
-                <boot.Row>
-                  <boot.Container>
-                    <br />
-                    <br />
-                    <boot.Card key={index} style={{ width: '18rem' }}>
-                      <boot.Card.Img variant='top' src={element.imgUrl} />
-                      <Box component='fieldset' mb={3} borderColor='transparent'>
-                        <Rating name='read-only' value={element.rating} readOnly />
-                      </Box>
-                      <boot.Card.Body>
-                        <boot.Card.Title style={{ marginLeft: "10px"}}> { element.Discription } </boot.Card.Title>
-                        <boot.Card.Text  style={{ marginLeft: "10px"}}> { element.email }</boot.Card.Text>
-                        <boot.Card.Text  style={{ marginLeft: "200px"}}> { element.price }{'$'}</boot.Card.Text>
+				</Link>
+			</div>
+			<boot.Row style={{ marginLeft: 75 }}>
+				{data.map((element, index) => {
+					return (
+						<boot.Row >
+							<boot.Container>
 
-	{/* Features */}
-    <br />
-										<label>Features:</label>
-										<br />
-										{element.Vip_wifi === 1 ? (
-											<input id='checkbox3' type='checkbox' checked='true' />
-										) : (
-											<input id='checkbox_id' type='checkbox' checked={false} />
-										)}
-										{'   '}
-										<label>Vip_wifi</label> <br />
-										{element.coffeeandtea === 1 ? (
-											<input id='checkbox3' type='checkbox' checked='true' />
-										) : (
-											<input id='checkbox_id' type='checkbox' checked={false} />
-										)}
-										{'   '}
-										<label>coffeeandtea</label> <br />
-										{element.conditioning === 1 ? (
-											<input id='checkbox3' type='checkbox' checked='true' />
-										) : (
-											<input id='checkbox_id' type='checkbox' checked={false} />
-										)}
-										{'   '}
-										<label>conditioning</label> <br />
-										{element.ele === 1 ? (
-											<input id='checkbox3' type='checkbox' checked='true' />
-										) : (
-											<input id='checkbox_id' type='checkbox' checked={false} />
-										)}
-										{'   '}
-										<label>24 hours electricity</label> <br />
-										{element.water === 1 ? (
-											<input id='checkbox3' type='checkbox' checked='true' />
-										) : (
-											<input id='checkbox_id' type='checkbox' checked={false} />
-										)}
-										{'   '}
-										<label>Water</label> <br />
-										<label>phone Owner :</label> {'   '}{' '}
-										<label>{element.phoneowner}</label>
-										<br />
+								<boot.Card key={index} style={{ width: '18rem' }}>
+									<boot.Card.Img variant='top' style={{widt:'100%',height:'180px'}} src={element.imgUrl} className="img" />
+
+									<boot.Card.Body>
+										<Rating name='read-only' value={element.rating} readOnly />
+										<label>Email : </label>
+										<label style={{ marginLeft: "10px" }}>{'  '}{element.email}</label><br />
+										<label>Price : </label>
+										<label style={{ marginLeft: "10px" }, { marginTop: "10px" }, { width: "100px" }}>{'     '}{element.price}{'$'}</label><br />
+										<label>location : </label>
+										<label style={{ marginLeft: "10px" }}>{'  '}{element.location}</label><br />
+										<label>phoneowner : </label>
+										<label style={{ marginLeft: "10px" }}>{'  '}{element.phoneowner}</label>
+										<br /><br />
+
 										{/* Features */}
+										<button id="feat-test" onClick={(e) => {
+											console.log(e.target)
+											$(e.target).siblings('.feat').slideToggle();
+										}}
+										variant='primary'
+										style={{color:"white", marginLeft: "2px", backgroundColor: '#00848C',width:"245px" }}
+										>Show more</button>
+										<div className="feat">
+											<br />
+											<label>Discription:</label>
+											<label style={{ marginLeft: "10px" }}>{'  '}{element.Discription} </label><br />
+											<label>Features:</label>
+											<br />
+											{element.Vip_wifi === 1 ? (
+												<input id='checkbox3' type='checkbox' checked='true' />
+											) : (
+													<input id='checkbox_id' type='checkbox' checked={false} />
+												)}
+											{'   '}
+											<label>Vip_wifi</label> <br />
+											{element.coffeeandtea === 1 ? (
+												<input id='checkbox3' type='checkbox' checked='true' />
+											) : (
+													<input id='checkbox_id' type='checkbox' checked={false} />
+												)}
+											{'   '}
+											<label>coffeeandtea</label> <br />
+											{element.conditioning === 1 ? (
+												<input id='checkbox3' type='checkbox' checked='true' />
+											) : (
+													<input id='checkbox_id' type='checkbox' checked={false} />
+												)}
+											{'   '}
+											<label>conditioning</label> <br />
+											{element.ele === 1 ? (
+												<input id='checkbox3' type='checkbox' checked='true' />
+											) : (
+													<input id='checkbox_id' type='checkbox' checked={false} />
+												)}
+											{'   '}
+											<label>24 hours electricity</label> <br />
+											{element.water === 1 ? (
+												<input id='checkbox3' type='checkbox' checked='true' />
+											) : (
+													<input id='checkbox_id' type='checkbox' checked={false} />
+												)}
+											{'   '}
+											<label>Water</label> <br />
 
+											{/* Features */}
+										</div>
+										<br />
+										<br />
 
-
-                        <boot.Button
-                          style={{ marginRight: "10px", marginLeft: "95px" , backgroundColor: '#00848C' }}
-                          variant='primary'
-                          onClick={() => {
-                            item = element;
-                            console.log(item + 'iouhg');
-                            handleShow();
-                          }}
-                        >
-                          Rent
+										<boot.Button
+											style={{ marginLeft: "2px", backgroundColor: '#00848C',width:"245px" }}
+											variant='primary'
+											onClick={() => {
+												item = element;
+												console.log(item + 'iouhg');
+												handleShow();
+											}}
+										>
+											Rent
                         </boot.Button>
-                        {/* <boot.Button
-                          style={{ backgroundColor: '#00848C' }}
-                          variant='primary'
-                          onClick={() => {
-                            ratingnumber = element.office_id;
-                            handleShow2();
-                          }}
-                        >
-                          Rating
-                        </boot.Button> */}
-    
-    <boot.Modal
-												show={show}
-												onHide={handleClose}
-												backdrop='static'
-												keyboard={false}
-											>
-												<Card>
-													<CardActionArea>
-														<CardMedia
-															image='/static/images/cards/contemplative-reptile.jpg'
-															title='Contemplative Reptile'
-														/>
-														<CardContent>
-															<Typography
-																variant='body2'
-																color='textSecondary'
-																component='p'
-															>
-																<MuiPickersUtilsProvider utils={DateFnsUtils}>
-																	<Grid container justify='space-around'>
-																		<KeyboardDatePicker
-																			margin='normal'
-																			id='date-picker-dialog'
-																			// label='Starting date'
-																			format='MM/dd/yyyy'
-																			value={selectedDate}
-																			onChange={handleDateChange}
-																			KeyboardButtonProps={{
-																				'aria-label': 'change date',
-																			}}
-																		/>
-																		<KeyboardDatePicker
-																			margin='normal'
-																			id='date-picker-dialog'
-																			// label='ending date'
-																			format='MM/dd/yyyy'
-																			value={selectedDate2}
-																			onChange={handleDateChange2}
-																			KeyboardButtonProps={{
-																				'aria-label': 'change date',
-																			}}
-																		/>
-																	</Grid>
-																</MuiPickersUtilsProvider>
-															</Typography>
-														</CardContent>
-													</CardActionArea>
-													<CardActions>
-														{/* <Link href='/custumerPage' onClick={console.log('kk')}>
-            <Button variant='contained' color='primary'>
-              DONE
-            </Button>
-          </Link> */}
-														<Button
-															variant='secondary'
-															onClick={() => {
-																console.log(
-																	moment(selectedDate).format('YYYY-MM-DD') +
-																		'date1',
-                                ); 
-                                 console.log(element)
-                                office_id = element.office_id
-																const booking = {
-																	office_id: office_id,
-																	startdate: moment(selectedDate).format(
-																		'YYYY-MM-DD',
-																	),
-																	enddate: moment(selectedDate2).format(
-																		'YYYY-MM-DD',
-																	),
-																	emailuser: email,
-																	phoneuser: phoneuser,
-                                  emailowner: item.email,
-                                  
-																};
-																axios
-																	.post(
-																		'http://localhost:5000/addbooking',
-																		booking,
-																	)
-																	.then(res => {
-																		console.log(res.data);
-																	})
-																	.catch(err => {
-																		console.log(err);
-																	});
 
-																handleClose();
-															}}
+										<boot.Modal
+											show={show}
+											onHide={handleClose}
+											backdrop='static'
+											keyboard={false}
+										>
+											<Card>
+												<CardActionArea>
+													<CardMedia
+														image='/static/images/cards/contemplative-reptile.jpg'
+														title='Contemplative Reptile'
+													/>
+													<CardContent>
+														<Typography
+															variant='body2'
+															color='textSecondary'
+															component='p'
 														>
-															OK
+															<MuiPickersUtilsProvider utils={DateFnsUtils}>
+																<Grid container justify='space-around'>
+																	<KeyboardDatePicker
+																		margin='normal'
+																		id='date-picker-dialog'
+																		// label='Starting date'
+																		format='MM/dd/yyyy'
+																		value={selectedDate}
+																		onChange={handleDateChange}
+																		KeyboardButtonProps={{
+																			'aria-label': 'change date',
+																		}}
+																	/>
+																	<KeyboardDatePicker
+																		margin='normal'
+																		id='date-picker-dialog'
+																		// label='ending date'
+																		format='MM/dd/yyyy'
+																		value={selectedDate2}
+																		onChange={handleDateChange2}
+																		KeyboardButtonProps={{
+																			'aria-label': 'change date',
+																		}}
+																	/>
+																</Grid>
+															</MuiPickersUtilsProvider>
+														</Typography>
+													</CardContent>
+												</CardActionArea>
+												<CardActions>
+
+													<Button
+														variant='secondary'
+														onClick={() => {
+															console.log(
+																moment(selectedDate).format('YYYY-MM-DD') +
+																'date1',
+															);
+															console.log(element)
+															office_id = element.office_id
+															const booking = {
+																office_id: office_id,
+																startdate: moment(selectedDate).format(
+																	'YYYY-MM-DD',
+																),
+																enddate: moment(selectedDate2).format(
+																	'YYYY-MM-DD',
+																),
+																emailuser: email,
+																phoneuser: phoneuser,
+																emailowner: item.email,
+
+															};
+															axios
+																.post(
+																	'http://localhost:5000/addbooking',
+																	booking,
+																)
+																.then(res => {
+																	console.log(res.data);
+																})
+																.catch(err => {
+																	console.log(err);
+																});
+
+															handleClose();
+														}}
+													>
+														OK
 														</Button>
-														<Button
-															variant='secondary'
-															onClick={() => {
-																handleClose();
-															}}
-														>
-															Cancel
+													<Button
+														variant='secondary'
+														onClick={() => {
+															handleClose();
+														}}
+													>
+														Cancel
 														</Button>
-													</CardActions>
-												</Card>
-											</boot.Modal>
-    
-                        {/* <boot.Modal
-                          show={show2}
-                          onHide={handleClose2}
-                          backdrop='static'
-                          keyboard={false}
-                        >
-                          <Card>
-                            <CardActionArea>
-                              <CardMedia
-                                image='/static/images/cards/contemplative-reptile.jpg'
-                                title='Contemplative Reptile'
-                              />
-                              <CardContent>
-                                <row className={classes.root}>
-                                  <Rating
-                                    name='size-medium'
-                                    defaultValue={0}
-                                    value={star}
-                                    onChange={value => {
-                                      console.log(`Rated with value ${value}`);
-                                      valueofstart = value;
-                                    }}
-                                  />
-                                </row>
-                              </CardContent>
-                            </CardActionArea>
-                            <CardActions>
-                              <Button
-                                variant='secondary'
-                                onClick={() => {
-                                  console.log(valueofstart);
-                                  const rating = {
-                                    id: ratingnumber,
-                                    rating: valueofstart,
-                                  };
-                                  axios
-                                    .post('http://localhost:5000/rating', rating)
-                                    .then(res => {
-                                      console.log(res.data);
-                                      window.location.reload(true);
-                                    })
-                                    .catch(err => {
-                                      console.log(err);
-                                    });
-                                  //window.location.reload(true);
-                                  handleClose2();
-                                }}
-                              >
-                                OK
-                              </Button>
-                            </CardActions>
-                          </Card>
-                        </boot.Modal> */}
-                      </boot.Card.Body>
-                    </boot.Card>
-    
-                    <br />
-                  </boot.Container>
-                </boot.Row>
-              );
-            })}
-          </boot.Row>
-        </div>
-      );
+												</CardActions>
+											</Card>
+										</boot.Modal>
+									</boot.Card.Body>
+								</boot.Card>
+
+								<br />
+							</boot.Container>
+						</boot.Row>
+					);
+				})}
+			</boot.Row>
+		</div>
+	);
 }
 export default CustemarPage;
-
-

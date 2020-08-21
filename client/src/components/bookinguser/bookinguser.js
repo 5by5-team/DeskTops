@@ -59,120 +59,139 @@ export default function Bookinguser() {
 	}, []);
 	return (
 		<div>
-			<Navbar />
-			{data.map((element, index) => {
-				return (
-					<boot.Container>
-						<boot.Row>
-							<boot.Col>
-								<br />
-							</boot.Col>
-							<boot.Col>
-								<boot.Card key={index} style={{ width: '18rem' }}>
-									<boot.Card.Title>{element.emailowner}</boot.Card.Title>
+			<div >
+				<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" style={{ backgroundColor: '#00848C' }} id="mainNav">
+					<div class="container">
+						<a class="navbar-brand js-scroll-trigger" href="/landingPage">Desk Tops</a>
+						<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+						<div class="collapse navbar-collapse" id="navbarResponsive">
+							<ul class="navbar-nav ml-auto my-2 my-lg-0">
+								<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/custumerPage">Offices</a></li>
+								<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/contactPage">Let's Talk</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
 
-									<boot.Card.Body>
-										<boot.Card.Title>
-											{moment(element.startdate).format('YYYY-MM-DD')}{' '}
-										</boot.Card.Title>
-										<boot.Card.Title>
-											{moment(element.enddate).format('YYYY-MM-DD')}{' '}
-										</boot.Card.Title>
-										<Button
-											variant='secondary'
-											onClick={() => {
-												booking_id = element.booking_id;
-												emailowner = element.emailowner;
-												const booking = {
-													booking_id,
-													emailowner,
-													email,
-												};
+				<boot.Row className='rowBook'>
+					{data.map((element, index) => {
+						return (
+							<boot.Card className='card' key={index} style={{ width: '18rem' }}>
+								<boot.Card.Title className='email' style={{ color: "#00848C" }}> My Rents  </boot.Card.Title>
 
-												axios
-													.post('http://localhost:5000/deletebooking', booking)
-													.then(res => {
-														console.log(res);
-														window.location.reload(true);
-													})
-													.catch(err => {
-														console.log(err);
-													});
-											}}
-										>
-											DELETE
-										</Button>
-										<boot.Button
-											variant='primary'
-											onClick={() => {
-												office_id = element.office_id;
-												console.log(element);
-												handleShow2();
-											}}
-										>
-											Rating
-										</boot.Button>
-										<boot.Modal
-											show={show2}
-											onHide={handleClose2}
-											backdrop='static'
-											keyboard={false}
-										>
-											<Card>
-												<CardActionArea>
-													<CardMedia
-														image='/static/images/cards/contemplative-reptile.jpg'
-														title='Contemplative Reptile'
-													/>
-													<CardContent>
-														<div className={classes.root}>
-															<Rating
-																name='size-medium'
-																defaultValue={0.5}
-																precision={0.5}
-																value={star}
-																onChange={value => {
-																	console.log(`Rated with value ${value}`);
-																	valueofstart = value;
-																}}
-															/>
-														</div>
-													</CardContent>
-												</CardActionArea>
-												<CardActions>
-													<Button
-														variant='secondary'
-														onClick={() => {
-															console.log(valueofstart);
-															const rating = {
-																id: element.office_id,
-																rating: valueofstart,
-															};
-															axios
-																.post('http://localhost:5000/rating', rating)
-																.then(res => {
-																	console.log(res.data);
-																	// window.location.reload(true);
-																})
-																.catch(err => {
-																	console.log(err);
-																});
-															//window.location.reload(true);
-															handleClose2();
-														}}
-													>
-														OK
-													</Button>
-												</CardActions>
-											</Card>
-										</boot.Modal>
-									</boot.Card.Body>
-								</boot.Card>
-							</boot.Col>
-						</boot.Row>
-					</boot.Container> 
-				);
-			})}
+								<boot.Card.Body>
+									<boot.Card.Title>
+										<label>Email :{' '} {element.emailowner}</label>
+									</boot.Card.Title>
+									<boot.Card.Title>
+										<label>start date :{' '}{moment(element.startdate).format('YYYY-MM-DD')}</label>{' '}
+									</boot.Card.Title>
+									<boot.Card.Title>
+										<label>End date :{' '}{moment(element.enddate).format('YYYY-MM-DD')}</label>
+									</boot.Card.Title>
+
+
+									<Button
+										variant='primary'
+										style={{marginLeft:"40px"}}
+										onClick={() => {
+											booking_id = element.booking_id;
+											emailowner = element.emailowner;
+											const booking = {
+												booking_id,
+												emailowner,
+												email,
+											};
+
+											axios
+												.post('http://localhost:5000/deletebooking', booking)
+												.then(res => {
+													console.log(res);
+													window.location.reload(true);
+												})
+												.catch(err => {
+													console.log(err);
+												});
+										}}
+									>
+										DELETE
+					</Button>
+									<boot.Button
+										variant='primary'
+										onClick={() => {
+											office_id = element.office_id;
+											console.log(element);
+											handleShow2();
+										}}
+									>
+										Rating
+					</boot.Button>
+									<boot.Modal
+										show={show2}
+										onHide={handleClose2}
+										backdrop='static'
+										keyboard={false}
+									>
+										<Card>
+											<CardActionArea>
+												<CardMedia
+													image='/static/images/cards/contemplative-reptile.jpg'
+													title='Contemplative Reptile'
+												/>
+												<CardContent>
+													<div className={classes.root}>
+														<Rating
+															name='size-medium'
+															defaultValue={0.5}
+															precision={0.5}
+															value={star}
+															onChange={value => {
+																console.log(`Rated with value ${value}`);
+																valueofstart = value;
+															}}
+														/>
+													</div>
+												</CardContent>
+											</CardActionArea>
+											<CardActions>
+												<Button
+													variant='secondary'
+													onClick={() => {
+														console.log(valueofstart);
+														const rating = {
+															id: element.office_id,
+															rating: valueofstart,
+														};
+														axios
+															.post('http://localhost:5000/rating', rating)
+															.then(res => {
+																console.log(res.data);
+																// window.location.reload(true);
+															})
+															.catch(err => {
+																console.log(err);
+															});
+														//window.location.reload(true);
+														handleClose2();
+													}}
+												>
+													OK
+								</Button>
+											</CardActions>
+										</Card>
+									</boot.Modal>
+								</boot.Card.Body>
+							</boot.Card>
+						);
+					})}
+
+				</boot.Row>
+			</div>
+
 		</div>
 	);
 }
+
+
+
+
