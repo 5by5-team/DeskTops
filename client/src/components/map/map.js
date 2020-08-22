@@ -6,12 +6,12 @@ import './map.css';
 export const icon = new Icon({
 	iconUrl: '/skateboarding.svg',
 	iconSize: [25, 25],
-});  
+});
 export default function Ma() {
 	const [activePark, setActivePark] = React.useState(null); // var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 	return (
 		<div>
-			<Ma
+			<Map
 				center={[31.354675, 34.308826]}
 				zoom={12}
 				style={{ position: 'relative', height: '100vh' }}
@@ -49,7 +49,7 @@ export default function Ma() {
 						</div>
 					</Popup>
 				)}
-			</Ma>
+			</Map>
 		</div>
 	);
 }

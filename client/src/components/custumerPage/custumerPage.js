@@ -16,7 +16,7 @@ import 'date-fns';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import { Link, Box } from '@material-ui/core';
-import '../custumerPage/cus.css'
+import '../custumerPage/cus.css';
 import $ from 'jquery';
 import { createBrowserHistory } from 'history';
 import Map from '../map/map';
@@ -29,6 +29,7 @@ import jwt_decode from 'jwt-decode';
 import Rating from 'material-ui-rating';
 var item = {};
 var email = '';
+var name = '';
 var phoneuser = 0;
 var office_id = 0;
 const history = createBrowserHistory();
@@ -60,8 +61,7 @@ function CustemarPage() {
 	const [data2, setData2] = useState([]);
 
 	const handlechange = event => {
-		setLocation(event.target.value );
-         
+		setLocation(event.target.value);
 	};
 
 	const handleDateChange2 = date => {
@@ -76,30 +76,33 @@ function CustemarPage() {
 
 		fetchData();
 	}, []);
-const search= (event) => {
-	axios
-		.post(`http://localhost:5000/search`, { location })
-		.then(response => {
-			setData2(response.data.success);
-			
-		})
-		.catch(error => {
-			console.log('error', error);
-			alert('Error');
-		});  
-	event.preventDefault();
-    }
+	const search = event => {
+		axios
+			.post(`http://localhost:5000/search`, { location })
+			.then(response => {
+				setData2(response.data.success);
+			})
+			.catch(error => {
+				console.log('error', error);
+				alert('Error');
+			});
+		event.preventDefault();
+	};
 	useEffect(() => {
 		const tokin = localStorage.usertoken;
-		var decoded = jwt_decode(tokin);
-		console.log(decoded);
-		email = decoded.email;
-		phoneuser = decoded.phone;
-		console.log(email);
+		console.log(localStorage, 'hereeeeeeeeeeeeeeeeeee in token');
 
-
+		if (tokin) {
+			var decoded = jwt_decode(tokin);
+			console.log(decoded);
+			email = decoded.email;
+			name = localStorage.getItem('name');
+			// email = '';
+			console.log(email);
+		} else {
+			console.log('no token found');
+		}
 	});
-
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
@@ -111,30 +114,54 @@ const search= (event) => {
 	const handleShow2 = () => setShow2(true);
 
 	return (
-		<div style={{ marginTop: "45px" }}>
-			<div className="aaa">
-                <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" style={{ backgroundColor: '#00848C' }} id="mainNav">
-                    <div class="container">
-                        <a class="navbar-brand js-scroll-trigger" href="/custumerPage">Desk Tops</a>
-                        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                        <div class="collapse navbar-collapse" id="navbarResponsive">
-                            <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                                <li class="nav-item"><a class="nav-link js-scroll-trigger" onClick={search}>LogOut</a></li>
-								
-                                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/contactPage">Let's Talk</a></li>
-								
-			<button Link to = "/map">map</button>
-                            </ul>
-                        </div>
+		<div style={{ marginTop: '45px' }}>
+			<div className='aaa'>
+				<nav
+					class='navbar navbar-expand-lg navbar-light fixed-top py-3'
+					style={{ backgroundColor: '#00848C' }}
+					id='mainNav'
+				>
+					<div class='container'>
+						<a class='navbar-brand js-scroll-trigger' href='/custumerPage'>
+							Desk Tops
+						</a>
+						<button
+							class='navbar-toggler navbar-toggler-right'
+							type='button'
+							data-toggle='collapse'
+							data-target='#navbarResponsive'
+							aria-controls='navbarResponsive'
+							aria-expanded='false'
+							aria-label='Toggle navigation'
+						>
+							<span class='navbar-toggler-icon'></span>
+						</button>
+						<div class='collapse navbar-collapse' id='navbarResponsive'>
+							<ul class='navbar-nav ml-auto my-2 my-lg-0'>
+								<li class='nav-item'>
+									<a class='nav-link js-scroll-trigger' onClick={search}>
+										LogOut
+									</a>
+								</li>
+
+								<li class='nav-item'>
+									<a class='nav-link js-scroll-trigger' href='/contactPage'>
+										Let's Talk
+									</a>
+								</li>
+
+								<button Link to='/map'>
+									map
+								</button>
+							</ul>
+						</div>
 						<ReactBootstrap.Form.Control
-						style={{width:" 14%",
-							marginLeft: "10px",
-							marginRight:" 5px",}}  
+							style={{ width: ' 14%', marginLeft: '10px', marginRight: ' 5px' }}
 							as='select'
 							defaultValue='Gaza'
-							 onChange={handlechange}
+							onChange={handlechange}
 						>
-							<option value='Gaza'>Gaza</option> 
+							<option value='Gaza'>Gaza</option>
 							<option value='KhanYounes'>KhanYounes</option>
 							<option value='Rafah'>Rafah</option>
 							<option value='Dair AlBalah'>Dair AlBalah</option>
@@ -142,298 +169,456 @@ const search= (event) => {
 							<option value='Jabalia'>Jabalia</option>
 						</ReactBootstrap.Form.Control>
 						<ReactBootstrap.Button
-						style={{marginRight:" -88px"}}
+							style={{ marginRight: ' -88px' }}
 							variant='outline-success'
 							onClick={search}
 						>
 							Search
 						</ReactBootstrap.Button>
-                    </div>
-                </nav></div>
-            <br /><br /> <br />
-			<div >
-				{' '}
-				
-				<Link href='/bookinguser' onClick={console.log('kk')}>
-					<Button style={{ marginLeft: 580, marginBottom: '10px', backgroundColor: '#00848C' }} variant='contained' color='primary'>
-						My Booking Office
-              </Button>
-				</Link>  
+					</div>
+				</nav>
 			</div>
-			<boot.Row style={{ marginLeft: 75 ,marginTop:"-65"}}> 
-				{ data2.length === 0 ? null : (data2.map((element, index) => {
-						return (
-							<boot.Row >
-								<boot.Container> 
-	
-									<boot.Card key={index} style={{ width: '18rem' }}>
-										<boot.Card.Img variant='top' style={{widt:'100%',height:'180px'}} src={element.imgUrl} className="img" />
-	
-										<boot.Card.Body>
-											<Rating name='read-only' value={element.rating} readOnly />
-											<label>Email : </label>
-											<label style={{ marginLeft: "10px" }}>{'  '}{element.email}</label><br />
-											<label>Price : </label>
-											<label style={{ marginLeft: "10px" }, { marginTop: "10px" }, { width: "100px" }}>{'     '}{element.price}{'$'}</label><br />
-											<label>location : </label>
-											<label style={{ marginLeft: "10px" }}>{'  '}{element.location}</label><br />
-											<label>phoneowner : </label>
-											<label style={{ marginLeft: "10px" }}>{'  '}{element.phoneowner}</label>
-											<br /><br />
-	
-											{/* Features */}
-											<button id="feat-test" onClick={(e) => {
-												console.log(e.target)
-												$(e.target).siblings('.feat').slideToggle();
-											}}
-											variant='primary'
-											style={{color:"white", marginLeft: "2px", backgroundColor: '#00848C',width:"245px" }}
-											>Show more</button>
-											<div className="feat">
+			<br />
+			<br /> <br />
+			<div>
+				{' '}
+				<Link href='/bookinguser' onClick={console.log('kk')}>
+					<Button
+						style={{
+							marginLeft: 580,
+							marginBottom: '10px',
+							backgroundColor: '#00848C',
+						}}
+						variant='contained'
+						color='primary'
+					>
+						My Booking Office
+					</Button>
+				</Link>
+			</div>
+			<boot.Row style={{ marginLeft: 75, marginTop: '-65' }}>
+				{data2.length === 0
+					? null
+					: data2.map((element, index) => {
+							return (
+								<boot.Row>
+									<boot.Container>
+										<boot.Card key={index} style={{ width: '18rem' }}>
+											<boot.Card.Img
+												variant='top'
+												style={{ widt: '100%', height: '180px' }}
+												src={element.imgUrl}
+												className='img'
+											/>
+
+											<boot.Card.Body>
+												<Rating
+													name='read-only'
+													value={element.rating}
+													readOnly
+												/>
+												<label>Email : </label>
+												<label style={{ marginLeft: '10px' }}>
+													{'  '}
+													{element.email}
+												</label>
 												<br />
-												<label>Discription:</label>
-												<label style={{ marginLeft: "10px" }}>{'  '}{element.Discription} </label><br />
-												<label>Features:</label>
+												<label>Price : </label>
+												<label
+													style={
+														({ marginLeft: '10px' },
+														{ marginTop: '10px' },
+														{ width: '100px' })
+													}
+												>
+													{'     '}
+													{element.price}
+													{'$'}
+												</label>
 												<br />
-												{element.Vip_wifi === 1 ? (
-													<input id='checkbox3' type='checkbox' checked='true' />
-												) : (
-														<input id='checkbox_id' type='checkbox' checked={false} />
-													)}
-												{'   '}
-												<label>Vip_wifi</label> <br />
-												{element.coffeeandtea === 1 ? (
-													<input id='checkbox3' type='checkbox' checked='true' />
-												) : (
-														<input id='checkbox_id' type='checkbox' checked={false} />
-													)}
-												{'   '}
-												<label>coffeeandtea</label> <br />
-												{element.conditioning === 1 ? (
-													<input id='checkbox3' type='checkbox' checked='true' />
-												) : (
-														<input id='checkbox_id' type='checkbox' checked={false} />
-													)}
-												{'   '}
-												<label>conditioning</label> <br />
-												{element.ele === 1 ? (
-													<input id='checkbox3' type='checkbox' checked='true' />
-												) : (
-														<input id='checkbox_id' type='checkbox' checked={false} />
-													)}
-												{'   '}
-												<label>24 hours electricity</label> <br />
-												{element.water === 1 ? (
-													<input id='checkbox3' type='checkbox' checked='true' />
-												) : (
-														<input id='checkbox_id' type='checkbox' checked={false} />
-													)}
-												{'   '}
-												<label>Water</label> <br />
-	
+												<label>location : </label>
+												<label style={{ marginLeft: '10px' }}>
+													{'  '}
+													{element.location}
+												</label>
+												<br />
+												<label>phoneowner : </label>
+												<label style={{ marginLeft: '10px' }}>
+													{'  '}
+													{element.phoneowner}
+												</label>
+												<br />
+												<br />
+
 												{/* Features */}
-											</div>
-											<br />
-											<br />
-	
-											<boot.Button
-												style={{ marginLeft: "2px", backgroundColor: '#00848C',width:"245px" }}
-												variant='primary'
-												onClick={() => {
-													item = element;
-													console.log(item + 'iouhg');
-													handleShow();
-												}}
-											>
-												Rent
-							</boot.Button>
-	
-											<boot.Modal
-												show={show}
-												onHide={handleClose}
-												backdrop='static'
-												keyboard={false}
-											>
-												<Card>
-													<CardActionArea>
-														<CardMedia
-															image='/static/images/cards/contemplative-reptile.jpg'
-															title='Contemplative Reptile'
+												<button
+													id='feat-test'
+													onClick={e => {
+														console.log(e.target);
+														$(e.target).siblings('.feat').slideToggle();
+													}}
+													variant='primary'
+													style={{
+														color: 'white',
+														marginLeft: '2px',
+														backgroundColor: '#00848C',
+														width: '245px',
+													}}
+												>
+													Show more
+												</button>
+												<div className='feat'>
+													<br />
+													<label>Discription:</label>
+													<label style={{ marginLeft: '10px' }}>
+														{'  '}
+														{element.Discription}{' '}
+													</label>
+													<br />
+													<label>Features:</label>
+													<br />
+													{element.Vip_wifi === 1 ? (
+														<input
+															id='checkbox3'
+															type='checkbox'
+															checked='true'
 														/>
-														<CardContent>
-															<Typography
-																variant='body2'
-																color='textSecondary'
-																component='p'
+													) : (
+														<input
+															id='checkbox_id'
+															type='checkbox'
+															checked={false}
+														/>
+													)}
+													{'   '}
+													<label>Vip_wifi</label> <br />
+													{element.coffeeandtea === 1 ? (
+														<input
+															id='checkbox3'
+															type='checkbox'
+															checked='true'
+														/>
+													) : (
+														<input
+															id='checkbox_id'
+															type='checkbox'
+															checked={false}
+														/>
+													)}
+													{'   '}
+													<label>coffeeandtea</label> <br />
+													{element.conditioning === 1 ? (
+														<input
+															id='checkbox3'
+															type='checkbox'
+															checked='true'
+														/>
+													) : (
+														<input
+															id='checkbox_id'
+															type='checkbox'
+															checked={false}
+														/>
+													)}
+													{'   '}
+													<label>conditioning</label> <br />
+													{element.ele === 1 ? (
+														<input
+															id='checkbox3'
+															type='checkbox'
+															checked='true'
+														/>
+													) : (
+														<input
+															id='checkbox_id'
+															type='checkbox'
+															checked={false}
+														/>
+													)}
+													{'   '}
+													<label>24 hours electricity</label> <br />
+													{element.water === 1 ? (
+														<input
+															id='checkbox3'
+															type='checkbox'
+															checked='true'
+														/>
+													) : (
+														<input
+															id='checkbox_id'
+															type='checkbox'
+															checked={false}
+														/>
+													)}
+													{'   '}
+													<label>Water</label> <br />
+													{/* Features */}
+												</div>
+												<br />
+												<br />
+
+												<boot.Button
+													style={{
+														marginLeft: '2px',
+														backgroundColor: '#00848C',
+														width: '245px',
+													}}
+													variant='primary'
+													onClick={() => {
+														item = element;
+														console.log(item + 'iouhg');
+														handleShow();
+													}}
+												>
+													Rent
+												</boot.Button>
+
+												<boot.Modal
+													show={show}
+													onHide={handleClose}
+													backdrop='static'
+													keyboard={false}
+												>
+													<Card>
+														<CardActionArea>
+															<CardMedia
+																image='/static/images/cards/contemplative-reptile.jpg'
+																title='Contemplative Reptile'
+															/>
+															<CardContent>
+																<Typography
+																	variant='body2'
+																	color='textSecondary'
+																	component='p'
+																>
+																	<MuiPickersUtilsProvider utils={DateFnsUtils}>
+																		<Grid container justify='space-around'>
+																			<KeyboardDatePicker
+																				margin='normal'
+																				id='date-picker-dialog'
+																				// label='Starting date'
+																				format='MM/dd/yyyy'
+																				value={selectedDate}
+																				onChange={handleDateChange}
+																				KeyboardButtonProps={{
+																					'aria-label': 'change date',
+																				}}
+																			/>
+																			<KeyboardDatePicker
+																				margin='normal'
+																				id='date-picker-dialog'
+																				// label='ending date'
+																				format='MM/dd/yyyy'
+																				value={selectedDate2}
+																				onChange={handleDateChange2}
+																				KeyboardButtonProps={{
+																					'aria-label': 'change date',
+																				}}
+																			/>
+																		</Grid>
+																	</MuiPickersUtilsProvider>
+																</Typography>
+															</CardContent>
+														</CardActionArea>
+														<CardActions>
+															<Button
+																variant='secondary'
+																onClick={() => {
+																	console.log(
+																		moment(selectedDate).format('YYYY-MM-DD') +
+																			'date1',
+																	);
+																	console.log(element);
+																	office_id = element.office_id;
+																	const booking = {
+																		office_id: office_id,
+																		startdate: moment(selectedDate).format(
+																			'YYYY-MM-DD',
+																		),
+																		enddate: moment(selectedDate2).format(
+																			'YYYY-MM-DD',
+																		),
+																		emailuser: email,
+																		phoneuser: phoneuser,
+																		emailowner: item.email,
+																	};
+																	axios
+																		.post(
+																			'http://localhost:5000/addbooking',
+																			booking,
+																		)
+																		.then(res => {
+																			console.log(res.data);
+																		})
+																		.catch(err => {
+																			console.log(err);
+																		});
+
+																	handleClose();
+																}}
 															>
-																<MuiPickersUtilsProvider utils={DateFnsUtils}>
-																	<Grid container justify='space-around'>
-																		<KeyboardDatePicker
-																			margin='normal'
-																			id='date-picker-dialog'
-																			// label='Starting date'
-																			format='MM/dd/yyyy'
-																			value={selectedDate}
-																			onChange={handleDateChange}
-																			KeyboardButtonProps={{
-																				'aria-label': 'change date',
-																			}}
-																		/>
-																		<KeyboardDatePicker
-																			margin='normal'
-																			id='date-picker-dialog'
-																			// label='ending date'
-																			format='MM/dd/yyyy'
-																			value={selectedDate2}
-																			onChange={handleDateChange2}
-																			KeyboardButtonProps={{
-																				'aria-label': 'change date',
-																			}}
-																		/>
-																	</Grid>
-																</MuiPickersUtilsProvider>
-															</Typography>
-														</CardContent>
-													</CardActionArea>
-													<CardActions>
-	
-														<Button
-															variant='secondary'
-															onClick={() => {
-																console.log(
-																	moment(selectedDate).format('YYYY-MM-DD') +
-																	'date1',
-																);
-																console.log(element)
-																office_id = element.office_id
-																const booking = {
-																	office_id: office_id,
-																	startdate: moment(selectedDate).format(
-																		'YYYY-MM-DD',
-																	),
-																	enddate: moment(selectedDate2).format(
-																		'YYYY-MM-DD',
-																	),
-																	emailuser: email,
-																	phoneuser: phoneuser,
-																	emailowner: item.email,
-	
-																};
-																axios
-																	.post(
-																		'http://localhost:5000/addbooking',
-																		booking,
-																	)
-																	.then(res => {
-																		console.log(res.data);
-																	})
-																	.catch(err => {
-																		console.log(err);
-																	});
-	
-																handleClose();
-															}}
-														>
-															OK
+																OK
 															</Button>
-														<Button
-															variant='secondary'
-															onClick={() => {
-																handleClose();
-															}}
-														>
-															Cancel
+															<Button
+																variant='secondary'
+																onClick={() => {
+																	handleClose();
+																}}
+															>
+																Cancel
 															</Button>
-													</CardActions>
-												</Card>
-											</boot.Modal>
-										</boot.Card.Body>
-									</boot.Card>
-	
-									<br />
-								</boot.Container>
-							</boot.Row>
-						);
-					}))
-				} 
+														</CardActions>
+													</Card>
+												</boot.Modal>
+											</boot.Card.Body>
+										</boot.Card>
+
+										<br />
+									</boot.Container>
+								</boot.Row>
+							);
+					  })}
 
 				{data.map((element, index) => {
 					return (
-						<boot.Row >
+						<boot.Row>
 							<boot.Container>
-
 								<boot.Card key={index} style={{ width: '18rem' }}>
-									<boot.Card.Img variant='top' style={{widt:'100%',height:'180px'}} src={element.imgUrl} className="img" />
+									<boot.Card.Img
+										variant='top'
+										style={{ widt: '100%', height: '180px' }}
+										src={element.imgUrl}
+										className='img'
+									/>
 
 									<boot.Card.Body>
 										<Rating name='read-only' value={element.rating} readOnly />
 										<label>Email : </label>
-										<label style={{ marginLeft: "10px" }}>{'  '}{element.email}</label><br />
+										<label style={{ marginLeft: '10px' }}>
+											{'  '}
+											{element.email}
+										</label>
+										<br />
 										<label>Price : </label>
-										<label style={{ marginLeft: "10px" }, { marginTop: "10px" }, { width: "100px" }}>{'     '}{element.price}{'$'}</label><br />
+										<label
+											style={
+												({ marginLeft: '10px' },
+												{ marginTop: '10px' },
+												{ width: '100px' })
+											}
+										>
+											{'     '}
+											{element.price}
+											{'$'}
+										</label>
+										<br />
 										<label>location : </label>
-										<label style={{ marginLeft: "10px" }}>{'  '}{element.location}</label><br />
+										<label style={{ marginLeft: '10px' }}>
+											{'  '}
+											{element.location}
+										</label>
+										<br />
 										<label>phoneowner : </label>
-										<label style={{ marginLeft: "10px" }}>{'  '}{element.phoneowner}</label>
-										<br /><br />
+										<label style={{ marginLeft: '10px' }}>
+											{'  '}
+											{element.phoneowner}
+										</label>
+										<br />
+										<br />
 
 										{/* Features */}
-										<button id="feat-test" onClick={(e) => {
-											console.log(e.target)
-											$(e.target).siblings('.feat').slideToggle();
-										}}
-										variant='primary'
-										style={{color:"white", marginLeft: "2px", backgroundColor: '#00848C',width:"245px" }}
-										>Show more</button>
-										<div className="feat">
+										<button
+											id='feat-test'
+											onClick={e => {
+												console.log(e.target);
+												$(e.target).siblings('.feat').slideToggle();
+											}}
+											variant='primary'
+											style={{
+												color: 'white',
+												marginLeft: '2px',
+												backgroundColor: '#00848C',
+												width: '245px',
+											}}
+										>
+											Show more
+										</button>
+										<div className='feat'>
 											<br />
 											<label>Discription:</label>
-											<label style={{ marginLeft: "10px" }}>{'  '}{element.Discription} </label><br />
+											<label style={{ marginLeft: '10px' }}>
+												{'  '}
+												{element.Discription}{' '}
+											</label>
+											<br />
 											<label>Features:</label>
 											<br />
 											{element.Vip_wifi === 1 ? (
 												<input id='checkbox3' type='checkbox' checked='true' />
 											) : (
-													<input id='checkbox_id' type='checkbox' checked={false} />
-												)}
+												<input
+													id='checkbox_id'
+													type='checkbox'
+													checked={false}
+												/>
+											)}
 											{'   '}
 											<label>Vip_wifi</label> <br />
 											{element.coffeeandtea === 1 ? (
 												<input id='checkbox3' type='checkbox' checked='true' />
 											) : (
-													<input id='checkbox_id' type='checkbox' checked={false} />
-												)}
+												<input
+													id='checkbox_id'
+													type='checkbox'
+													checked={false}
+												/>
+											)}
 											{'   '}
 											<label>coffeeandtea</label> <br />
 											{element.conditioning === 1 ? (
 												<input id='checkbox3' type='checkbox' checked='true' />
 											) : (
-													<input id='checkbox_id' type='checkbox' checked={false} />
-												)}
+												<input
+													id='checkbox_id'
+													type='checkbox'
+													checked={false}
+												/>
+											)}
 											{'   '}
 											<label>conditioning</label> <br />
 											{element.ele === 1 ? (
 												<input id='checkbox3' type='checkbox' checked='true' />
 											) : (
-													<input id='checkbox_id' type='checkbox' checked={false} />
-												)}
+												<input
+													id='checkbox_id'
+													type='checkbox'
+													checked={false}
+												/>
+											)}
 											{'   '}
 											<label>24 hours electricity</label> <br />
 											{element.water === 1 ? (
 												<input id='checkbox3' type='checkbox' checked='true' />
 											) : (
-													<input id='checkbox_id' type='checkbox' checked={false} />
-												)}
+												<input
+													id='checkbox_id'
+													type='checkbox'
+													checked={false}
+												/>
+											)}
 											{'   '}
 											<label>Water</label> <br />
-
 											{/* Features */}
 										</div>
 										<br />
 										<br />
 
 										<boot.Button
-											style={{ marginLeft: "2px", backgroundColor: '#00848C',width:"245px" }}
+											style={{
+												marginLeft: '2px',
+												backgroundColor: '#00848C',
+												width: '245px',
+											}}
 											variant='primary'
 											onClick={() => {
 												item = element;
@@ -442,7 +627,7 @@ const search= (event) => {
 											}}
 										>
 											Rent
-                        </boot.Button>
+										</boot.Button>
 
 										<boot.Modal
 											show={show}
@@ -492,16 +677,15 @@ const search= (event) => {
 													</CardContent>
 												</CardActionArea>
 												<CardActions>
-
 													<Button
 														variant='secondary'
 														onClick={() => {
 															console.log(
 																moment(selectedDate).format('YYYY-MM-DD') +
-																'date1',
+																	'date1',
 															);
-															console.log(element)
-															office_id = element.office_id
+															console.log(element);
+															office_id = element.office_id;
 															const booking = {
 																office_id: office_id,
 																startdate: moment(selectedDate).format(
@@ -513,7 +697,6 @@ const search= (event) => {
 																emailuser: email,
 																phoneuser: phoneuser,
 																emailowner: item.email,
-
 															};
 															axios
 																.post(
@@ -531,7 +714,7 @@ const search= (event) => {
 														}}
 													>
 														OK
-														</Button>
+													</Button>
 													<Button
 														variant='secondary'
 														onClick={() => {
@@ -539,7 +722,7 @@ const search= (event) => {
 														}}
 													>
 														Cancel
-														</Button>
+													</Button>
 												</CardActions>
 											</Card>
 										</boot.Modal>

@@ -18,7 +18,7 @@ import Bookinguser from '../src/components/bookinguser/bookinguser.js';
 // import Calender from '../src/components/calender/calender'
 import ContactPage from '../src/components/contactus/contactus';
 import cal from '../src/components/calender/calender';
-import Ma from '../src/components/map/map'
+import Ma from '../src/components/map/Map';
 function App() {
 	return (
 		<Router>
@@ -37,7 +37,6 @@ function App() {
 				<Route exact path='/cal' component={cal} />
 				<Route exact path='/ContactPage' component={ContactPage} />
 				<Route exact path='/map' component={Ma} />
-
 			</section>
 		</Router>
 	);
