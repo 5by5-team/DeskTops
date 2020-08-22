@@ -21,15 +21,24 @@ import jwt_decode from 'jwt-decode';
 //const nodemailer = require('nodemailer');
 var imgUrl = '';
 var email = '';
+var name = '';
 var phoneowner = 0;
 export default function AddOffice() {
 	useEffect(() => {
 		const tokin = localStorage.usertoken;
-		var decoded = jwt_decode(tokin);
-		console.log(decoded);
-		email = decoded.email;
-		phoneowner = decoded.phone;
-		console.log(email);
+		console.log(localStorage, 'hereeeeeeeeeeeeeeeeeee in token');
+
+		if (tokin) {
+			var decoded = jwt_decode(tokin);
+			console.log(decoded);
+			email = decoded.email;
+			phoneowner = decoded.phone;
+			name = localStorage.getItem('name');
+			// email = '';
+			console.log(email);
+		} else {
+			console.log('no token found');
+		}
 	});
 	const [add, setadd] = useState({
 		Discription: '',
@@ -44,14 +53,14 @@ export default function AddOffice() {
 		coffeeandtea: false,
 	});
 
-	const handleChange = (event) => {
+	const handleChange = event => {
 		setadd({ ...add, [event.target.name]: event.target.value });
 	};
-	const handleChange2 = (event) => {
+	const handleChange2 = event => {
 		setaddch({ ...addch, [event.target.name]: true });
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = e => {
 		e.preventDefault();
 		let office = {
 			...add,
@@ -81,7 +90,7 @@ export default function AddOffice() {
 			});
 	};
 	const [location, setlocation, imageUrl, imageAlt] = useState('');
-	const usemYStyles = makeStyles((theme) => ({
+	const usemYStyles = makeStyles(theme => ({
 		root: {
 			'& > *': {
 				margin: theme.spacing(1),
@@ -102,7 +111,7 @@ export default function AddOffice() {
 
 	const [image, setImage] = useState('');
 	const [loading, setLoading] = useState(false);
-	const uploadImage = (e) => {
+	const uploadImage = e => {
 		const files = e.target.files;
 		const data = new FormData();
 		data.append('file', files[0]);
@@ -110,7 +119,7 @@ export default function AddOffice() {
 		setLoading(true);
 		axios
 			.post('https://api.cloudinary.com/v1_1/dwwkrlpkl/image/upload', data)
-			.then((response) => {
+			.then(response => {
 				imgUrl = response.data['secure_url'];
 				console.log(imgUrl);
 				setImage(imgUrl);
@@ -118,21 +127,45 @@ export default function AddOffice() {
 				// handleUrlChangeT(imgUrl);
 				setLoading(false);
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err);
 			});
 	};
 	return (
-		<div style={{ marginTop: "45px" }}>
-			<div >
-				<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" style={{ backgroundColor: '#00848C' }} id="mainNav">
-					<div class="container">
-						<a class="navbar-brand js-scroll-trigger" href="/landingPage">Desk Tops</a>
-						<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-						<div class="collapse navbar-collapse" id="navbarResponsive">
-							<ul class="navbar-nav ml-auto my-2 my-lg-0">
-								<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/ownerPage">My Offices</a></li>
-								<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/contactPage">Let's Talk</a></li>
+		<div style={{ marginTop: '45px' }}>
+			<div>
+				<nav
+					class='navbar navbar-expand-lg navbar-light fixed-top py-3'
+					style={{ backgroundColor: '#00848C' }}
+					id='mainNav'
+				>
+					<div class='container'>
+						<a class='navbar-brand js-scroll-trigger' href='/landingPage'>
+							Desk Tops
+						</a>
+						<button
+							class='navbar-toggler navbar-toggler-right'
+							type='button'
+							data-toggle='collapse'
+							data-target='#navbarResponsive'
+							aria-controls='navbarResponsive'
+							aria-expanded='false'
+							aria-label='Toggle navigation'
+						>
+							<span class='navbar-toggler-icon'></span>
+						</button>
+						<div class='collapse navbar-collapse' id='navbarResponsive'>
+							<ul class='navbar-nav ml-auto my-2 my-lg-0'>
+								<li class='nav-item'>
+									<a class='nav-link js-scroll-trigger' href='/ownerPage'>
+										My Offices
+									</a>
+								</li>
+								<li class='nav-item'>
+									<a class='nav-link js-scroll-trigger' href='/contactPage'>
+										Let's Talk
+									</a>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -212,7 +245,7 @@ export default function AddOffice() {
 								/>
 							</FormControl>{' '}
 							<div style={{ hight: 20 }} />
-							<h5 style={{ color: "#00848C" }}>Features :</h5>
+							<h5 style={{ color: '#00848C' }}>Features :</h5>
 							<FormControlLabel
 								control={
 									<Checkbox
@@ -280,10 +313,10 @@ export default function AddOffice() {
 										color='primary'
 										variant='contained'
 										onClick={handleSubmit}
-										style={{ backgroundColor: "#00848C" }}
+										style={{ backgroundColor: '#00848C' }}
 									>
 										Add One
-                  </Button>
+									</Button>
 								</Link>
 							</div>
 						</div>
@@ -298,8 +331,8 @@ export default function AddOffice() {
 						className='img'
 					></img>
 				) : (
-						<img src={imgUrl} className='img'></img>
-					)}
+					<img src={imgUrl} className='img'></img>
+				)}
 			</div>
 		</div>
 	);

@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 var email = '';
+var name = '';
 var booking_id = 0;
 var emailowner = '';
 var ratingnumber = 0;
@@ -40,12 +41,19 @@ export default function Bookinguser() {
 	};
 	useEffect(() => {
 		const tokin = localStorage.usertoken;
-		var decoded = jwt_decode(tokin);
-		console.log(decoded);
-		email = decoded.email;
-		console.log(email);
-	});
+		console.log(localStorage, 'hereeeeeeeeeeeeeeeeeee in token');
 
+		if (tokin) {
+			var decoded = jwt_decode(tokin);
+			console.log(decoded);
+			email = decoded.email;
+			name = localStorage.getItem('name');
+			// email = '';
+			console.log(email);
+		} else {
+			console.log('no token found');
+		}
+	});
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await axios.post('http://localhost:5000/getbookinguser', {
@@ -59,15 +67,39 @@ export default function Bookinguser() {
 	}, []);
 	return (
 		<div>
-			<div >
-				<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" style={{ backgroundColor: '#00848C' }} id="mainNav">
-					<div class="container">
-						<a class="navbar-brand js-scroll-trigger" href="/landingPage">Desk Tops</a>
-						<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-						<div class="collapse navbar-collapse" id="navbarResponsive">
-							<ul class="navbar-nav ml-auto my-2 my-lg-0">
-								<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/custumerPage">Offices</a></li>
-								<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/contactPage">Let's Talk</a></li>
+			<div>
+				<nav
+					class='navbar navbar-expand-lg navbar-light fixed-top py-3'
+					style={{ backgroundColor: '#00848C' }}
+					id='mainNav'
+				>
+					<div class='container'>
+						<a class='navbar-brand js-scroll-trigger' href='/landingPage'>
+							Desk Tops
+						</a>
+						<button
+							class='navbar-toggler navbar-toggler-right'
+							type='button'
+							data-toggle='collapse'
+							data-target='#navbarResponsive'
+							aria-controls='navbarResponsive'
+							aria-expanded='false'
+							aria-label='Toggle navigation'
+						>
+							<span class='navbar-toggler-icon'></span>
+						</button>
+						<div class='collapse navbar-collapse' id='navbarResponsive'>
+							<ul class='navbar-nav ml-auto my-2 my-lg-0'>
+								<li class='nav-item'>
+									<a class='nav-link js-scroll-trigger' href='/custumerPage'>
+										Offices
+									</a>
+								</li>
+								<li class='nav-item'>
+									<a class='nav-link js-scroll-trigger' href='/contactPage'>
+										Let's Talk
+									</a>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -76,24 +108,35 @@ export default function Bookinguser() {
 				<boot.Row className='rowBook'>
 					{data.map((element, index) => {
 						return (
-							<boot.Card className='card' key={index} style={{ width: '18rem' }}>
-								<boot.Card.Title className='email' style={{ color: "#00848C" }}> My Rents  </boot.Card.Title>
+							<boot.Card
+								className='card'
+								key={index}
+								style={{ width: '18rem' }}
+							>
+								<boot.Card.Title className='email' style={{ color: '#00848C' }}>
+									{' '}
+									My Rents{' '}
+								</boot.Card.Title>
 
 								<boot.Card.Body>
 									<boot.Card.Title>
-										<label>Email :{' '} {element.emailowner}</label>
+										<label>Email : {element.emailowner}</label>
 									</boot.Card.Title>
 									<boot.Card.Title>
-										<label>start date :{' '}{moment(element.startdate).format('YYYY-MM-DD')}</label>{' '}
+										<label>
+											start date :{' '}
+											{moment(element.startdate).format('YYYY-MM-DD')}
+										</label>{' '}
 									</boot.Card.Title>
 									<boot.Card.Title>
-										<label>End date :{' '}{moment(element.enddate).format('YYYY-MM-DD')}</label>
+										<label>
+											End date : {moment(element.enddate).format('YYYY-MM-DD')}
+										</label>
 									</boot.Card.Title>
-
 
 									<Button
 										variant='primary'
-										style={{marginLeft:"40px"}}
+										style={{ marginLeft: '40px' }}
 										onClick={() => {
 											booking_id = element.booking_id;
 											emailowner = element.emailowner;
@@ -115,7 +158,7 @@ export default function Bookinguser() {
 										}}
 									>
 										DELETE
-					</Button>
+									</Button>
 									<boot.Button
 										variant='primary'
 										onClick={() => {
@@ -125,7 +168,7 @@ export default function Bookinguser() {
 										}}
 									>
 										Rating
-					</boot.Button>
+									</boot.Button>
 									<boot.Modal
 										show={show2}
 										onHide={handleClose2}
@@ -176,7 +219,7 @@ export default function Bookinguser() {
 													}}
 												>
 													OK
-								</Button>
+												</Button>
 											</CardActions>
 										</Card>
 									</boot.Modal>
@@ -184,14 +227,8 @@ export default function Bookinguser() {
 							</boot.Card>
 						);
 					})}
-
 				</boot.Row>
 			</div>
-
 		</div>
 	);
 }
-
-
-
-
