@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 // import '../landingPage/assets/img/portfolio'
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import store from '../.././reducers/store';
+import Add from '../addOffice/addOffice';
+import { initalize } from './../../actions';
+import $ from 'jquery';
 import '../landingPage/index.css';
 
 import {
@@ -14,7 +20,6 @@ import {
 } from '@material-ui/core';
 import { TimerSharp } from '@material-ui/icons';
 var email = '';
-var name = '';
 const useStyles = makeStyles(theme => ({
 	dropdown: {
 		position: 'fixed',
@@ -30,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 		backgroundSize: 'cover',
 	},
 }));
-function Home() {
+function Home(props) {
 	const [data, setData] = useState([]);
 	const [navbar, setNavbar] = useState([]);
 	const classes = useStyles();
@@ -65,20 +70,35 @@ function Home() {
 	}, []);
 	useEffect(() => {
 		const tokin = localStorage.usertoken;
-		const loge = localStorage;
-		// const tokin = localStorage.usertoken;
-		console.log(localStorage, 'hereeeeeeeeeeeeeeeeeee in token');
-
 		if (tokin) {
 			var decoded = jwt_decode(tokin);
 			console.log(decoded);
 			email = decoded.email;
-			name = localStorage.getItem('name');
-			// email = '';
 			console.log(email);
 		} else {
 			console.log('no token found');
 		}
+	});
+	useEffect(() => {
+		store.dispatch(initalize());
+		// console.log(store.getState().counter, 'storeeeeee');
+		$({ counter: 0 }).animate(
+			{ counter: store.getState().counter - 1 },
+			{
+				//Animate over a period of 2seconds
+				duration: 3000,
+				//Progress animation at constant pace using linear
+				easing: 'linear',
+				step: function () {
+					//Every step of the animation, update the number value
+					//Use ceil to round up to the nearest whole int
+					$('.total').text(Math.ceil(this.counter));
+				},
+				complete: function () {
+					//Could add in some extra animations, like a bounc of colour change once the count up is complete.
+				},
+			},
+		);
 	});
 
 	return (
@@ -139,7 +159,15 @@ function Home() {
 							<br />
 						</div>
 						<div class='col-lg-8 align-self-baseline'>
-							<p class='text-white-75 font-weight-light mb-5'></p>
+							<div id='box'>
+								<span
+									class='total'
+									style={{ fontSize: '60px', color: 'white' }}
+								></span>
+
+								<h3 style={{ color: 'white' }}>OFFICES RADY FOR RENT</h3>
+							</div>
+							<br />
 							<a
 								class='btn btn-primary btn-xl js-scroll-trigger'
 								style={{ marginRight: '10px', backgroundColor: '#00848C' }}
@@ -246,7 +274,7 @@ function Home() {
 								/>
 								<div class='portfolio-box-caption'>
 									<div class='project-category text-white-50'>WASFSs</div>
-									<div class='project-name'>Project Name</div>
+									<div class='project-name'>Rent Now</div>
 								</div>
 							</a>
 						</div>
@@ -359,4 +387,10 @@ function Home() {
 		</div>
 	);
 }
-export default Home;
+const mapStateToProps = state => {
+	const counter = state.counter;
+	return {
+		counter: state.counter,
+	};
+};
+export default connect(mapStateToProps, { initalize })(Home);
