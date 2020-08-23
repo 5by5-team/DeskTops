@@ -19,7 +19,6 @@ import { Link, Box } from '@material-ui/core';
 import '../custumerPage/cus.css';
 import $ from 'jquery';
 import { createBrowserHistory } from 'history';
-import Map from '../map/map';
 import {
 	KeyboardDatePicker,
 	MuiPickersUtilsProvider,
@@ -103,6 +102,7 @@ function CustemarPage() {
 			console.log('no token found');
 		}
 	});
+
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
@@ -139,7 +139,14 @@ function CustemarPage() {
 						<div class='collapse navbar-collapse' id='navbarResponsive'>
 							<ul class='navbar-nav ml-auto my-2 my-lg-0'>
 								<li class='nav-item'>
-									<a class='nav-link js-scroll-trigger' onClick={search}>
+									<a
+										class='nav-link js-scroll-trigger'
+										onClick={() => {
+											localStorage.removeItem('usertoken');
+											history.push('');
+											window.location.reload('/landingPage');
+										}}
+									>
 										LogOut
 									</a>
 								</li>
@@ -149,10 +156,6 @@ function CustemarPage() {
 										Let's Talk
 									</a>
 								</li>
-
-								<button Link to='/map'>
-									map
-								</button>
 							</ul>
 						</div>
 						<ReactBootstrap.Form.Control

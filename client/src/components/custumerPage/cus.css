@@ -34,10 +34,7 @@
 	font-size: 13px;
   }
   
-  .pricing4 .card.card-shadow {
-	-webkit-box-shadow: 0px 0px 30px rgba(115, 128, 157, 0.1);
-	box-shadow: 0px 0px 30px rgba(115, 128, 157, 0.1);
-  }
+ 
   
   .pricing4 .text-success {
 	color: #2cdd9b !important;
@@ -46,7 +43,7 @@
   .pricing4 .price small {
 	color: #8d97ad;
 	font-size: 16px;
-  }
+  } 
   
   .pricing4 h5 {
 	  line-height: 22px;
@@ -54,21 +51,11 @@
   }
   
   .pricing4 .btn-danger-gradiant {
-	background: #ff4d7e;
-	background: -webkit-linear-gradient(legacy-direction(to right), #ff4d7e 0%, #ff6a5b 100%);
-	background: -webkit-gradient(linear, left top, right top, from(#ff4d7e), to(#ff6a5b));
-	background: -webkit-linear-gradient(left, #ff4d7e 0%, #ff6a5b 100%);
-	background: -o-linear-gradient(left, #ff4d7e 0%, #ff6a5b 100%);
-	background: linear-gradient(to right, #ff4d7e 0%, #ff6a5b 100%);
+	background: #00848C;
   }
   
    .pricing4 .btn-danger-gradiant:hover {
-	background: #ff6a5b;
-	background: -webkit-linear-gradient(legacy-direction(to right), #ff6a5b 0%, #ff4d7e 100%);
-	background: -webkit-gradient(linear, left top, right top, from(#ff6a5b), to(#ff4d7e));
-	background: -webkit-linear-gradient(left, #ff6a5b 0%, #ff4d7e 100%);
-	background: -o-linear-gradient(left, #ff6a5b 0%, #ff4d7e 100%);
-	background: linear-gradient(to right, #ff6a5b 0%, #ff4d7e 100%);
+	background: #00848C;
   }
   
   .pricing4 .btn-md {   
