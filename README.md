@@ -1,7 +1,14 @@
-## Tamplete ready to deploy on heroku
+## Desk Tops
 
-> this is a tamplete ready to deploy on heroku
+> 
 
+## Technologies
+in front end : react ,redux ,material-UI ,bootstrap 
+back end & database : Mysql , nodeJS , express 
+notification Email , Maps ,
+media Upload : Cloudinary
+Authentication :JWT, Bcrypt 
+Deployment : Heroku & AWS
 ## How to start
 
 1- clone the repo, open terminal inside
@@ -33,3 +40,6 @@
 14- git push heroku master
 
 15- heroku open "it should open the landing page of react app"
+## Team member 
+ahmed hillis , niveen elkhozoner , ahmed nushtaha , walaa sbih ,khaled alshaikh alshaikh ali
+
