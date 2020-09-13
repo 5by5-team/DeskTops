@@ -1,6 +1,7 @@
-## Desk Tops
+## BookingFinder 
+In Gaza strip, there is an Existing problem which is Frequent power and internet outages, and Since our enrollment in the accelerator RBK program, we had difficulty communicating with the program as a result of this problem, and most of us need offices equipped with the Internet and electricity. 
+Hence the idea of creating a website, which is the first of its kind in the Gaza Strip, it is a link between office owners and those wishing to rent a desk, and they can contact each other easily using this website.
 
-> 
 
 ## Technologies
 in front end : react ,redux ,material-UI ,bootstrap 
