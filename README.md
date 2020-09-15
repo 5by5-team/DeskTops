@@ -28,5 +28,5 @@ Deployment : Heroku & AWS
 
 
 ## Team member 
-ahmed hillis , niveen elkhozoner , ahmed mushtaha , walaa sbih ,khaled alshaikh alshaikh ali
+ahmed hillis , niveen elkhozoner , ahmed mushtaha , walaa sbih ,khaled alshaikh ali 
 
